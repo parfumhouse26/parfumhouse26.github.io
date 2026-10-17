@@ -13,9 +13,9 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="PARFUM.HOUSE26 — премиум разлив">
 <meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
-<meta property="og:image" content="https://vladvan7.github.io/parfum-house26/icon-512.png">
-<meta property="og:url" content="https://vladvan7.github.io/parfum-house26/">
-<script>window.APP_VERSION = '7cb4dd9968';</script>
+<meta property="og:image" content="https://vladvan7.github.io/parfumhouse26/icon-512.png">
+<meta property="og:url" content="https://vladvan7.github.io/parfumhouse26/">
+<script>window.APP_VERSION = '11b570deb9';</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -141,6 +141,7 @@ main{display:block}
 .hero-stage{position:relative;height:460px;padding-bottom:58px;display:grid;place-items:center}
 .hero-stage::before{content:"";position:absolute;inset:6% 4% 10%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,220,220,.20),rgba(255,220,220,0))}
 .hero-stage svg{position:relative;height:100%;width:auto;max-width:100%}
+.arch{position:relative;height:100%;aspect-ratio:3/4;max-width:100%}
 .hero-cap{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:end;gap:12px}
 .hero-cap .nm{font:400 22px/1.1 var(--f-display)}
 .hero-cap .br{font:500 10.5px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:rgba(248,239,236,.66);margin-bottom:6px}
@@ -166,7 +167,7 @@ main{display:block}
 /* product card */
 .card{position:relative;display:flex;flex-direction:column;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:border-color .2s,transform .2s}
 .card:hover{border-color:color-mix(in srgb,var(--ink) 30%,var(--line))}
-.card .stage{position:relative;aspect-ratio:4/4.4;display:grid;place-items:center;background:color-mix(in oklab,var(--tint) 17%,var(--surface))}
+.card .stage{position:relative;aspect-ratio:4/4.4;display:grid;place-items:center;background:color-mix(in oklab,var(--tint) 15%,var(--surface))}
 .card .stage svg{height:92%;width:auto;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
 .card:hover .stage svg{transform:translateY(-4px)}
 .card .info{display:flex;flex-direction:column;gap:3px;padding:12px 14px 14px;flex:1}
@@ -193,7 +194,7 @@ main{display:block}
 
 /* volume guide */
 .guide{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px 48px;align-items:center}
-.guide-stage{height:400px;display:grid;place-items:center;border-radius:6px;background:color-mix(in oklab,var(--accent) 7%,var(--surface));border:1px solid var(--line)}
+.guide-stage{position:relative;height:400px;display:grid;place-items:center;border-radius:6px;background:color-mix(in oklab,var(--tint) 10%,var(--surface));border:1px solid var(--line)}
 .guide-stage svg{height:96%;width:auto;max-width:100%}
 .guide h3{font-size:clamp(30px,4vw,46px);line-height:1.04}
 .guide .ml-big{font:400 clamp(56px,8vw,88px)/1 var(--f-display);display:flex;align-items:baseline;gap:10px}
@@ -213,6 +214,21 @@ main{display:block}
 .ticks button span{white-space:nowrap;padding:2px 4px;border-radius:4px}
 .ticks button[aria-pressed="true"]{color:var(--ink)}
 .ticks button[aria-pressed="true"] span{background:var(--ink);color:var(--bg)}
+
+/* product photos: cut-out bottles (transparent webp) */
+.ph{height:86%;width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 10px 12px var(--shadow));user-select:none;-webkit-user-drag:none}
+.card .stage .ph{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.card:hover .stage .ph{transform:translateY(-4px)}
+.pstage{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent}
+.pwrap{position:absolute;left:50%;bottom:5%;height:88%;aspect-ratio:4/5;translate:-50% 0;transition:scale .45s cubic-bezier(.2,.8,.2,1);cursor:pointer;filter:drop-shadow(0 18px 22px var(--shadow))}
+.pwrap img{display:block;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .25s;user-select:none;-webkit-user-drag:none}
+.mist{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.pbox{position:absolute;left:0;right:0;bottom:5%;height:88%;pointer-events:none;font:500 10.5px/1 var(--f-mono);color:var(--muted)}
+.pbox .pr-line{position:absolute;left:24px;width:1px;background:var(--edge)}
+.pbox span{position:absolute;left:24px;transform:translateY(-50%);padding-left:14px;transition:color .2s}
+.pbox span::before{content:"";position:absolute;left:-4px;top:50%;width:12px;height:1px;background:currentColor}
+.pbox span.on{color:var(--ink);font-weight:600}
+.pd-stage .tap{z-index:3}
 
 /* collections */
 .coll-tabs{margin-bottom:18px}
@@ -266,7 +282,7 @@ main{display:block}
 .qrow label span{font:500 12px var(--f-mono);color:var(--muted)}
 .qres{display:grid;gap:10px}
 .qitem{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:14px;align-items:center;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 14px 10px 10px}
-.qitem .st{height:92px;border-radius:4px;display:grid;place-items:center;background:color-mix(in oklab,var(--tint) 18%,var(--surface))}
+.qitem .st{height:92px;border-radius:4px;display:grid;place-items:center;overflow:hidden;background:color-mix(in oklab,var(--tint) 15%,var(--surface))}
 .qitem .st svg{height:92%;width:auto}
 .qitem .nm{font:400 19px/1.15 var(--f-display)}
 .qitem .why{font-size:12.5px;color:var(--muted);margin-top:3px}
@@ -280,7 +296,7 @@ main{display:block}
 .cart{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.95fr);gap:28px 40px;padding-block:28px 0;align-items:start}
 .cart h1{font-size:clamp(32px,4.4vw,52px);line-height:1.05;margin-bottom:18px}
 .line{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
-.line .st{height:78px;border-radius:4px;display:grid;place-items:center;background:color-mix(in oklab,var(--tint) 18%,var(--surface))}
+.line .st{height:78px;border-radius:4px;display:grid;place-items:center;overflow:hidden;background:color-mix(in oklab,var(--tint) 15%,var(--surface))}
 .line .st svg{height:92%;width:auto}
 .line .nm{font:400 18px/1.2 var(--f-display)}
 .line .sub{font-size:12.5px;color:var(--muted)}
@@ -315,7 +331,7 @@ main{display:block}
 @keyframes rise{from{transform:translateY(24px);opacity:0}}
 .close{position:absolute;right:12px;top:12px;z-index:3;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line)}
 .pd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-.pd-stage{position:sticky;top:0;align-self:start;height:min(640px,calc(100vh - 48px));display:grid;place-items:center;background:color-mix(in oklab,var(--tint) 16%,var(--bg));overflow:hidden}
+.pd-stage{position:sticky;top:0;align-self:start;height:min(640px,calc(100vh - 48px));display:grid;place-items:center;background:color-mix(in oklab,var(--tint) 14%,var(--bg));overflow:hidden}
 .pd-stage svg{height:92%;width:auto;max-width:100%;cursor:pointer}
 .pd-stage .tap{position:absolute;left:0;right:0;bottom:16px;text-align:center;font:500 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .pd-body{padding:34px clamp(18px,3.4vw,40px) 0;display:grid;gap:26px;align-content:start}
@@ -399,7 +415,7 @@ main{display:block}
             <button class="btn" data-go="quiz">Подобрать аромат</button>
           </div>
         </div>
-        <div class="hero-stage" id="heroStage">
+        <div class="hero-stage" id="heroStage"><div class="arch" id="heroArch"></div>
           <div class="hero-cap"><div><div class="br" id="heroBr"></div><div class="nm" id="heroNm"></div></div><div class="dots" id="heroDots"></div></div>
         </div>
       </div>
@@ -640,6 +656,10 @@ const A=[
  d:'Минеральный, замшевый, космический. Звучит как тёплый камень и мягкая кожа.'}
 ];
 const BY=Object.fromEntries(A.map(a=>[a.id,a]));
+/* фото из каталога магазина (@parfum_house26_katalog), флаконы вырезаны из фона: img/<id>.webp */
+const PHOTO=new Set(['wild-rush','sea-breeze','sequence','tygar-extrait','ruby','blanche-bete','carios','valero','perseus','castley','percival']);
+const hasPhoto=a=>PHOTO.has(a.id);
+function thumb(a,o={}){return hasPhoto(a)?`<img class="ph" src="img/${a.id}.webp" alt="" loading="lazy" decoding="async" draggable="false">`:bottleSVG(a,o)}
 const VOL=[6,10,15,20,30,50];
 const OIL=[1,2,3,5,10];
 const SPRAY_PER_ML=12;
@@ -807,6 +827,83 @@ class Flacon{
   }
 }
 
+/* ---------- живое фото: растёт с объёмом, пшикает при нажатии ---------- */
+const BB=new Map(),BB0={t:.07,b:.95,nx:.4,ny:.12};
+function measure(img,id){
+  if(BB.has(id))return BB.get(id);
+  try{
+    const W=90,H=Math.round(W*img.naturalHeight/img.naturalWidth),c=document.createElement('canvas');c.width=W;c.height=H;
+    const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(img,0,0,W,H);const d=x.getImageData(0,0,W,H).data;
+    const ink=(X,Y)=>d[(Y*W+X)*4+3]>60;
+    let t=-1,b=-1;
+    for(let Y=0;Y<H&&t<0;Y++)for(let X=0;X<W;X++)if(ink(X,Y)){t=Y;break}
+    for(let Y=H-1;Y>=0&&b<0;Y--)for(let X=0;X<W;X++)if(ink(X,Y)){b=Y;break}
+    if(t<0||b<=t)throw 0;
+    const ny=Math.round(t+(b-t)*.07);let nx=W/2;for(let X=0;X<W;X++)if(ink(X,ny)){nx=X;break}
+    const r={t:t/H,b:(b+1)/H,nx:nx/W,ny:ny/H};BB.set(id,r);return r;
+  }catch(e){return BB0}
+}
+class PhotoStage{
+  constructor(host,{a,ml=30,shape='spray',ruler=false,dark=null}){
+    this.host=host;this.darkGround=dark;this.shape=shape;this.list=shape==='oil'?OIL:VOL;this.ml=ml;this.bb=BB0;this.drops=[];this.run=false;this.a=null;
+    host.classList.add('pstage');
+    host.insertAdjacentHTML('afterbegin',`${ruler?'<div class="pbox" aria-hidden="true"></div>':''}<div class="pwrap"><img alt="" draggable="false"></div><canvas class="mist" aria-hidden="true"></canvas>`);
+    this.wrap=host.querySelector('.pwrap');this.img=this.wrap.firstChild;this.cv=host.querySelector('.mist');this.box=host.querySelector('.pbox');
+    this.img.addEventListener('load',()=>{this.bb=measure(this.img,this.a.id);this.wrap.style.transformOrigin=`50% ${(this.bb.b*100).toFixed(1)}%`;this.renderRuler();this.img.style.opacity=1;if(this.pending){this.pending=false;setTimeout(()=>this.spray(),250)}});
+    this.wrap.addEventListener('click',()=>this.spray());
+    this.set({a,ml});this.renderRuler();
+  }
+  sOf(ml){const L=this.list,c0=Math.cbrt(L[0]),c1=Math.cbrt(L[L.length-1]);return .58+.42*Math.max(0,Math.min(1,(Math.cbrt(ml)-c0)/(c1-c0)))}
+  set({a,ml,shape}){
+    if(shape&&shape!==this.shape){this.shape=shape;this.list=shape==='oil'?OIL:VOL;this.renderRuler()}
+    if(a&&a!==this.a){const first=!this.a;this.a=a;this.host.style.setProperty('--tint',a.tint);
+      const sw=()=>{this.img.src=`img/${a.id}.webp`;this.img.alt=a.b+' '+a.n};
+      if(first||RM)sw();else{this.img.style.opacity=0;setTimeout(sw,220)}}
+    if(ml!=null){this.ml=ml;this.wrap.style.scale=this.sOf(ml).toFixed(3);this.markRuler()}
+  }
+  renderRuler(){
+    if(!this.box)return;const bb=this.bb,h=bb.b-bb.t,top=v=>((bb.b-this.sOf(v)*h)*100).toFixed(2)+'%';
+    this.box.innerHTML=`<i class="pr-line" style="top:${top(this.list[this.list.length-1])};bottom:${((1-bb.b)*100).toFixed(2)}%"></i>`+this.list.map(v=>`<span data-v="${v}" style="top:${top(v)}">${v}</span>`).join('');
+    this.markRuler();
+  }
+  markRuler(){
+    if(!this.box)return;let near=this.list[0];for(const v of this.list)if(Math.abs(v-this.ml)<Math.abs(near-this.ml))near=v;
+    this.box.querySelectorAll('span').forEach(s=>s.classList.toggle('on',+s.dataset.v===near));
+  }
+  puff(){this.spray()}
+  sprayWhenReady(){if(this.img.complete&&this.img.naturalWidth)setTimeout(()=>this.spray(),350);else this.pending=true}
+  spray(){
+    if(RM||!this.a)return;
+    const hr=this.host.getBoundingClientRect(),wr=this.wrap.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);
+    if(!hr.width)return;
+    const W=Math.round(hr.width*dpr),H=Math.round(hr.height*dpr);if(this.cv.width!==W||this.cv.height!==H){this.cv.width=W;this.cv.height=H}
+    const ox=wr.left-hr.left+this.bb.nx*wr.width,oy=wr.top-hr.top+this.bb.ny*wr.height,k=Math.max(.45,wr.height/480);
+    this.img.animate([{transform:'none'},{transform:'translateY(.8%) scaleY(.99)'},{transform:'none'}],{duration:300,easing:'cubic-bezier(.3,.7,.3,1)'});
+    const T=hex2rgb(this.a.tint),mix=(c,w,f)=>c.map((v,i)=>Math.round(v*(1-f)+w[i]*f)).join(',');
+    const th=document.documentElement.dataset.theme,dk=this.darkGround??((matchMedia('(prefers-color-scheme: dark)').matches&&th!=='light')||th==='dark');
+    this.dc=dk?mix(T,[255,245,245],.6):mix(T,[95,82,86],.55);this.cc=dk?mix(T,[255,240,240],.55):mix(T,[150,138,142],.5);
+    for(let i=0;i<130;i++){const ang=Math.PI+(Math.random()-.5)*.6-.1,sp=(2.5+Math.random()*7)*k;
+      this.drops.push({x:ox,y:oy,vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,r:(.5+Math.random()*1.3)*Math.max(1,k*.9),life:-Math.random()*9,max:34+Math.random()*30,c:0})}
+    for(let i=0;i<18;i++){const ang=Math.PI+(Math.random()-.5)*.55-.08,sp=(1.6+Math.random()*3.4)*k;
+      this.drops.push({x:ox,y:oy,vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,r:(5+Math.random()*7)*k,grow:(.5+Math.random()*.7)*k,life:-Math.random()*8,max:70+Math.random()*45,c:1})}
+    if(!this.run){this.run=true;this.last=0;requestAnimationFrame(t=>this.tick(t))}
+  }
+  tick(ts){
+    const dt=this.last?Math.min(3,(ts-this.last)/16.7):1;this.last=ts;
+    const x=this.cv.getContext('2d'),dpr=this.cv.width/Math.max(1,this.cv.clientWidth);x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,this.cv.width,this.cv.height);
+    for(const p of this.drops){
+      p.life+=dt;if(p.life<0)continue;
+      const drag=Math.pow(p.c?.955:.925,dt);p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=drag;p.vy=p.vy*drag-(p.c?.018:.004)*dt;if(p.c)p.r+=p.grow*dt;
+      const q=p.life/p.max,al=(p.c?.2:.6)*(1-q)*Math.min(1,q*8);
+      if(p.c){const g=x.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);g.addColorStop(0,`rgba(${this.cc},${al.toFixed(3)})`);g.addColorStop(1,`rgba(${this.cc},0)`);x.fillStyle=g}
+      else x.fillStyle=`rgba(${this.dc},${al.toFixed(3)})`;
+      x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill();
+    }
+    this.drops=this.drops.filter(p=>p.life<p.max);
+    if(this.drops.length&&this.host.isConnected)requestAnimationFrame(t=>this.tick(t));else{this.run=false;x.clearRect(0,0,this.cv.width,this.cv.height)}
+  }
+}
+
 /* ---------- состояние ---------- */
 const S={
   cart:store.get('cart',[]),fav:new Set(store.get('fav',[])),
@@ -835,7 +932,7 @@ function promoLine(form,ml){
 /* ---------- карточки ---------- */
 function card(a,{ml=30}={}){
   return `<article class="card" style="--tint:${a.tint}" data-open="${a.id}" tabindex="0" role="button" aria-label="${esc(a.b+' '+a.n)}">
-    <div class="stage">${a.nw?'<span class="tag">Новинка</span>':''}${bottleSVG(a,{ml})}
+    <div class="stage">${a.nw?'<span class="tag">Новинка</span>':''}${thumb(a,{ml})}
       <button class="fav" data-fav="${a.id}" aria-pressed="${S.fav.has(a.id)}" aria-label="В избранное"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button></div>
     <div class="info"><div class="br">${esc(a.b)}</div><div class="nm">${esc(a.n)}</div><div class="meta">${GENDER[a.g]} · ${esc(a.fam)}</div>
       <div class="pr"><b class="num">от ${RUB(a.p*6)}</b><span>${RUB(a.p)}/мл</span></div></div></article>`;
@@ -862,19 +959,18 @@ const NEW=A.filter(a=>a.nw);
 let hero,heroI=0,heroTimer;
 function setHero(i){
   heroI=(i+NEW.length)%NEW.length;const a=NEW[heroI];
-  hero.set({tint:a.tint,name:a.n,ml:30});$('#heroNm').textContent=a.n;$('#heroBr').textContent=a.b;
+  hero.set({a});$('#heroNm').textContent=a.n;$('#heroBr').textContent=a.b;
   $$('#heroDots button').forEach((b,j)=>b.setAttribute('aria-pressed',j===heroI));
 }
 function initHome(){
-  hero=new Flacon($('#heroStage'),{ml:30,tint:NEW[0].tint,name:NEW[0].n,cx:140,W:280});
+  hero=new PhotoStage($('#heroArch'),{a:NEW[0],ml:50,dark:true});
   $('#heroDots').innerHTML=NEW.map((a,i)=>`<button aria-label="${esc(a.n)}" aria-pressed="${i===0}"></button>`).join('');
   $$('#heroDots button').forEach((b,i)=>b.onclick=()=>{setHero(i);restartHero()});
   $('#heroNm').onclick=()=>openProduct(NEW[heroI].id);$('#heroNm').style.cursor='pointer';
   setHero(0);restartHero();
   $('#newRow').innerHTML=NEW.map(a=>card(a)).join('');
   // гид по объёмам
-  const ga=BY['percival'];
-  const guide=new Flacon($('#guideStage'),{ml:10,tint:'#C9A6AE',name:'Ваш аромат',ruler:true,cx:150,W:280});
+  const guide=new PhotoStage($('#guideStage'),{a:BY['percival'],ml:10,ruler:true});
   const gr=$('#gRange');
   $('#gTicks').innerHTML=VOL.map((v,i)=>`<button data-i="${i}" aria-pressed="${i===1}"><span>${v}</span></button>`).join('');
   const show=(f,snap)=>{
@@ -957,7 +1053,7 @@ function renderQuiz(){
   const L=A.filter(x=>S.quiz.g==='any'||x.g===S.quiz.g||x.g==='u').map(x=>{const d=Math.sqrt(x.ax.reduce((s,v,i)=>s+W[i]*(v-a[i])**2,0));return {x,m:Math.round(100*(1-d/dmax))}}).sort((p,q)=>q.m-p.m).slice(0,8);
   $('#qCount').textContent='Лучшие совпадения';
   $('#qRes').innerHTML=L.map(({x,m})=>`<article class="qitem" style="--tint:${x.tint}" data-open="${x.id}" tabindex="0" role="button">
-    <div class="st">${bottleSVG(x,{ml:20})}</div>
+    <div class="st">${thumb(x,{ml:20})}</div>
     <div style="min-width:0"><div class="eyebrow" style="font-size:10px">${esc(x.b)}</div><div class="nm">${esc(x.n)}</div><div class="why">${[...x.top.slice(0,2),...x.base.slice(0,2)].join(' · ')}</div></div>
     <div class="match"><b class="num">${m}%</b><div class="bar"><i style="width:${m}%"></i></div></div></article>`).join('');
 }
@@ -994,7 +1090,8 @@ function openProduct(id){
     </div></div>`;
   const sh=$('#sheet');sh.hidden=false;document.body.style.overflow='hidden';$('#panel').scrollTop=0;
   pd={a,form:'spray',i:4,ml:30,priceShown:0,perDay:3};
-  pd.fl=new Flacon($('#pdStage'),{ml:30,tint:a.tint,name:a.n,ruler:true,cx:155,W:290});
+  pd.fl=hasPhoto(a)?new PhotoStage($('#pdStage'),{a,ml:30,ruler:true}):new Flacon($('#pdStage'),{ml:30,tint:a.tint,name:a.n,ruler:true,cx:155,W:290});
+  if(pd.fl.sprayWhenReady)pd.fl.sprayWhenReady();
   setupVol();
   $('#pdForm').onclick=e=>{const b=e.target.closest('[data-f]');if(!b||b.dataset.f===pd.form)return;pd.form=b.dataset.f;$$('#pdForm button').forEach(x=>x.setAttribute('aria-pressed',x===b));setupVol()};
   $('#pdPerDay').oninput=e=>{pd.perDay=+e.target.value;updLast()};
@@ -1053,8 +1150,8 @@ $('#toastB').onclick=()=>{$('#toast').classList.remove('on');closeSheet();goView
 function renderCart(){
   const w=$('#cartWrap');
   if(!S.cart.length){
-    w.innerHTML=`<div class="cart" style="grid-template-columns:1fr"><div class="empty" style="padding-top:40px"><div style="height:220px;display:grid;place-items:center">${bottleSVG({tint:'#C9A6AE',n:'Ваш аромат'},{ml:10})}</div><h3>Корзина пока пуста</h3><p style="max-width:28em;margin:0 auto 22px">Выберите ароматы в каталоге. Два флакона одного объёма — третий в подарок.</p><button class="btn solid" data-go="catalog">Перейти в каталог</button></div></div>`;
-    $('.empty svg',w).style.height='100%';return;
+    w.innerHTML=`<div class="cart" style="grid-template-columns:1fr"><div class="empty" style="padding-top:40px"><div style="height:200px;display:flex;justify-content:center;align-items:flex-end;gap:4px">${['blanche-bete','wild-rush','ruby'].map((id,i)=>`<img class="ph" src="img/${id}.webp" alt="" style="height:${i===1?100:80}%">`).join('')}</div><h3>Корзина пока пуста</h3><p style="max-width:28em;margin:0 auto 22px">Выберите ароматы в каталоге. Два флакона одного объёма — третий в подарок.</p><button class="btn solid" data-go="catalog">Перейти в каталог</button></div></div>`;
+    return;
   }
   const c=calc();
   const hints=Object.entries(c.groups).filter(([,u])=>u.length%3===2).map(([k])=>{const [form,ml]=k.split('|');return `Добавьте ещё один флакон ${ml} мл${form==='oil'?' масла':''} — самый недорогой из трёх будет в подарок.`});
@@ -1062,7 +1159,7 @@ function renderCart(){
   w.innerHTML=`<div class="cart">
     <div><div class="eyebrow">Ваш заказ</div><h1>Корзина</h1>
       ${S.cart.map((l,i)=>{const a=BY[l.id];if(!a)return '';const pr=priceOf(a,l.form,l.ml),fr=c.freeBy.get(i)||0;
-        return `<div class="line" style="--tint:${a.tint}"><div class="st" data-open="${a.id}" role="button" tabindex="0" aria-label="${esc(a.n)}">${bottleSVG(a,{ml:l.form==='oil'?30:l.ml,shape:l.form})}</div>
+        return `<div class="line" style="--tint:${a.tint}"><div class="st" data-open="${a.id}" role="button" tabindex="0" aria-label="${esc(a.n)}">${thumb(a,{ml:l.form==='oil'?30:l.ml,shape:l.form})}</div>
         <div style="min-width:0"><div class="eyebrow" style="font-size:10px">${esc(a.b)}</div><div class="nm">${esc(a.n)}</div><div class="sub">${l.ml} мл · ${l.form==='oil'?'масло':'спрей'} · ${RUB(pr)}</div>
           ${fr?`<span class="gift">${fr>1?fr+' × ':''}подарок 2+1</span>`:''}
           <div><div class="qty"><button data-q="${i}" data-d="-1" aria-label="Меньше">−</button><span>${l.qty}</span><button data-q="${i}" data-d="1" aria-label="Больше">+</button></div></div></div>
