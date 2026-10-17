@@ -15,7 +15,7 @@
 <meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
 <meta property="og:image" content="https://parfumhouse26.github.io/icon-512.png">
 <meta property="og:url" content="https://parfumhouse26.github.io/">
-<script>window.APP_VERSION = '0ecf7fdd2a';</script>
+<script>window.APP_VERSION = '13199c43ee';</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -474,7 +474,7 @@ main{display:block}
     <div class="wrap sec">
       <div class="info3">
         <div class="box"><h3>Доставка</h3><ul>
-          <li>По Ессентукам и станице Ессентукской — бесплатно при заказе от 1 500 ₽.</li>
+          <li>По Ессентукам и станице Ессентукской — бесплатно при заказе от <span id="freeFrom">1 500 ₽</span>.</li>
           <li>Отправляем по всей России.</li>
           <li>К каждому заказу добавляем вкусняшку для настроения.</li></ul></div>
         <div class="box"><h3>Как хранить</h3><ul>
@@ -658,9 +658,23 @@ const A=[
 ];
 const BY=Object.fromEntries(A.map(a=>[a.id,a]));
 /* фото флаконов, вырезанные из фона: img/<id>.webp (фон убран нейросетью; 11 — из каталога магазина @parfum_house26_katalog, остальные — официальные снимки с fragrantica.com) */
-const PHOTO=new Set(A.map(a=>a.id));
-const hasPhoto=a=>PHOTO.has(a.id);
-function thumb(a,o={}){return hasPhoto(a)?`<img class="ph" src="img/${a.id}.webp" alt="" loading="lazy" decoding="async" draggable="false">`:bottleSVG(a,o)}
+const hasPhoto=a=>a.img!==false;
+const imgUrl=a=>`img/${a.id}.webp${a.v?'?v='+a.v:''}`;
+function thumb(a,o={}){return hasPhoto(a)?`<img class="ph" src="${imgUrl(a)}" alt="" loading="lazy" decoding="async" draggable="false">`:bottleSVG(a,o)}
+/* настройки магазина; меняются в админке (data/catalog.json → settings) */
+const SHOP={whatsapp:'',deliveryFree:1500};
+const waLink=()=>{const d=String(SHOP.whatsapp||'').replace(/\D/g,'');return d?`https://wa.me/${d.replace(/^8(?=\d{10}$)/,'7')}`:''};
+/* каталог: data/catalog.json (его правит админка); массив выше — запасной вариант без сети */
+let booted=false;
+async function loadCatalog(){
+  try{
+    const r=await fetch('data/catalog.json',{cache:'no-cache'});if(!r.ok)return;
+    const j=await r.json();if(booted||!Array.isArray(j.aromas)||!j.aromas.length)return;
+    A.splice(0,A.length,...j.aromas.filter(a=>!a.hidden));
+    for(const k in BY)delete BY[k];A.forEach(a=>BY[a.id]=a);
+    if(j.settings)Object.assign(SHOP,j.settings);
+  }catch(e){}
+}
 const VOL=[6,10,15,20,30,50];
 const OIL=[1,2,3,5,10];
 const SPRAY_PER_ML=12;
@@ -858,7 +872,7 @@ class PhotoStage{
   set({a,ml,shape}){
     if(shape&&shape!==this.shape){this.shape=shape;this.list=shape==='oil'?OIL:VOL;this.renderRuler()}
     if(a&&a!==this.a){const first=!this.a;this.a=a;this.host.style.setProperty('--tint',a.tint);
-      const sw=()=>{this.img.src=`img/${a.id}.webp`;this.img.alt=a.b+' '+a.n};
+      const sw=()=>{this.img.src=imgUrl(a);this.img.alt=a.b+' '+a.n};
       if(first||RM)sw();else{this.img.style.opacity=0;setTimeout(sw,220)}}
     if(ml!=null){this.ml=ml;this.wrap.style.scale=this.sOf(ml).toFixed(3);this.markRuler()}
   }
@@ -956,7 +970,7 @@ function goView(v,{noHash}={}){
 }
 
 /* ---------- главная ---------- */
-const NEW=A.filter(a=>a.nw);
+let NEW=[];
 let hero,heroI=0,heroTimer;
 function setHero(i){
   heroI=(i+NEW.length)%NEW.length;const a=NEW[heroI];
@@ -964,6 +978,7 @@ function setHero(i){
   $$('#heroDots button').forEach((b,j)=>b.setAttribute('aria-pressed',j===heroI));
 }
 function initHome(){
+  NEW=A.filter(a=>a.nw);if(!NEW.length)NEW=A.slice(0,5);
   hero=new PhotoStage($('#heroArch'),{a:NEW[0],ml:50,dark:true});
   $('#heroDots').innerHTML=NEW.map((a,i)=>`<button aria-label="${esc(a.n)}" aria-pressed="${i===0}"></button>`).join('');
   $$('#heroDots button').forEach((b,i)=>b.onclick=()=>{setHero(i);restartHero()});
@@ -1151,12 +1166,12 @@ $('#toastB').onclick=()=>{$('#toast').classList.remove('on');closeSheet();goView
 function renderCart(){
   const w=$('#cartWrap');
   if(!S.cart.length){
-    w.innerHTML=`<div class="cart" style="grid-template-columns:1fr"><div class="empty" style="padding-top:40px"><div style="height:200px;display:flex;justify-content:center;align-items:flex-end;gap:4px">${['blanche-bete','wild-rush','ruby'].map((id,i)=>`<img class="ph" src="img/${id}.webp" alt="" style="height:${i===1?100:80}%">`).join('')}</div><h3>Корзина пока пуста</h3><p style="max-width:28em;margin:0 auto 22px">Выберите ароматы в каталоге. Два флакона одного объёма — третий в подарок.</p><button class="btn solid" data-go="catalog">Перейти в каталог</button></div></div>`;
+    w.innerHTML=`<div class="cart" style="grid-template-columns:1fr"><div class="empty" style="padding-top:40px"><div style="height:200px;display:flex;justify-content:center;align-items:flex-end;gap:4px">${A.filter(hasPhoto).slice(0,3).map((a,i)=>`<img class="ph" src="${imgUrl(a)}" alt="" style="height:${i===1?100:80}%">`).join('')}</div><h3>Корзина пока пуста</h3><p style="max-width:28em;margin:0 auto 22px">Выберите ароматы в каталоге. Два флакона одного объёма — третий в подарок.</p><button class="btn solid" data-go="catalog">Перейти в каталог</button></div></div>`;
     return;
   }
   const c=calc();
   const hints=Object.entries(c.groups).filter(([,u])=>u.length%3===2).map(([k])=>{const [form,ml]=k.split('|');return `Добавьте ещё один флакон ${ml} мл${form==='oil'?' масла':''} — самый недорогой из трёх будет в подарок.`});
-  const ess=c.total>=1500;
+  const ess=c.total>=SHOP.deliveryFree;
   w.innerHTML=`<div class="cart">
     <div><div class="eyebrow">Ваш заказ</div><h1>Корзина</h1>
       ${S.cart.map((l,i)=>{const a=BY[l.id];if(!a)return '';const pr=priceOf(a,l.form,l.ml),fr=c.freeBy.get(i)||0;
@@ -1171,7 +1186,7 @@ function renderCart(){
       <div class="sumrow"><span>Ароматы</span><span class="num">${RUB(c.sub)}</span></div>
       ${c.gift?`<div class="sumrow" style="color:var(--accent)"><span>Подарок по акции 2+1</span><span class="num">−${RUB(c.gift)}</span></div>`:''}
       <div class="radio" role="radiogroup" aria-label="Доставка">
-        <label><input type="radio" name="dl" value="ess" ${S.delivery==='ess'?'checked':''}><span>Ессентуки и ст. Ессентукская<small>${ess?'Бесплатно — заказ от 1 500 ₽':'Бесплатно от 1 500 ₽, сейчас стоимость уточнит магазин'}</small></span></label>
+        <label><input type="radio" name="dl" value="ess" ${S.delivery==='ess'?'checked':''}><span>Ессентуки и ст. Ессентукская<small>${ess?`Бесплатно — заказ от ${RUB(SHOP.deliveryFree)}`:`Бесплатно от ${RUB(SHOP.deliveryFree)}, сейчас стоимость уточнит магазин`}</small></span></label>
         <label><input type="radio" name="dl" value="ru" ${S.delivery==='ru'?'checked':''}><span>Доставка по России<small>Отправка службой доставки, стоимость рассчитает магазин</small></span></label>
       </div>
       <div class="sumrow total"><span>Итого за ароматы</span><b class="num">${RUB(c.total)}</b></div>
@@ -1195,16 +1210,18 @@ function renderCart(){
       lines.push(`${n++}. ${a.b} ${a.n} — ${l.ml} мл, ${l.form==='oil'?'масло':'спрей'} × ${l.qty} = ${RUB(pr*(l.qty-fr))}${fr?` (${fr} в подарок по акции 2+1)`:''}`)});
     const txt=`Здравствуйте! Хочу оформить заказ:\n\n${lines.join('\n')}\n\nСумма: ${RUB(c.sub)}${c.gift?`\nПодарок 2+1: −${RUB(c.gift)}`:''}\nИтого: ${RUB(c.total)}\nДоставка: ${S.delivery==='ess'?'Ессентуки / ст. Ессентукская':'по России'}${ad?`, ${ad}`:''}\n\nИмя: ${nm}\nКонтакт: ${ph}${note?`\nКомментарий: ${note}`:''}`;
     const out=$('#orderOut');out.hidden=false;
-    out.innerHTML=`<div class="eyebrow">Последний шаг</div><p style="font-size:14px">Скопируйте текст и отправьте его магазину в Direct — менеджер подтвердит наличие и доставку.</p><textarea id="oTxt" readonly aria-label="Текст заказа">${esc(txt)}</textarea>
-      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn wine small" id="oCopy">Скопировать заказ</button><a class="btn small" href="https://ig.me/m/parfum.house26" target="_blank" rel="noopener">Открыть Direct</a></div>`;
+    out.innerHTML=`<div class="eyebrow">Последний шаг</div><p style="font-size:14px">Скопируйте текст и отправьте его магазину в Direct${waLink()?' или WhatsApp':''} — менеджер подтвердит наличие и доставку.</p><textarea id="oTxt" readonly aria-label="Текст заказа">${esc(txt)}</textarea>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn wine small" id="oCopy">Скопировать заказ</button><a class="btn small" href="https://ig.me/m/parfum.house26" target="_blank" rel="noopener">Открыть Direct</a>${waLink()?`<a class="btn small" href="${waLink()}" target="_blank" rel="noopener">WhatsApp</a>`:''}</div>`;
     $('#oCopy').onclick=async()=>{const ta=$('#oTxt');try{await navigator.clipboard.writeText(ta.value);$('#oCopy').textContent='Скопировано'}catch(err){ta.focus();ta.select();$('#oCopy').textContent='Текст выделен — скопируйте'}};
     out.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});
   };
 }
 
 /* ---------- старт ---------- */
-initHome();initCatalog();initQuiz();updBadge();
-(function boot(){
+(async function boot(){
+  await Promise.race([loadCatalog(),new Promise(r=>setTimeout(r,2500))]);booted=true;
+  const ff=$('#freeFrom');if(ff)ff.textContent=RUB(SHOP.deliveryFree);
+  initHome();initCatalog();initQuiz();updBadge();
   const h=(location.hash||'').slice(1);
   if(h.startsWith('p-')&&BY[h.slice(2)]){goView('catalog',{noHash:true});openProduct(h.slice(2))}
   else goView(['home','catalog','quiz','cart'].includes(h)?h:'home',{noHash:!h});
