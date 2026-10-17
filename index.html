@@ -15,7 +15,7 @@
 <meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
 <meta property="og:image" content="https://parfumhouse26.github.io/icon-512.png">
 <meta property="og:url" content="https://parfumhouse26.github.io/">
-<script>window.APP_VERSION = '11b570deb9';</script>
+<script>window.APP_VERSION = '659fe4d0c8';</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -656,8 +656,8 @@ const A=[
  d:'Минеральный, замшевый, космический. Звучит как тёплый камень и мягкая кожа.'}
 ];
 const BY=Object.fromEntries(A.map(a=>[a.id,a]));
-/* фото из каталога магазина (@parfum_house26_katalog), флаконы вырезаны из фона: img/<id>.webp */
-const PHOTO=new Set(['wild-rush','sea-breeze','sequence','tygar-extrait','ruby','blanche-bete','carios','valero','perseus','castley','percival']);
+/* фото флаконов, вырезанные из фона: img/<id>.webp (11 — из каталога магазина @parfum_house26_katalog, 18 — официальные снимки с fragrantica.com) */
+const PHOTO=new Set(A.map(a=>a.id));
 const hasPhoto=a=>PHOTO.has(a.id);
 function thumb(a,o={}){return hasPhoto(a)?`<img class="ph" src="img/${a.id}.webp" alt="" loading="lazy" decoding="async" draggable="false">`:bottleSVG(a,o)}
 const VOL=[6,10,15,20,30,50];
