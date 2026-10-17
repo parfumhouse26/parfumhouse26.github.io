@@ -1,0 +1,29 @@
+{
+  "name": "PARFUM.HOUSE26 — премиум разлив",
+  "short_name": "Parfum House",
+  "description": "Парфюмерия в разлив в Ессентуках: каталог, выбор объёма, подбор аромата, акция 2+1",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#5A1520",
+  "theme_color": "#FBF8F7",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

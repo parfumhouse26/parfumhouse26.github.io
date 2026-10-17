@@ -1,0 +1,1162 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FBF8F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#130A0C" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Parfum House">
+<meta name="description" content="Парфюмерия в разлив в Ессентуках: более 290 ароматов от 6 мл, акция 2+1, доставка по России.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PARFUM.HOUSE26 — премиум разлив">
+<meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
+<meta property="og:image" content="https://vladvan7.github.io/parfum-house26/icon-512.png">
+<meta property="og:url" content="https://vladvan7.github.io/parfum-house26/">
+<script>window.APP_VERSION = '7cb4dd9968';</script>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Parfum House 26</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=Onest:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: витрина в духе флакона — белое стекло и винный бархат бренда; одна сцена с живым флаконом, всё остальное тихое */
+:root{
+  --bg:#FBF8F7; --surface:#FFFFFF; --ink:#211417; --muted:#7A6A6D; --line:#EAE1E1;
+  --wine:#5A1520; --on-wine:#F8EFEC; --accent:#7D2232; --gold:#A8854C;
+  --edge:rgba(33,20,23,.28); --shadow:rgba(70,20,28,.22); --scrim:rgba(20,8,10,.45);
+  --f-display:'Prata','Didot','Bodoni 72',Georgia,serif;
+  --f-body:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --tab-h:0px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#130A0C; --surface:#1C1114; --ink:#F4EBE9; --muted:#A8969A; --line:#33242A;
+  --wine:#5E1622; --on-wine:#F8EFEC; --accent:#E6A1AD; --gold:#D3B47C;
+  --edge:rgba(244,235,233,.34); --shadow:rgba(0,0,0,.55); --scrim:rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#130A0C; --surface:#1C1114; --ink:#F4EBE9; --muted:#A8969A; --line:#33242A;
+  --wine:#5E1622; --on-wine:#F8EFEC; --accent:#E6A1AD; --gold:#D3B47C;
+  --edge:rgba(244,235,233,.34); --shadow:rgba(0,0,0,.55); --scrim:rgba(0,0,0,.6); color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--f-body);-webkit-font-smoothing:antialiased;padding-bottom:var(--tab-h)}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;text-wrap:balance;letter-spacing:-.005em}
+p{margin:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font:500 11px/1.2 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.num{font-variant-numeric:tabular-nums}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.2) blur(14px);-webkit-backdrop-filter:saturate(1.2) blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:28px;height:62px}
+.logo{display:flex;flex-direction:column;line-height:1;text-decoration:none;gap:5px}
+.logo b{font:400 19px/1 var(--f-display);letter-spacing:.09em}
+.logo small{font:500 8.5px/1 var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav button{height:38px;padding:0 14px;border-radius:999px;font-size:14px;color:var(--muted)}
+.nav button[aria-current="page"]{color:var(--ink);background:var(--line)}
+.bagbtn{position:relative;width:42px;height:42px;display:grid;place-items:center;border-radius:999px;border:1px solid var(--line)}
+.badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--accent);color:var(--bg);font:600 10.5px/18px var(--f-mono);text-align:center}
+.badge:empty{display:none}
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* tab bar (phone) */
+.tabbar{display:none}
+@media (max-width:859px){
+  :root{--tab-h:calc(62px + env(safe-area-inset-bottom,0px))}
+  .nav,.top .bagbtn{display:none}
+  .top .wrap{justify-content:center;height:56px}
+  .logo{align-items:center}
+  .tabbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:40;
+    padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));
+    background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--line)}
+  .tabbar button{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;font-size:10.5px;color:var(--muted)}
+  .tabbar button[aria-current="page"]{color:var(--ink)}
+  .tabbar .badge{top:0;right:calc(50% - 22px)}
+}
+
+/* buttons, chips, controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 24px;border-radius:999px;border:1px solid var(--ink);font-weight:500;font-size:14.5px;white-space:nowrap;text-decoration:none}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.wine{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn.small{height:38px;padding:0 16px;font-size:13.5px}
+.btn:disabled{opacity:.4;cursor:default}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;height:34px;padding:0 14px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink);background:var(--surface);display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.seg button{height:34px;padding:0 15px;border-radius:999px;font-size:13.5px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;margin:0;--p:50%}
+input[type=range]::-webkit-slider-runnable-track{height:2px;border-radius:2px;background:linear-gradient(var(--accent),var(--accent)) 0 0/var(--p) 100% no-repeat,var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-11px;border-radius:50%;background:var(--surface);border:1.5px solid var(--ink);box-shadow:0 2px 8px var(--shadow);transition:transform .15s}
+input[type=range]:active::-webkit-slider-thumb{transform:scale(1.15)}
+input[type=range]::-moz-range-track{height:2px;background:var(--line);border-radius:2px}
+input[type=range]::-moz-range-progress{height:2px;background:var(--accent)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--surface);border:1.5px solid var(--ink);box-shadow:0 2px 8px var(--shadow)}
+.ends{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:2px}
+
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12.5px;color:var(--muted)}
+.field input,.field textarea,.field select{height:46px;padding:0 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);outline:none}
+.field textarea{height:auto;min-height:84px;padding:12px 14px;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--ink)}
+
+/* sections */
+main{display:block}
+.view{display:block}
+.sec{padding-block:56px 8px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(26px,3.6vw,38px);line-height:1.08}
+.link{font-size:14px;color:var(--accent);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+/* hero */
+.hero{background:var(--wine);color:var(--on-wine);--edge:rgba(255,236,236,.42);--shadow:rgba(0,0,0,.38);--muted:rgba(248,239,236,.66);--line:rgba(248,239,236,.18);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;padding-block:44px 28px}
+.hero .wrap.wf{display:block;padding-block:0 6px}
+.hero h1{font-size:clamp(38px,6.2vw,74px);line-height:1.02;margin:16px 0 18px}
+.hero h1 em{font-style:normal;color:#E9C9A0}
+.hero p.lead{max-width:30em;color:rgba(248,239,236,.82);font-size:16px}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.hero .btn{border-color:var(--on-wine)}
+.hero .btn.light{background:var(--on-wine);color:var(--wine)}
+.hero-stage{position:relative;height:460px;padding-bottom:58px;display:grid;place-items:center}
+.hero-stage::before{content:"";position:absolute;inset:6% 4% 10%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,220,220,.20),rgba(255,220,220,0))}
+.hero-stage svg{position:relative;height:100%;width:auto;max-width:100%}
+.hero-cap{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:end;gap:12px}
+.hero-cap .nm{font:400 22px/1.1 var(--f-display)}
+.hero-cap .br{font:500 10.5px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:rgba(248,239,236,.66);margin-bottom:6px}
+.dots{display:flex;gap:6px}
+.dots button{width:22px;height:22px;display:grid;place-items:center}
+.dots button::after{content:"";width:6px;height:6px;border-radius:50%;background:rgba(248,239,236,.35);transition:all .3s}
+.dots button[aria-pressed="true"]::after{background:var(--on-wine);width:16px;border-radius:4px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.facts div{padding:18px 16px 22px 0}
+.facts b{display:block;font:400 clamp(26px,3.4vw,36px)/1 var(--f-display)}
+.facts span{font-size:12.5px;color:var(--muted)}
+@media (max-width:859px){
+  .hero .wrap{grid-template-columns:1fr;padding-block:28px 8px}
+  .hero-stage{height:350px;order:-1}
+  .facts{grid-template-columns:repeat(2,1fr)}
+  .facts div{padding:14px 10px 16px 0}
+}
+
+/* scroller */
+.scroller{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(172px,210px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin}
+.scroller>*{scroll-snap-align:start}
+
+/* product card */
+.card{position:relative;display:flex;flex-direction:column;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:border-color .2s,transform .2s}
+.card:hover{border-color:color-mix(in srgb,var(--ink) 30%,var(--line))}
+.card .stage{position:relative;aspect-ratio:4/4.4;display:grid;place-items:center;background:color-mix(in oklab,var(--tint) 17%,var(--surface))}
+.card .stage svg{height:92%;width:auto;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.card:hover .stage svg{transform:translateY(-4px)}
+.card .info{display:flex;flex-direction:column;gap:3px;padding:12px 14px 14px;flex:1}
+.card .br{font:500 10px/1.2 var(--f-mono);letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.card .nm{font:400 19px/1.15 var(--f-display)}
+.card .meta{font-size:12.5px;color:var(--muted)}
+.card .pr{margin-top:auto;padding-top:10px;display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.card .pr b{font-weight:500;font-size:15px}
+.card .pr span{font:400 11px var(--f-mono);color:var(--muted)}
+.tag{position:absolute;left:10px;top:10px;font:500 9.5px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;padding:5px 7px;border-radius:3px;background:var(--ink);color:var(--bg)}
+.fav{position:absolute;right:6px;top:6px;width:38px;height:38px;display:grid;place-items:center;border-radius:50%;color:var(--ink)}
+.fav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5}
+.fav[aria-pressed="true"] svg{fill:var(--accent);stroke:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+@media (max-width:520px){.card .pr span{display:none}.card .pr b{white-space:nowrap}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card .nm{font-size:17px}.card .info{padding:10px 11px 12px}}
+
+/* promo */
+.promo{display:grid;grid-template-columns:auto 1fr;gap:28px 40px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:30px clamp(20px,4vw,44px)}
+.promo .big{font:400 clamp(72px,12vw,132px)/.9 var(--f-display);color:var(--accent);letter-spacing:-.03em}
+.promo h3{font-size:clamp(22px,2.6vw,30px);margin-bottom:10px}
+.promo p{color:var(--muted);max-width:44em}
+.promo .code{display:inline-flex;gap:8px;align-items:center;margin-top:16px;font:500 12px var(--f-mono);letter-spacing:.08em;border:1px dashed var(--accent);color:var(--accent);padding:8px 12px;border-radius:4px}
+@media (max-width:640px){.promo{grid-template-columns:1fr;gap:8px}}
+
+/* volume guide */
+.guide{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px 48px;align-items:center}
+.guide-stage{height:400px;display:grid;place-items:center;border-radius:6px;background:color-mix(in oklab,var(--accent) 7%,var(--surface));border:1px solid var(--line)}
+.guide-stage svg{height:96%;width:auto;max-width:100%}
+.guide h3{font-size:clamp(30px,4vw,46px);line-height:1.04}
+.guide .ml-big{font:400 clamp(56px,8vw,88px)/1 var(--f-display);display:flex;align-items:baseline;gap:10px}
+.guide .ml-big small{font:500 13px var(--f-mono);color:var(--muted);letter-spacing:.1em}
+.guide .txt{color:var(--muted);min-height:3.2em;margin:8px 0 20px;max-width:34em}
+.kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);margin-top:22px}
+.kv div{padding:14px 12px 0 0}
+.kv b{display:block;font:400 22px/1.1 var(--f-display)}
+.kv span{font-size:12px;color:var(--muted)}
+@media (max-width:859px){.guide{grid-template-columns:1fr}.guide-stage{height:320px}}
+
+/* volume slider with ticks */
+.vol{position:relative;padding-top:4px}
+.ticks{display:flex;justify-content:space-between;margin:2px 11px 0}
+.ticks button{position:relative;width:0;display:flex;justify-content:center;font:500 12px var(--f-mono);color:var(--muted);padding-top:12px}
+.ticks button::before{content:"";position:absolute;top:0;left:50%;width:1px;height:7px;background:var(--line)}
+.ticks button span{white-space:nowrap;padding:2px 4px;border-radius:4px}
+.ticks button[aria-pressed="true"]{color:var(--ink)}
+.ticks button[aria-pressed="true"] span{background:var(--ink);color:var(--bg)}
+
+/* collections */
+.coll-tabs{margin-bottom:18px}
+
+/* info blocks */
+.info3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.box{border:1px solid var(--line);border-radius:6px;background:var(--surface);padding:22px}
+.box h3{font-size:21px;margin-bottom:10px}
+.box p,.box li{color:var(--muted);font-size:14px}
+.box ul{margin:0;padding-left:18px;display:grid;gap:6px}
+@media (max-width:859px){.info3{grid-template-columns:1fr}}
+.foot{padding-block:44px 36px;margin-top:56px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+.foot .logo b{color:var(--ink)}
+
+/* catalog */
+.cat-head{padding-block:28px 6px}
+.cat-head h1{font-size:clamp(32px,4.4vw,52px);line-height:1.05}
+.toolbar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 62px);z-index:20;background:var(--bg);padding-block:12px 12px;display:grid;gap:10px;border-bottom:1px solid var(--line);margin-bottom:18px}
+@media (max-width:859px){.toolbar{top:calc(env(safe-area-inset-top,0px) + 56px)}}
+.searchrow{display:flex;gap:8px;align-items:center}
+.search{flex:1;min-width:0;position:relative}
+.search input{width:100%;height:44px;border:1px solid var(--line);border-radius:999px;padding:0 16px 0 42px;background:var(--surface);outline:none}
+.search input:focus{border-color:var(--ink)}
+.search svg{position:absolute;left:14px;top:12px;color:var(--muted)}
+.filterbtn{flex:none;height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:var(--surface);display:inline-flex;align-items:center;gap:8px;font-size:14px}
+.filterbtn[aria-expanded="true"]{border-color:var(--ink)}
+.fpanel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 28px;padding:16px 0 4px}
+.fpanel h4{margin:0 0 8px;font:500 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:859px){.fpanel{grid-template-columns:1fr}}
+.dual{position:relative;height:30px}
+.dual .tr{position:absolute;left:0;right:0;top:14px;height:2px;background:var(--line);border-radius:2px}
+.dual .fill{position:absolute;top:14px;height:2px;background:var(--accent)}
+.dual input{position:absolute;inset:0;pointer-events:none}
+.dual input::-webkit-slider-runnable-track{background:none}
+.dual input::-moz-range-track{background:none}
+.dual input::-moz-range-progress{background:none}
+.dual input::-webkit-slider-thumb{pointer-events:auto}
+.dual input::-moz-range-thumb{pointer-events:auto}
+.prange{display:flex;justify-content:space-between;font:500 13px var(--f-mono);margin-top:4px}
+.select{height:38px;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:0 12px;font-size:13.5px}
+.count{font:500 12px var(--f-mono);color:var(--muted);margin-bottom:12px}
+.empty{padding:60px 0;text-align:center;color:var(--muted)}
+.empty h3{color:var(--ink);font-size:24px;margin-bottom:8px}
+
+/* quiz */
+.quiz{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:28px 44px;padding-block:28px 0;align-items:start}
+.quiz-panel{position:sticky;top:calc(env(safe-area-inset-top,0px) + 82px);display:grid;gap:22px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px}
+.quiz-panel h1{font-size:clamp(30px,3.8vw,44px);line-height:1.05}
+.qrow label{display:flex;justify-content:space-between;font-size:14px;margin-bottom:2px}
+.qrow label b{font-weight:500}
+.qrow label span{font:500 12px var(--f-mono);color:var(--muted)}
+.qres{display:grid;gap:10px}
+.qitem{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:14px;align-items:center;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 14px 10px 10px}
+.qitem .st{height:92px;border-radius:4px;display:grid;place-items:center;background:color-mix(in oklab,var(--tint) 18%,var(--surface))}
+.qitem .st svg{height:92%;width:auto}
+.qitem .nm{font:400 19px/1.15 var(--f-display)}
+.qitem .why{font-size:12.5px;color:var(--muted);margin-top:3px}
+.match{text-align:right}
+.match b{font:400 26px/1 var(--f-display)}
+.match .bar{width:64px;height:3px;background:var(--line);margin-top:8px;border-radius:2px;overflow:hidden}
+.match .bar i{display:block;height:100%;background:var(--accent)}
+@media (max-width:859px){.quiz{grid-template-columns:1fr}.quiz-panel{position:static}}
+
+/* cart */
+.cart{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.95fr);gap:28px 40px;padding-block:28px 0;align-items:start}
+.cart h1{font-size:clamp(32px,4.4vw,52px);line-height:1.05;margin-bottom:18px}
+.line{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.line .st{height:78px;border-radius:4px;display:grid;place-items:center;background:color-mix(in oklab,var(--tint) 18%,var(--surface))}
+.line .st svg{height:92%;width:auto}
+.line .nm{font:400 18px/1.2 var(--f-display)}
+.line .sub{font-size:12.5px;color:var(--muted)}
+.gift{display:inline-block;margin-top:4px;font:500 10px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:4px 6px}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;margin-top:8px}
+.qty button{width:30px;height:30px;display:grid;place-items:center;color:var(--muted)}
+.qty span{min-width:20px;text-align:center;font:500 13px var(--f-mono)}
+.line .rt{text-align:right}
+.line .rt b{font-weight:500}
+.line .rt s{display:block;font-size:12px;color:var(--muted)}
+.hint{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:6px;background:color-mix(in oklab,var(--accent) 9%,var(--surface));border:1px solid color-mix(in oklab,var(--accent) 25%,var(--line));font-size:13.5px;margin-top:16px}
+.hint b{font:400 20px/1 var(--f-display);color:var(--accent);flex:none}
+.summary{position:sticky;top:calc(env(safe-area-inset-top,0px) + 82px);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px;display:grid;gap:16px}
+.sumrow{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.sumrow.total{font-size:15px;border-top:1px solid var(--line);padding-top:14px}
+.sumrow.total b{font:400 28px/1 var(--f-display)}
+.radio{display:grid;gap:8px}
+.radio label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:10px;cursor:pointer;font-size:14px}
+.radio label:has(input:checked){border-color:var(--ink)}
+.radio input{margin-top:3px;accent-color:var(--accent)}
+.radio small{display:block;color:var(--muted);font-size:12.5px}
+.order-out{display:grid;gap:10px}
+.order-out textarea{width:100%;min-height:200px;border:1px solid var(--line);border-radius:10px;padding:12px;font:400 12.5px/1.5 var(--f-mono);background:var(--bg);resize:vertical}
+@media (max-width:859px){.cart{grid-template-columns:1fr}.summary{position:static}}
+
+/* sheet */
+.sheet{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:24px}
+.sheet[hidden]{display:none!important}
+.scrim{position:absolute;inset:0;background:var(--scrim);animation:fade .25s ease}
+.panel{position:relative;width:min(1060px,100%);max-height:100%;overflow:auto;background:var(--bg);border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:rise .35s cubic-bezier(.2,.8,.2,1);overscroll-behavior:contain}
+@keyframes fade{from{opacity:0}}
+@keyframes rise{from{transform:translateY(24px);opacity:0}}
+.close{position:absolute;right:12px;top:12px;z-index:3;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line)}
+.pd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.pd-stage{position:sticky;top:0;align-self:start;height:min(640px,calc(100vh - 48px));display:grid;place-items:center;background:color-mix(in oklab,var(--tint) 16%,var(--bg));overflow:hidden}
+.pd-stage svg{height:92%;width:auto;max-width:100%;cursor:pointer}
+.pd-stage .tap{position:absolute;left:0;right:0;bottom:16px;text-align:center;font:500 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.pd-body{padding:34px clamp(18px,3.4vw,40px) 0;display:grid;gap:26px;align-content:start}
+.pd-body>*,.pd>*{min-width:0}
+.pd-body .br{font:500 11px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.pd-body h2{font-size:clamp(34px,4.4vw,50px);line-height:1.02;margin:8px 0 10px}
+.pd-body .desc{color:var(--muted);max-width:38em}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.pill{font-size:12px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.block h4{margin:0 0 12px;font:500 11px var(--f-mono);letter-spacing:.13em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:10px}
+.block h4 span{letter-spacing:.04em;text-transform:none}
+.pricebox{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pricebox b{font:400 clamp(36px,4.6vw,48px)/1 var(--f-display)}
+.pricebox span{font:500 12px var(--f-mono);color:var(--muted)}
+.last{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.last .res{font:400 20px/1.1 var(--f-display);text-align:right;white-space:nowrap}
+.last .lbl{font-size:13px}
+.last .lbl span{color:var(--muted)}
+.last input{grid-column:1/-1}
+.pyr{display:grid;gap:12px}
+.pyr-row{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:start}
+.pyr-row .lv{display:grid;gap:6px}
+.pyr-row .lv i{display:block;height:6px;border-radius:2px;background:var(--tint)}
+.pyr-row .lv span{font:500 10px/1.2 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.pyr-row p{font-size:14.5px}
+.meters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 28px}
+.meter{display:grid;gap:6px}
+.meter div{display:flex;justify-content:space-between;font-size:13px}
+.meter div span{color:var(--muted);font-family:var(--f-mono);font-size:12px}
+.meter .seg10{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
+.meter .seg10 i{height:10px;border-radius:1px;background:var(--line)}
+.meter .seg10 i.on{background:var(--ink)}
+.buybar{position:sticky;bottom:0;z-index:2;display:flex;gap:10px;align-items:center;padding:14px 0 calc(14px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,var(--bg) 78%,color-mix(in srgb,var(--bg) 0%,transparent));margin-top:-6px}
+.buybar .btn{flex:1}
+.buybar .fav{position:static;width:48px;height:48px;border:1px solid var(--line);flex:none}
+.promo-note{font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:baseline}
+.promo-note b{font:400 18px var(--f-display);color:var(--accent);flex:none}
+.similar{display:grid;grid-auto-flow:column;grid-auto-columns:150px;gap:10px;overflow-x:auto;padding-bottom:8px}
+.similar .card .nm{font-size:16px}
+@media (max-width:859px){
+  .sheet{padding:0;place-items:end stretch}
+  .panel{border-radius:16px 16px 0 0;max-height:calc(100% - env(safe-area-inset-top,0px) - 10px);width:100%}
+  .pd{grid-template-columns:1fr}
+  .pd-stage{position:relative;height:300px}
+  .pd-stage .tap{bottom:6px}
+  .pd-body{gap:22px;padding-top:20px;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+}
+
+/* toast */
+.toast{position:fixed;left:0;right:0;margin:0 auto;width:max-content;bottom:calc(var(--tab-h) + 16px);transform:translateY(20px);opacity:0;pointer-events:none;z-index:80;display:flex;align-items:center;gap:14px;background:var(--ink);color:var(--bg);padding:10px 10px 10px 18px;border-radius:999px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:all .3s cubic-bezier(.2,.8,.2,1);max-width:calc(100% - 32px)}
+.toast.on{opacity:1;transform:none;pointer-events:auto}
+.toast button{height:34px;padding:0 14px;border-radius:999px;background:var(--bg);color:var(--ink);font-size:13px;font-weight:500;flex:none}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#home" data-go="home" aria-label="Parfum House 26, на главную"><b>PARFUM.HOUSE26</b><small>премиум разлив · ессентуки</small></a>
+    <nav class="nav" aria-label="Разделы">
+      <button data-go="home">Главная</button>
+      <button data-go="catalog">Каталог</button>
+      <button data-go="quiz">Подбор аромата</button>
+      <button data-go="cart">Корзина</button>
+    </nav>
+    <button class="bagbtn" data-go="cart" aria-label="Корзина"><svg class="ico" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge" data-badge></span></button>
+  </div>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section class="view" id="v-home">
+    <div class="hero">
+      <div class="wrap">
+        <div>
+          <div class="eyebrow" style="color:rgba(248,239,236,.7)">Парфюмерия в разлив · 6 лет на КМВ</div>
+          <h1>Ароматы, которые говорят <em>сами за себя</em></h1>
+          <p class="lead">Нишевые и люксовые ароматы в разливе от 6 мл. Выберите объём, соберите набор, а третий флакон мы добавим в подарок.</p>
+          <div class="cta">
+            <button class="btn light" data-go="catalog">Смотреть каталог</button>
+            <button class="btn" data-go="quiz">Подобрать аромат</button>
+          </div>
+        </div>
+        <div class="hero-stage" id="heroStage">
+          <div class="hero-cap"><div><div class="br" id="heroBr"></div><div class="nm" id="heroNm"></div></div><div class="dots" id="heroDots"></div></div>
+        </div>
+      </div>
+      <div class="wrap wf"><div class="facts">
+        <div><b>6 лет</b><span>в мире парфюмерии</span></div>
+        <div><b>7000+</b><span>довольных клиентов</span></div>
+        <div><b>290+</b><span>ароматов в наличии</span></div>
+        <div><b>24 ч</b><span>стойкость на коже, 72 ч на одежде</span></div>
+      </div></div>
+    </div>
+
+    <div class="wrap sec">
+      <div class="sec-head"><div><div class="eyebrow">Только что приехали</div><h2>Новинки сезона</h2></div><button class="link" data-go="catalog" data-sort="new">Все новинки</button></div>
+      <div class="scroller" id="newRow"></div>
+    </div>
+
+    <div class="wrap sec">
+      <div class="promo">
+        <div class="big">2+1</div>
+        <div>
+          <h3>Третий аромат в подарок</h3>
+          <p>Возьмите два флакона одного объёма — третий такого же объёма достаётся бесплатно. В подарок идёт самый недорогой из трёх. Ароматы любые, акция действует на любой объём. Корзина считает подарок сама.</p>
+          <div class="code">ПРОМОКОД · АКЦИЯ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap sec">
+      <div class="guide">
+        <div class="guide-stage" id="guideStage"></div>
+        <div>
+          <div class="eyebrow">Частый вопрос</div>
+          <h3>Какой объём мне брать?</h3>
+          <div class="ml-big" style="margin-top:22px"><span id="gMl">10</span><small>МЛ</small></div>
+          <p class="txt" id="gTxt"></p>
+          <div class="vol">
+            <input type="range" id="gRange" min="0" max="500" step="1" value="100" aria-label="Объём флакона">
+            <div class="ticks" id="gTicks"></div>
+          </div>
+          <div class="kv">
+            <div><b class="num" id="gSpr">120</b><span>пшиков во флаконе</span></div>
+            <div><b class="num" id="gDays">40 дней</b><span>при 3 пшиках в день</span></div>
+            <div><b id="gFor">в дорогу</b><span>для чего</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap sec">
+      <div class="sec-head"><div><div class="eyebrow">Подборки магазина</div><h2>С чего начать</h2></div></div>
+      <div class="chips coll-tabs" id="collTabs"></div>
+      <div class="scroller" id="collRow"></div>
+    </div>
+
+    <div class="wrap sec">
+      <div class="info3">
+        <div class="box"><h3>Доставка</h3><ul>
+          <li>По Ессентукам и станице Ессентукской — бесплатно при заказе от 1 500 ₽.</li>
+          <li>Отправляем по всей России.</li>
+          <li>К каждому заказу добавляем вкусняшку для настроения.</li></ul></div>
+        <div class="box"><h3>Как хранить</h3><ul>
+          <li>Подальше от света: шкаф или коробка, а не подоконник.</li>
+          <li>Без перепадов температур — не в машине и не в ванной.</li>
+          <li>Флакон всегда плотно закрыт.</li>
+          <li>Духи любят, когда ими пользуются.</li></ul></div>
+        <div class="box"><h3>Подберём для вас</h3>
+          <p>Надоел любимый аромат или нужен подарок? Напишите запрос в Direct — подберём замену, которая звучит глубже и интереснее.</p>
+          <p style="margin-top:14px"><a class="link" href="https://ig.me/m/parfum.house26" target="_blank" rel="noopener">Написать в Direct</a></p></div>
+      </div>
+    </div>
+
+    <div class="wrap"><footer class="foot">
+      <div class="logo"><b>PARFUM.HOUSE26</b><small>премиум разлив · ессентуки</small></div>
+      <div style="max-width:30em">В приложении — ароматы из каталога магазина. Всего в наличии более 290: если нужного нет, спросите в Direct.<br>
+        <a class="link" href="https://www.instagram.com/parfum.house26/" target="_blank" rel="noopener">@parfum.house26</a> · <a class="link" href="https://www.instagram.com/parfum_house26_katalog/" target="_blank" rel="noopener">@parfum_house26_katalog</a></div>
+    </footer></div>
+  </section>
+
+  <!-- CATALOG -->
+  <section class="view" id="v-catalog" hidden>
+    <div class="wrap">
+      <div class="cat-head"><div class="eyebrow">Ассортимент</div><h1>Каталог ароматов</h1></div>
+      <div class="toolbar">
+        <div class="searchrow">
+          <div class="search"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><input id="q" type="search" placeholder="Аромат, бренд или нота: ваниль, уд…" autocomplete="off" aria-label="Поиск"></div>
+          <button class="filterbtn" id="fBtn" aria-expanded="false" aria-controls="fPanel"><svg class="ico" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span>Фильтры</span></button>
+        </div>
+        <div class="chips" id="gChips"></div>
+        <div class="fpanel" id="fPanel" hidden>
+          <div><h4>Группа</h4><div class="chips" id="tagChips" style="flex-wrap:wrap"></div></div>
+          <div><h4>Цена за 10 мл</h4>
+            <div class="dual"><div class="tr"></div><div class="fill" id="dFill"></div>
+              <input type="range" id="pMin" aria-label="Цена от"><input type="range" id="pMax" aria-label="Цена до"></div>
+            <div class="prange"><span id="pMinL"></span><span id="pMaxL"></span></div></div>
+          <div><h4>Сортировка</h4>
+            <select class="select" id="sort" aria-label="Сортировка">
+              <option value="pop">Сначала популярные</option>
+              <option value="new">Сначала новинки</option>
+              <option value="asc">Сначала дешевле</option>
+              <option value="desc">Сначала дороже</option>
+              <option value="lon">Самые стойкие</option>
+            </select></div>
+        </div>
+      </div>
+      <div class="count" id="count"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="view" id="v-quiz" hidden>
+    <div class="wrap quiz">
+      <div class="quiz-panel">
+        <div><div class="eyebrow">Подбор аромата</div><h1 style="margin-top:8px">Каким должен быть ваш аромат?</h1></div>
+        <div><div class="seg" id="qG">
+          <button data-g="m" aria-pressed="false">Для него</button><button data-g="w" aria-pressed="false">Для неё</button><button data-g="any" aria-pressed="true">Неважно</button></div></div>
+        <div id="qSliders" style="display:grid;gap:18px"></div>
+        <button class="link" id="qReset" style="justify-self:start">Сбросить</button>
+      </div>
+      <div>
+        <div class="count" id="qCount" style="margin-top:6px"></div>
+        <div class="qres" id="qRes"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART -->
+  <section class="view" id="v-cart" hidden>
+    <div class="wrap" id="cartWrap"></div>
+  </section>
+</main>
+
+<nav class="tabbar" aria-label="Разделы">
+  <button data-go="home"><svg class="ico" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg>Главная</button>
+  <button data-go="catalog"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg>Каталог</button>
+  <button data-go="quiz"><svg class="ico" viewBox="0 0 24 24"><path d="M5 6h14M5 12h14M5 18h14"/><circle cx="9" cy="6" r="2" style="fill:var(--bg)"/><circle cx="15" cy="12" r="2" style="fill:var(--bg)"/><circle cx="8" cy="18" r="2" style="fill:var(--bg)"/></svg>Подбор</button>
+  <button data-go="cart"><svg class="ico" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Корзина<span class="badge" data-badge></span></button>
+</nav>
+
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="pdName">
+  <div class="scrim" data-close></div>
+  <div class="panel" id="panel"></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastT"></span><button id="toastB">В корзину</button></div>
+
+<script>
+/* ---------- Ассортимент ----------
+   p  — цена за 1 мл спрея (флакон = p × мл, масло 1 мл = 2p)
+   ax — [свежий→тёплый, шлейф, сладость, день→вечер] по шкале 0–10
+*/
+const A=[
+{id:'wild-rush',n:'Wild Rush',b:'Initio',g:'u',p:200,nw:1,fam:'фужерные',tags:['Сладкие','Пряные'],tint:'#B23A4C',ax:[6,9,7,7],lon:8,
+ top:['Бергамот','Лаванда'],mid:['Красные ягоды','Ваниль','Карамель'],base:['Пачули','Сандал'],
+ d:'Самая обсуждаемая новинка года. Бергамот и лаванда на старте, дальше ягоды с ванилью и карамелью. Смелый шлейф для тех, кто не боится быть заметным.'},
+{id:'sequence',n:'Sequence',b:'Amouage',g:'u',p:200,nw:1,fam:'древесные цветочные мускусные',tags:['Восточные','Древесные'],tint:'#7A1E3A',ax:[8,8,6,9],lon:9,
+ top:['Малина','Личи','Шафран'],mid:['Роза','Османтус','Бобы тонка'],base:['Кожа','Уд','Амбервуд'],
+ d:'Новинка Amouage: сочные личи и малина с шафраном, потом роза и османтус, а в базе — уд и кожа. Статусный, тёмный и очень многогранный.'},
+{id:'sea-breeze',n:'Sea Breeze',b:'ByBozo',g:'u',p:200,nw:1,fam:'цветочные древесно-мускусные',tags:['Свежие','Цветочные'],tint:'#8FCFD3',ax:[1,5,4,2],lon:6,
+ top:['Лимон','Розовый перец'],mid:['Морская соль','Карамбола','Тиаре','Помело'],base:['Минеральные ноты','Ваниль','Ветивер'],
+ d:'Морская соль, лимон и солнечные фрукты на тёплой ванильной базе. Запах отпуска и чистой загорелой кожи — хорош и каждый день.'},
+{id:'tygar-extrait',n:'Tygar Extrait',b:'Bvlgari',g:'u',p:140,nw:1,fam:'восточные',tags:['Свежие','Восточные'],tint:'#E3BE6C',ax:[3,8,2,4],lon:8,
+ top:['Грейпфрут','Цитрусы'],mid:['Серая амбра'],base:['Амбра','Перуанский бальзам'],
+ d:'Знакомый Tygar, только глубже и плотнее: сочный грейпфрут, минеральная свежесть и тёплая амбровая база. Дорогая свежесть с объёмным шлейфом.'},
+{id:'ruby',n:'Ruby',b:'Kajal',g:'u',p:140,nw:1,fam:'восточные гурманские',tags:['Сладкие','Восточные'],tint:'#C21A3E',ax:[7,8,9,7],lon:8,
+ top:['Вишня','Красные ягоды','Ананас','Кокос','Миндаль'],mid:['Взбитые сливки','Тростниковый сахар','Мороженое'],base:['Ваниль','Мускус','Бобы тонка','Амбра','Бензоин'],
+ d:'Кисло-сладкие вишня, малина и смородина, смягчённые сливочным мороженым и миндалём. Яркий, сочный и опасно притягательный.'},
+{id:'carios',n:'Carios',b:'Parfums de Marly',g:'u',p:170,nw:1,fam:'древесные пряные',tags:['Древесные','Пряные'],tint:'#D2702E',ax:[6,8,3,6],lon:8,
+ top:['Шафран','Мандарин','Розовый перец','Бергамот'],mid:['Чёрный перец','Герань','Красный тимьян'],base:['Амброксан','Бобы тонка','Ветивер','Кедр'],
+ d:'Мандарин и бергамот с шафраном и перцем, в базе — кедр, дымный ветивер и амброксан. Статусный, яркий, оставляет подпись в памяти.'},
+{id:'blanche-bete',n:'Blanche Bête',b:'Les Liquides Imaginaires',g:'u',p:190,fam:'цветочные древесно-мускусные',tags:['Сладкие','Цветочные'],tint:'#EFE4D6',ax:[7,6,8,6],lon:9,
+ top:['Молоко','Амбретта'],mid:['Тубероза','Жасмин','Ладан'],base:['Ваниль','Мускус','Бобы тонка','Какао'],
+ d:'Тёплая молочная гурманика: рафаэлло и сливочный ликёр с пудровой туберозой. Отпечатывается на всём, к чему прикоснётесь.'},
+{id:'valero',n:'Valero',b:'Parfums de Marly',g:'u',p:170,fam:'древесные фужерные',tags:['Свежие','Древесные'],tint:'#B3C7A2',ax:[2,6,1,3],lon:7,
+ top:['Цитрон','Бергамот','Можжевельник'],mid:['Лаванда','Герань','Мускатный орех','Кипарис'],base:['Амброксан','Пачули','Сандал'],
+ d:'Цитрусы и можжевельник, лаванда и герань, древесный шлейф. Чистый, сбалансированный и неожиданно стойкий для свежего аромата.'},
+{id:'percival',n:'Percival',b:'Parfums de Marly',g:'u',p:170,fam:'цитрусовые фужерные',tags:['Свежие'],tint:'#A6C2E0',ax:[2,6,2,2],lon:7,
+ top:['Лаванда','Мандарин','Бергамот','Герань','Розовый перец'],mid:['Фиалка','Жасмин','Кориандр','Корица','Кардамон'],base:['Амброксан','Амбервуд','Мускус','Пихтовый бальзам','Бобы тонка'],
+ d:'Пахнет чистотой и дорогим гелем для душа: бодрые цитрусы и благородная древесина с пряностями. Топ для офиса и на каждый день.'},
+{id:'perseus',n:'Perseus',b:'Parfums de Marly',g:'m',p:170,fam:'древесные фужерные',tags:['Свежие','Древесные'],tint:'#8CB0C6',ax:[3,6,2,4],lon:7,
+ top:['Грейпфрут','Бергамот','Чёрная смородина'],mid:['Ветивер','Зелёный мандарин','Герань'],base:['Кашемировое дерево','Серая амбра','Пихтовый бальзам','Кедр','Бобы тонка'],
+ d:'Яркое цитрусовое начало и благородная древесина. Свежий, мужественный, харизматичный — для того, кто выбирает качество.'},
+{id:'castley',n:'Castley',b:'Parfums de Marly',g:'m',p:170,fam:'цитрусовые фужерные',tags:['Свежие','Пряные'],tint:'#C79E58',ax:[4,6,2,5],lon:7,
+ top:['Бергамот','Чёрный перец','Имбирь','Грейпфрут'],mid:['Нероли','Петитгрейн','Перец тимут','Роза'],base:['Акигалавуд','Лабданум','Бензоин','Кожа'],
+ d:'Искристый бергамот, имбирь и перец уходят в древесно-амбровую глубину с кожей. Универсальный и очень выразительный.'},
+{id:'side-effect',n:'Side Effect',b:'Initio',g:'u',p:200,fam:'восточные пряные',tags:['Сладкие','Пряные'],tint:'#8C3A14',ax:[9,8,8,9],lon:9,
+ top:['Ром'],mid:['Табак','Корица'],base:['Ваниль'],
+ d:'Ром, табак, корица и ваниль — густой, пьянящий вечерний аромат, который сложно не заметить.'},
+{id:'oud-for-greatness',n:'Oud for Greatness',b:'Initio',g:'u',p:200,fam:'восточные древесные',tags:['Восточные','Древесные'],tint:'#5E3B1F',ax:[8,9,3,8],lon:9,
+ top:['Шафран','Мускатный орех','Лаванда'],mid:['Уд'],base:['Пачули','Мускус'],
+ d:'Уд с шафраном и лавандой: благородный, сухой и мощный. Для тех, кто любит тёмные древесные ароматы.'},
+{id:'interlude-man',n:'Interlude Man',b:'Amouage',g:'m',p:200,fam:'восточные пряные',tags:['Восточные','Пряные'],tint:'#3F4B5C',ax:[9,10,2,9],lon:10,
+ top:['Душица','Перец','Бергамот'],mid:['Ладан','Амбра','Опопонакс'],base:['Кожа','Уд','Сандал','Пачули'],
+ d:'Дымный ладан, смолы и кожа. Один из самых шлейфовых мужских ароматов — для холодных вечеров.'},
+{id:'guidance',n:'Guidance',b:'Amouage',g:'u',p:200,fam:'цветочные древесные',tags:['Цветочные','Сладкие'],tint:'#D7B18A',ax:[6,8,6,7],lon:8,
+ top:['Груша','Фундук','Шафран'],mid:['Роза','Османтус','Жасмин'],base:['Сандал','Ваниль','Ладан'],
+ d:'Груша и фундук с шафраном, сливочные цветы и сандал. Мягкий, дорогой и очень уютный.'},
+{id:'layton',n:'Layton',b:'Parfums de Marly',g:'u',p:170,fam:'восточные цветочные',tags:['Пряные','Сладкие'],tint:'#9A683C',ax:[6,8,6,7],lon:8,
+ top:['Яблоко','Лаванда','Бергамот','Мандарин'],mid:['Герань','Фиалка','Жасмин'],base:['Ваниль','Кардамон','Перец','Пачули','Гваяк'],
+ d:'Яблоко с лавандой и ванилью, тёплая пряная база. Классика, которая нравится всем вокруг.'},
+{id:'delina',n:'Delina',b:'Parfums de Marly',g:'w',p:170,fam:'цветочные',tags:['Цветочные'],tint:'#F0B5C4',ax:[4,7,6,5],lon:7,
+ top:['Личи','Ревень','Бергамот','Мускатный орех'],mid:['Турецкая роза','Пион','Ваниль'],base:['Кашмеран','Мускус','Ветивер','Ладан'],
+ d:'Роза и пион с сочным личи и ревенём. Нежный, женственный и узнаваемый с первого вдоха.'},
+{id:'althair',n:'Althair',b:'Parfums de Marly',g:'m',p:170,fam:'восточные гурманские',tags:['Сладкие','Пряные'],tint:'#E0A452',ax:[8,8,9,8],lon:9,
+ top:['Корица','Апельсиновый цвет','Кардамон','Бергамот'],mid:['Бурбонская ваниль','Элеми'],base:['Пралине','Мускус','Гваяк','Амброксан'],
+ d:'Ваниль, пралине и пряности. Сладкий, тёплый и уверенный — на осень и вечер.'},
+{id:'erba-pura',n:'Erba Pura',b:'Xerjoff',g:'u',p:190,fam:'восточные фруктовые',tags:['Сладкие'],tint:'#F2BE48',ax:[4,9,8,5],lon:9,
+ top:['Сицилийский апельсин','Лимон','Бергамот'],mid:['Фруктовые ноты'],base:['Белый мускус','Ваниль','Амбра'],
+ d:'Корзина спелых фруктов на мускусно-ванильной базе. Солнечный, сочный и очень шлейфовый.'},
+{id:'naxos',n:'Naxos',b:'Xerjoff',g:'u',p:190,fam:'восточные фужерные',tags:['Сладкие','Пряные'],tint:'#C88A2E',ax:[7,7,8,7],lon:8,
+ top:['Лаванда','Бергамот','Лимон'],mid:['Мёд','Корица','Кашмеран','Жасмин'],base:['Табак','Ваниль','Бобы тонка'],
+ d:'Мёд и табак с лавандой и ванилью. Тёплый, медовый, с характером — один из самых любимых Xerjoff.'},
+{id:'khamrah',n:'Khamrah',b:'Lattafa',g:'u',p:100,fam:'восточные пряные',tags:['Сладкие','Пряные'],tint:'#7D2C24',ax:[9,9,9,9],lon:9,
+ top:['Корица','Мускатный орех','Бергамот'],mid:['Финики','Пралине','Тубероза'],base:['Ваниль','Бобы тонка','Амбервуд','Мирра','Бензоин'],
+ d:'Финики, пралине и пряности с ванилью. Густой восточный аромат с огромной стойкостью за разумную цену.'},
+{id:'cdnim',n:'Club de Nuit Intense Man',b:'Armaf',g:'m',p:100,fam:'шипровые фруктовые',tags:['Древесные','Свежие'],tint:'#6F5B3E',ax:[5,9,3,6],lon:9,
+ top:['Лимон','Ананас','Бергамот','Чёрная смородина','Яблоко'],mid:['Берёза','Жасмин','Роза'],base:['Мускус','Серая амбра','Пачули','Ваниль'],
+ d:'Дымный ананас и берёза, мускус и амбра. Громкий и стойкий мужской аромат.'},
+{id:'aventus',n:'Aventus',b:'Creed',g:'m',p:200,fam:'шипровые фруктовые',tags:['Свежие','Древесные'],tint:'#D9DFCB',ax:[3,7,3,5],lon:7,
+ top:['Ананас','Бергамот','Чёрная смородина','Яблоко'],mid:['Берёза','Пачули','Жасмин','Роза'],base:['Мускус','Дубовый мох','Серая амбра','Ваниль'],
+ d:'Легендарный ананас с дымной берёзой. Аромат успеха, который узнают везде.'},
+{id:'angels-share',n:'Angels’ Share',b:'Kilian',g:'u',p:200,fam:'восточные гурманские',tags:['Сладкие','Пряные'],tint:'#B3621C',ax:[8,8,9,8],lon:8,
+ top:['Коньяк'],mid:['Корица','Бобы тонка','Дуб'],base:['Пралине','Ваниль','Сандал'],
+ d:'Коньяк, корица и пралине. Тёплый, как бокал у камина: один из самых шлейфовых сладких ароматов.'},
+{id:'br540',n:'Baccarat Rouge 540',b:'Maison Francis Kurkdjian',g:'u',p:200,fam:'восточные цветочные',tags:['Восточные','Цветочные'],tint:'#E79F78',ax:[6,9,7,7],lon:9,
+ top:['Шафран','Жасмин'],mid:['Амбровое дерево','Серая амбра'],base:['Смола пихты','Кедр'],
+ d:'Шафран, жасмин и амбра — воздушный, сахарно-древесный шлейф, который невозможно спутать.'},
+{id:'lost-cherry',n:'Lost Cherry',b:'Tom Ford',g:'u',p:190,fam:'восточные цветочные',tags:['Сладкие'],tint:'#8E1020',ax:[7,7,9,8],lon:7,
+ top:['Вишня','Вишнёвый ликёр','Горький миндаль'],mid:['Слива','Турецкая роза','Жасмин самбак'],base:['Перуанский бальзам','Бобы тонка','Ваниль','Сандал','Кедр'],
+ d:'Пьяная вишня с миндалём и розой. Соблазнительный, тёмный и сладкий — для свиданий.'},
+{id:'molecule-02',n:'Molecule 02',b:'Escentric Molecules',g:'u',p:140,fam:'древесные',tags:['Древесные'],tint:'#EAE3CC',ax:[5,3,2,4],lon:8,
+ top:[],mid:[],base:['Амброксан'],
+ d:'Одна молекула — амброксан. Звучит как ваша кожа, только лучше: тихий, тёплый и у каждого по-своему.'},
+{id:'kirke',n:'Kirke',b:'Tiziana Terenzi',g:'u',p:170,fam:'шипровые фруктовые',tags:['Сладкие','Свежие'],tint:'#E7C2D5',ax:[3,8,8,4],lon:8,
+ top:['Маракуйя','Персик','Малина','Чёрная смородина','Груша'],mid:['Ландыш'],base:['Мускус','Гелиотроп','Ваниль','Пачули'],
+ d:'Взрыв сочных фруктов и ягод на мускусной базе. Яркий и шлейфовый, любимец многих.'},
+{id:'ganymede',n:'Ganymede',b:'Marc-Antoine Barrois',g:'u',p:200,fam:'древесные минеральные',tags:['Древесные','Свежие'],tint:'#B6BDB0',ax:[4,6,2,4],lon:8,
+ top:['Мандарин','Шафран','Листья фиалки'],mid:['Османтус','Бессмертник','Минеральные ноты'],base:['Акигалавуд','Замша'],
+ d:'Минеральный, замшевый, космический. Звучит как тёплый камень и мягкая кожа.'}
+];
+const BY=Object.fromEntries(A.map(a=>[a.id,a]));
+const VOL=[6,10,15,20,30,50];
+const OIL=[1,2,3,5,10];
+const SPRAY_PER_ML=12;
+const GENDER={m:'мужской',w:'женский',u:'унисекс'};
+const TAGS=['Свежие','Древесные','Восточные','Пряные','Цветочные','Сладкие'];
+const VOL_TXT={6:['знакомство','Минимальный объём, чтобы понять: ваш это аромат или нет.'],
+ 10:['в дорогу','Компактный спутник: легко помещается в косметичку и всегда под рукой.'],
+ 15:['на пару месяцев','Золотая середина между пробником и полноценным флаконом.'],
+ 20:['на сезон','Хватит на одно прекрасное лето или зиму.'],
+ 30:['на сезон с запасом','Чтобы аромат был с вами весь сезон и ещё немного.'],
+ 50:['визитная карточка','Хватит надолго: аромат станет вашим, но не успеет надоесть.']};
+
+/* ---------- утилиты ---------- */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RUB=n=>Math.round(n).toLocaleString('ru-RU')+' ₽';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={get(k,d){try{const v=localStorage.getItem('ph26-'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('ph26-'+k,JSON.stringify(v))}catch(e){}}};
+const hex2rgb=h=>{h=h.replace('#','');return [0,2,4].map(i=>parseInt(h.slice(i,i+2),16))};
+const rgb=(c,k=0)=>{const f=k>=0?c.map(v=>v+(255-v)*k):c.map(v=>v*(1+k));return `rgb(${f.map(v=>Math.round(v)).join(',')})`};
+const priceOf=(a,form,ml)=>form==='oil'?a.p*2*ml:a.p*ml;
+const per10=a=>a.p*10;
+function daysText(d){d=Math.round(d);if(d<45)return d+' '+pl(d,'день','дня','дней');const m=Math.round(d/30);return m+' '+pl(m,'месяц','месяца','месяцев')}
+function pl(n,a,b,c){n=Math.abs(n)%100;const n1=n%10;if(n>10&&n<20)return c;if(n1>1&&n1<5)return b;if(n1===1)return a;return c}
+
+/* ---------- флакон ---------- */
+const C6=Math.cbrt(6),C50=Math.cbrt(50),C1=1,C10=Math.cbrt(10);
+function geom(ml,shape,cx){
+  const G=322; let g;
+  if(shape==='oil'){
+    const t=Math.max(0,Math.min(1,(Math.cbrt(ml)-C1)/(C10-C1)));
+    const bw=30+18*t,bh=96+76*t; g={t,bw,bh,r:5+2*t,colW:bw*.6,colH:5,capW:bw*.8,capH:46+12*t,inset:3.2,base:7+2*t};
+  }else{
+    const t=Math.max(0,Math.min(1,(Math.cbrt(ml)-C6)/(C50-C6)));
+    g={t,bw:64+76*t,bh:86+128*t,r:7+8*t,colW:22+10*t,colH:7,capW:30+18*t,capH:30+22*t,inset:4+1.5*t,base:8+6*t};
+  }
+  g.G=G;g.cx=cx;g.bx=cx-g.bw/2;g.by=G-g.bh;g.neckW=g.colW*.62;
+  g.colY=g.by-g.colH-3;g.capY=g.colY-g.capH+1;
+  g.ix=g.bx+g.inset;g.iy=g.by+g.inset;g.iw=g.bw-2*g.inset;g.ih=g.bh-g.inset-g.base;g.fill=.82;
+  return g;
+}
+function wave(g,ph,amp){
+  const y0=g.iy+g.ih*(1-g.fill),pts=[];
+  for(let x=g.ix-2;x<=g.ix+g.iw+2.01;x+=4){pts.push([x,y0+Math.sin(x*.09+ph)*amp+Math.sin(x*.05-ph*1.3)*amp*.5])}
+  return pts;
+}
+function liqD(g,pts){const b=g.iy+g.ih+2;return `M${(g.ix-2).toFixed(1)},${b}`+pts.map(p=>`L${p[0].toFixed(1)},${p[1].toFixed(1)}`).join('')+`L${(g.ix+g.iw+2).toFixed(1)},${b}Z`}
+function menD(pts){return 'M'+pts.map(p=>`${p[0].toFixed(1)},${p[1].toFixed(1)}`).join('L')}
+function labelGeom(g,shape){
+  const lw=g.bw*(shape==='oil'?.78:.66), lh=shape==='oil'?Math.min(g.bh*.34,34):Math.min(g.bh*.36,22+18*g.t);
+  return {x:g.cx-lw/2,y:g.by+g.bh*(shape==='oil'?.36:.42),w:lw,h:lh};
+}
+function parts(g,o){
+  const id=o.pid,L=labelGeom(g,o.shape),P=[];
+  const pts=wave(g,o.ph||0,o.amp||0);
+  P.push(['ellipse',{k:'sh',cx:g.cx,cy:g.G+3,rx:g.bw*.64,ry:4.5,style:'fill:var(--shadow)',filter:`url(#${id}b)`}]);
+  P.push(['rect',{k:'neck',x:g.cx-g.neckW/2,y:g.colY+g.colH-1,width:g.neckW,height:g.by-(g.colY+g.colH)+3,fill:`url(#${id}g)`,style:'stroke:var(--edge)','stroke-width':1}]);
+  P.push(['rect',{k:'body',x:g.bx,y:g.by,width:g.bw,height:g.bh,rx:g.r,fill:`url(#${id}g)`}]);
+  P.push(['path',{k:'liq',d:liqD(g,pts),fill:`url(#${id}l)`,'clip-path':`url(#${id}c)`}]);
+  P.push(['rect',{k:'liqhl',x:g.ix,y:g.iy,width:g.iw,height:g.ih,fill:`url(#${id}s)`,'clip-path':`url(#${id}c)`,opacity:.9}]);
+  P.push(['path',{k:'men',d:menD(pts),fill:'none',stroke:'rgba(255,255,255,.6)','stroke-width':1.1,'clip-path':`url(#${id}c)`}]);
+  P.push(['rect',{k:'basel',x:g.ix+1,y:g.iy+g.ih+2,width:g.iw-2,height:Math.max(1,g.base-4),rx:2,fill:'rgba(255,255,255,.28)'}]);
+  P.push(['rect',{k:'edge',x:g.bx,y:g.by,width:g.bw,height:g.bh,rx:g.r,fill:'none',style:'stroke:var(--edge)','stroke-width':1.3}]);
+  P.push(['rect',{k:'hl',x:g.bx+g.bw*.11,y:g.by+g.r+4,width:Math.max(3,g.bw*.055),height:Math.max(4,g.bh-2*g.r-14),rx:2,fill:'rgba(255,255,255,.62)'}]);
+  P.push(['rect',{k:'hl2',x:g.bx+g.bw*.85,y:g.by+g.r+8,width:1.6,height:g.bh*.5,rx:1,fill:'rgba(255,255,255,.4)'}]);
+  if(o.label!==false){
+    const fsB=o.shape==='oil'?3.6:4+2.4*g.t, fsN0=o.shape==='oil'?6+2*g.t:7.5+5.5*g.t;
+    const nm=o.name||'', fsN=Math.min(fsN0,(L.w*.9)/Math.max(1,nm.length*.56));
+    P.push(['rect',{k:'lab',x:L.x,y:L.y,width:L.w,height:L.h,rx:1.5,fill:'rgba(255,252,249,.93)',stroke:'rgba(40,10,15,.08)'}]);
+    P.push(['text',{k:'lb1',x:g.cx,y:L.y+L.h*.30,'font-size':fsB,'text-anchor':'middle','dominant-baseline':'middle',fill:'#5A1520',style:'font-family:Prata,Georgia,serif;letter-spacing:.12em'},'PARFUM.HOUSE26']);
+    P.push(['text',{k:'lb2',x:g.cx,y:L.y+L.h*.60,'font-size':fsN,'text-anchor':'middle','dominant-baseline':'middle',fill:'#211417',style:'font-family:Prata,Georgia,serif'},nm]);
+    P.push(['text',{k:'lb3',x:g.cx,y:L.y+L.h*.85,'font-size':fsB*.95,'text-anchor':'middle','dominant-baseline':'middle',fill:'#7A6A6D',style:"font-family:'IBM Plex Mono',monospace;letter-spacing:.06em"},(o.mlText||'')]);
+  }
+  P.push(['rect',{k:'col',x:g.cx-g.colW/2,y:g.colY,width:g.colW,height:g.colH,rx:1.5,fill:`url(#${id}a)`}]);
+  P.push(['rect',{k:'cap',x:g.cx-g.capW/2,y:g.capY,width:g.capW,height:g.capH,rx:o.shape==='oil'?2.5:3.5,fill:`url(#${id}k)`}]);
+  P.push(['rect',{k:'caphl',x:g.cx-g.capW/2+g.capW*.16,y:g.capY+3,width:Math.max(2,g.capW*.07),height:g.capH-6,rx:1.5,fill:'rgba(255,255,255,.28)'}]);
+  P.push(['rect',{k:'capln',x:g.cx-g.capW/2,y:g.capY+g.capH-5,width:g.capW,height:1.2,fill:'rgba(255,255,255,.14)'}]);
+  return P;
+}
+function defs(id,tint,g){
+  return `<defs>
+  <filter id="${id}b" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="3.2"/></filter>
+  <linearGradient id="${id}g" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".25" stop-color="#fff" stop-opacity=".14"/><stop offset=".7" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity=".38"/></linearGradient>
+  <linearGradient id="${id}l" x1="0" x2="0" y1="0" y2="1"><stop data-s="0" offset="0" stop-color="${rgb(tint,.28)}"/><stop data-s="1" offset=".55" stop-color="${rgb(tint)}"/><stop data-s="2" offset="1" stop-color="${rgb(tint,-.28)}"/></linearGradient>
+  <linearGradient id="${id}s" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".18" stop-color="#fff" stop-opacity=".22"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#000" stop-opacity=".0"/><stop offset="1" stop-color="#000" stop-opacity=".16"/></linearGradient>
+  <linearGradient id="${id}a" x1="0" x2="1"><stop offset="0" stop-color="#7E5E2C"/><stop offset=".3" stop-color="#EAD5A2"/><stop offset=".55" stop-color="#B08746"/><stop offset=".8" stop-color="#F2E2BA"/><stop offset="1" stop-color="#7E5E2C"/></linearGradient>
+  <linearGradient id="${id}k" x1="0" x2="1"><stop offset="0" stop-color="#120B0D"/><stop offset=".22" stop-color="#4A383C"/><stop offset=".5" stop-color="#1D1316"/><stop offset=".85" stop-color="#2C2023"/><stop offset="1" stop-color="#0D0809"/></linearGradient>
+  <clipPath id="${id}c"><rect data-k="clip" x="${g.ix}" y="${g.iy}" width="${g.iw}" height="${g.ih+2}" rx="${Math.max(1,g.r-g.inset)}"/></clipPath>
+  </defs>`;
+}
+const attrStr=a=>Object.entries(a).filter(([k])=>k!=='k').map(([k,v])=>`${k}="${typeof v==='number'?+v.toFixed(2):esc(v)}"`).join(' ');
+let PID=0;
+/* статичный флакон для карточек */
+function bottleSVG(a,{ml=30,shape='spray',crop=true}={}){
+  const id='s'+(++PID),cx=140,g=geom(ml,shape,cx),t=hex2rgb(a.tint);
+  const vb=crop?`${cx-92} 40 184 292`:'0 0 280 340';
+  return `<svg viewBox="${vb}" aria-hidden="true">${defs(id,t,g)}${parts(g,{pid:id,name:a.n,shape,mlText:ml+' ML',label:true}).map(([tag,at,tx])=>`<${tag} ${attrStr(at)}>${tx?esc(tx):''}</${tag}>`).join('')}</svg>`;
+}
+/* живой флакон: плавно меняет объём, цвет и плещется */
+class Flacon{
+  constructor(host,o){
+    this.host=host;this.o=Object.assign({ruler:false,cx:150,W:280},o);
+    this.ml=this.tml=o.ml;this.shape=o.shape||'spray';this.tint=hex2rgb(o.tint);this.ttint=this.tint.slice();
+    this.name=o.name||'';this.ph=0;this.slosh=0;this.parts=null;this.puffs=[];this.last=0;
+    this.build();this.loop=this.loop.bind(this);requestAnimationFrame(this.loop);
+  }
+  mlText(){const m=Math.round(this.tml);return m+' ML'}
+  build(){
+    this.pid='f'+(++PID);const g=geom(this.ml,this.shape,this.o.cx);
+    const P=parts(g,{pid:this.pid,name:this.name,shape:this.shape,mlText:this.mlText()});
+    const ruler=this.o.ruler?this.rulerSVG():'';
+    this.host.querySelector('svg')?.remove();
+    this.host.insertAdjacentHTML('afterbegin',`<svg viewBox="0 0 ${this.o.W} 340" role="img" aria-label="Флакон ${esc(this.name)}">${defs(this.pid,this.tint,g)}${ruler}${P.map(([tag,at,tx])=>`<${tag} data-k="${at.k}" ${attrStr(at)}>${tx?esc(tx):''}</${tag}>`).join('')}<g data-k="puffs"></g></svg>`);
+    this.svg=this.host.querySelector('svg');this.el={};$$('[data-k]',this.svg).forEach(e=>this.el[e.dataset.k]=e);
+    this.stops=$$('[data-s]',this.svg);
+    this.svg.addEventListener('click',()=>this.puff());
+  }
+  rulerSVG(){
+    const list=this.shape==='oil'?OIL:VOL,x=20;
+    const top=geom(list[list.length-1],this.shape,0).bh;
+    return `<g data-k="ruler" style="font-family:'IBM Plex Mono',monospace" font-size="9.5"><line x1="${x}" x2="${x}" y1="322" y2="${322-top}" style="stroke:var(--edge)" stroke-width="1"/>`+
+      list.map(v=>{const y=322-geom(v,this.shape,0).bh;return `<g data-v="${v}"><line x1="${x-4}" x2="${x+6}" y1="${y}" y2="${y}" style="stroke:var(--edge)" stroke-width="1"/><text x="${x+10}" y="${y+3.2}" style="fill:var(--muted)">${v}</text></g>`}).join('')+'</g>';
+  }
+  markRuler(){
+    if(!this.o.ruler)return;const near=Math.round(this.tml);
+    $$('[data-k="ruler"] g',this.svg).forEach(gr=>{const on=+gr.dataset.v===near;gr.querySelector('text').style.fill=on?'var(--ink)':'var(--muted)';gr.querySelector('text').style.fontWeight=on?'600':'400';gr.querySelector('line').style.stroke=on?'var(--ink)':'var(--edge)'});
+  }
+  set({ml,tint,name,shape}){
+    if(shape&&shape!==this.shape){this.shape=shape;if(ml!=null)this.ml=this.tml=ml;if(name!=null)this.name=name;if(tint)this.tint=this.ttint=hex2rgb(tint);this.build();this.markRuler();return}
+    if(ml!=null&&ml!==this.tml){this.slosh=Math.min(4.5,this.slosh+Math.abs(ml-this.tml)*.12+.6);this.tml=ml}
+    if(tint)this.ttint=hex2rgb(tint);
+    if(name!=null&&name!==this.name){this.name=name;this.el.lb2&&(this.el.lb2.textContent=name);this.slosh=Math.max(this.slosh,2.2)}
+    if(this.el.lb3)this.el.lb3.textContent=this.mlText();
+    this.markRuler();
+    if(RM){this.ml=this.tml;this.tint=this.ttint.slice();this.draw()}
+  }
+  puff(){
+    if(RM)return;const g=geom(this.ml,this.shape,this.o.cx);
+    const x0=g.cx-g.capW/2,y0=g.capY+g.capH*.35;
+    for(let i=0;i<16;i++)this.puffs.push({x:x0,y:y0,vx:-(.6+Math.random()*1.6),vy:-(.1+Math.random()*.9),r:1.5+Math.random()*2.5,life:0,max:50+Math.random()*40});
+    this.slosh=Math.max(this.slosh,2.5);
+  }
+  draw(){
+    const g=geom(this.ml,this.shape,this.o.cx);
+    const amp=RM?0:(.9+this.slosh);
+    const P=parts(g,{pid:this.pid,name:this.name,shape:this.shape,ph:this.ph,amp,mlText:''});
+    for(const [,at] of P){const e=this.el[at.k];if(!e)continue;for(const k in at){if(k==='k'||k==='style'||k==='fill'&&String(at.fill).startsWith('url')||k==='clip-path'||k==='filter')continue;if(e.tagName==='text'&&k!=='x'&&k!=='y'&&k!=='font-size')continue;const v=at[k];e.setAttribute(k,typeof v==='number'?v.toFixed(2):v)}}
+    const c=this.el.clip;if(c){c.setAttribute('x',g.ix);c.setAttribute('y',g.iy);c.setAttribute('width',g.iw);c.setAttribute('height',g.ih+2);c.setAttribute('rx',Math.max(1,g.r-g.inset))}
+    if(this.stops.length){this.stops[0].setAttribute('stop-color',rgb(this.tint,.28));this.stops[1].setAttribute('stop-color',rgb(this.tint));this.stops[2].setAttribute('stop-color',rgb(this.tint,-.28))}
+    const pg=this.el.puffs;
+    if(pg){if(this.puffs.length){pg.innerHTML=this.puffs.map(p=>{const k=p.life/p.max;return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(p.r*(1+k*3)).toFixed(1)}" fill="${rgb(this.tint,.6)}" opacity="${(.5*(1-k)).toFixed(2)}"/>`}).join('')}else if(pg.firstChild)pg.innerHTML=''}
+  }
+  loop(ts){
+    if(!this.host.isConnected||!this.svg.isConnected)return;
+    requestAnimationFrame(this.loop);
+    if(this.host.offsetParent===null||document.hidden)return;
+    const dt=Math.min(50,ts-(this.last||ts))/16.7;this.last=ts;
+    if(RM)return;
+    this.ml+=(this.tml-this.ml)*Math.min(1,.16*dt);
+    for(let i=0;i<3;i++)this.tint[i]+=(this.ttint[i]-this.tint[i])*Math.min(1,.08*dt);
+    this.ph+=.045*dt;this.slosh*=Math.pow(.965,dt);
+    for(const p of this.puffs){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.97;p.vy-=.01*dt;p.life+=dt}
+    this.puffs=this.puffs.filter(p=>p.life<p.max);
+    this.draw();
+  }
+}
+
+/* ---------- состояние ---------- */
+const S={
+  cart:store.get('cart',[]),fav:new Set(store.get('fav',[])),
+  f:{g:'all',tags:new Set(),q:'',min:0,max:99999,sort:'pop'},
+  quiz:store.get('quiz',{a:[5,6,5,5],g:'any'}),
+  delivery:'ess',view:'home'
+};
+const saveCart=()=>{store.set('cart',S.cart);updBadge()};
+function updBadge(){const n=S.cart.reduce((s,l)=>s+l.qty,0);$$('[data-badge]').forEach(b=>b.textContent=n||'')}
+
+/* ---------- 2+1 ---------- */
+function calc(){
+  const groups={},freeBy=new Map();let sub=0,gift=0;
+  S.cart.forEach((l,i)=>{const a=BY[l.id];if(!a)return;const pr=priceOf(a,l.form,l.ml);sub+=pr*l.qty;const key=l.form+'|'+l.ml;(groups[key]=groups[key]||[]);for(let q=0;q<l.qty;q++)groups[key].push({i,pr})});
+  for(const key in groups){const u=groups[key].sort((x,y)=>y.pr-x.pr);u.forEach((x,j)=>{if(j%3===2){gift+=x.pr;freeBy.set(x.i,(freeBy.get(x.i)||0)+1)}})}
+  return {sub,gift,total:sub-gift,freeBy,groups};
+}
+function groupCount(form,ml){return S.cart.filter(l=>l.form===form&&l.ml===ml).reduce((s,l)=>s+l.qty,0)}
+function promoLine(form,ml){
+  const c=groupCount(form,ml),u=form==='oil'?`${ml} мл масла`:`${ml} мл`;
+  if(c%3===2)return `В корзине уже ${c} ${pl(c,'флакон','флакона','флаконов')} по ${u}. Следующий такой же объём — самый недорогой из трёх в подарок.`;
+  if(c%3===1)return `Добавьте ещё один флакон ${u} — и третий такого же объёма будет в подарок.`;
+  return `Возьмите два флакона по ${u} — третий такого же объёма в подарок.`;
+}
+
+/* ---------- карточки ---------- */
+function card(a,{ml=30}={}){
+  return `<article class="card" style="--tint:${a.tint}" data-open="${a.id}" tabindex="0" role="button" aria-label="${esc(a.b+' '+a.n)}">
+    <div class="stage">${a.nw?'<span class="tag">Новинка</span>':''}${bottleSVG(a,{ml})}
+      <button class="fav" data-fav="${a.id}" aria-pressed="${S.fav.has(a.id)}" aria-label="В избранное"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button></div>
+    <div class="info"><div class="br">${esc(a.b)}</div><div class="nm">${esc(a.n)}</div><div class="meta">${GENDER[a.g]} · ${esc(a.fam)}</div>
+      <div class="pr"><b class="num">от ${RUB(a.p*6)}</b><span>${RUB(a.p)}/мл</span></div></div></article>`;
+}
+document.addEventListener('click',e=>{
+  const f=e.target.closest('[data-fav]');
+  if(f){e.stopPropagation();const id=f.dataset.fav;S.fav.has(id)?S.fav.delete(id):S.fav.add(id);store.set('fav',[...S.fav]);$$(`[data-fav="${id}"]`).forEach(b=>b.setAttribute('aria-pressed',S.fav.has(id)));if(S.view==='catalog'&&S.f.g==='fav')renderCatalog();return}
+  const o=e.target.closest('[data-open]');if(o){openProduct(o.dataset.open);return}
+  const go=e.target.closest('[data-go]');if(go){e.preventDefault();if(go.dataset.sort){S.f.sort=go.dataset.sort;$('#sort').value=go.dataset.sort}goView(go.dataset.go);return}
+});
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-open]')){e.preventDefault();openProduct(e.target.dataset.open)}});
+
+/* ---------- навигация ---------- */
+function goView(v,{noHash}={}){
+  S.view=v;$$('.view').forEach(s=>s.hidden=s.id!=='v-'+v);
+  $$('[data-go]').forEach(b=>{if(b.closest('.nav,.tabbar'))b.setAttribute('aria-current',b.dataset.go===v?'page':'false')});
+  if(v==='catalog')renderCatalog();if(v==='quiz')renderQuiz();if(v==='cart')renderCart();
+  if(!noHash){try{history.replaceState(null,'','#'+v)}catch(e){}}
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+/* ---------- главная ---------- */
+const NEW=A.filter(a=>a.nw);
+let hero,heroI=0,heroTimer;
+function setHero(i){
+  heroI=(i+NEW.length)%NEW.length;const a=NEW[heroI];
+  hero.set({tint:a.tint,name:a.n,ml:30});$('#heroNm').textContent=a.n;$('#heroBr').textContent=a.b;
+  $$('#heroDots button').forEach((b,j)=>b.setAttribute('aria-pressed',j===heroI));
+}
+function initHome(){
+  hero=new Flacon($('#heroStage'),{ml:30,tint:NEW[0].tint,name:NEW[0].n,cx:140,W:280});
+  $('#heroDots').innerHTML=NEW.map((a,i)=>`<button aria-label="${esc(a.n)}" aria-pressed="${i===0}"></button>`).join('');
+  $$('#heroDots button').forEach((b,i)=>b.onclick=()=>{setHero(i);restartHero()});
+  $('#heroNm').onclick=()=>openProduct(NEW[heroI].id);$('#heroNm').style.cursor='pointer';
+  setHero(0);restartHero();
+  $('#newRow').innerHTML=NEW.map(a=>card(a)).join('');
+  // гид по объёмам
+  const ga=BY['percival'];
+  const guide=new Flacon($('#guideStage'),{ml:10,tint:'#C9A6AE',name:'Ваш аромат',ruler:true,cx:150,W:280});
+  const gr=$('#gRange');
+  $('#gTicks').innerHTML=VOL.map((v,i)=>`<button data-i="${i}" aria-pressed="${i===1}"><span>${v}</span></button>`).join('');
+  const show=(f,snap)=>{
+    const i=Math.round(f),ml=snap?VOL[i]:mlAt(f);guide.set({ml});
+    const v=VOL[i];$('#gMl').textContent=v;$('#gTxt').textContent=VOL_TXT[v][1];$('#gFor').textContent=VOL_TXT[v][0];
+    $('#gSpr').textContent='≈ '+v*SPRAY_PER_ML;$('#gDays').textContent=daysText(v*SPRAY_PER_ML/3);
+    $$('#gTicks button').forEach((b,j)=>b.setAttribute('aria-pressed',j===i));
+    gr.style.setProperty('--p',(f/5*100)+'%');
+  };
+  bindVol(gr,$('#gTicks'),show,1);
+  // подборки
+  const COLL=[
+    ['Самые шлейфовые',a=>a.ax[1]>=9],
+    ['Тёплые на осень',a=>a.ax[0]>=7],
+    ['Свежие на каждый день',a=>a.ax[0]<=3],
+    ['Сладкие и гурманские',a=>a.ax[2]>=8],
+    ['Для него',a=>a.g==='m'],
+  ];
+  $('#collTabs').innerHTML=COLL.map((c,i)=>`<button class="chip" aria-pressed="${i===0}" data-c="${i}">${c[0]}</button>`).join('');
+  const showC=i=>{$$('#collTabs .chip').forEach((b,j)=>b.setAttribute('aria-pressed',j===i));$('#collRow').innerHTML=A.filter(COLL[i][1]).map(a=>card(a)).join('')};
+  $$('#collTabs .chip').forEach(b=>b.onclick=()=>showC(+b.dataset.c));showC(0);
+}
+function restartHero(){clearInterval(heroTimer);if(!RM)heroTimer=setInterval(()=>{if(S.view==='home'&&$('#sheet').hidden)setHero(heroI+1)},5200)}
+function mlAt(f,list=VOL){const i=Math.floor(f),j=Math.min(list.length-1,i+1),k=f-i;return list[i]+(list[j]-list[i])*k}
+/* слайдер объёма: тянется плавно, отпускаешь — прилипает к ближайшему объёму */
+function bindVol(input,ticks,show,start){
+  const n=ticks.children.length-1;input.max=n*100;input.value=start*100;show(start,true);
+  input.addEventListener('input',()=>show(input.value/100,false));
+  input.addEventListener('change',()=>{const i=Math.round(input.value/100);input.value=i*100;show(i,true)});
+  input.addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowUp:1,ArrowLeft:-1,ArrowDown:-1}[e.key];if(!d)return;e.preventDefault();const i=Math.max(0,Math.min(n,Math.round(input.value/100)+d));input.value=i*100;show(i,true)});
+  ticks.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const i=+b.dataset.i;input.value=i*100;show(i,true)});
+}
+
+/* ---------- каталог ---------- */
+let pLo,pHi;
+function initCatalog(){
+  const G=[['all','Все'],['m','Мужские'],['w','Женские'],['u','Унисекс'],['new','Новинки'],['fav','Избранное']];
+  $('#gChips').innerHTML=G.map(([k,t])=>`<button class="chip" data-g="${k}" aria-pressed="${k==='all'}">${t}</button>`).join('');
+  $('#gChips').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;S.f.g=b.dataset.g;$$('#gChips .chip').forEach(c=>c.setAttribute('aria-pressed',c===b));renderCatalog()};
+  $('#tagChips').innerHTML=TAGS.map(t=>`<button class="chip" data-t="${t}" aria-pressed="false">${t}</button>`).join('');
+  $('#tagChips').onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=b.dataset.t;S.f.tags.has(t)?S.f.tags.delete(t):S.f.tags.add(t);b.setAttribute('aria-pressed',S.f.tags.has(t));renderCatalog()};
+  $('#q').oninput=e=>{S.f.q=e.target.value.trim().toLowerCase();renderCatalog()};
+  $('#sort').onchange=e=>{S.f.sort=e.target.value;renderCatalog()};
+  $('#fBtn').onclick=()=>{const p=$('#fPanel'),open=p.hidden;p.hidden=!open;$('#fBtn').setAttribute('aria-expanded',open)};
+  pLo=Math.min(...A.map(per10));pHi=Math.max(...A.map(per10));S.f.min=pLo;S.f.max=pHi;
+  const mn=$('#pMin'),mx=$('#pMax');[mn,mx].forEach(i=>{i.min=pLo;i.max=pHi;i.step=100});mn.value=pLo;mx.value=pHi;
+  const upd=src=>{let a=+mn.value,b=+mx.value;if(a>b){src===mn?(mn.value=a=b):(mx.value=b=a)}S.f.min=a;S.f.max=b;
+    const L=(a-pLo)/(pHi-pLo)*100,R=(b-pLo)/(pHi-pLo)*100;$('#dFill').style.left=`calc(${L}% + ${11-L*.22}px)`;$('#dFill').style.right=`calc(${100-R}% + ${11-(100-R)*.22}px)`;
+    $('#pMinL').textContent=RUB(a);$('#pMaxL').textContent=RUB(b);renderCatalog()};
+  mn.oninput=()=>upd(mn);mx.oninput=()=>upd(mx);upd();
+}
+function renderCatalog(){
+  const f=S.f;let L=A.filter(a=>{
+    if(f.g==='fav'&&!S.fav.has(a.id))return false;
+    if(f.g==='new'&&!a.nw)return false;
+    if(['m','w','u'].includes(f.g)&&a.g!==f.g)return false;
+    if(f.tags.size&&!a.tags.some(t=>f.tags.has(t)))return false;
+    const p=per10(a);if(p<f.min||p>f.max)return false;
+    if(f.q){const hay=(a.n+' '+a.b+' '+a.fam+' '+a.top.join(' ')+' '+a.mid.join(' ')+' '+a.base.join(' ')+' '+a.tags.join(' ')).toLowerCase();if(!f.q.split(/\s+/).every(w=>hay.includes(w)))return false}
+    return true});
+  const s=f.sort;
+  if(s==='asc')L.sort((x,y)=>x.p-y.p);if(s==='desc')L.sort((x,y)=>y.p-x.p);if(s==='new')L.sort((x,y)=>(y.nw||0)-(x.nw||0));if(s==='lon')L.sort((x,y)=>y.lon-x.lon);
+  $('#count').textContent=`${L.length} ${pl(L.length,'аромат','аромата','ароматов')}`;
+  $('#grid').innerHTML=L.length?L.map(a=>card(a)).join(''):(f.g==='fav'?`<div class="empty" style="grid-column:1/-1"><h3>В избранном пока пусто</h3><p>Нажмите на сердечко на карточке, чтобы сохранить аромат.</p></div>`:`<div class="empty" style="grid-column:1/-1"><h3>Ничего не нашлось</h3><p>Попробуйте другую ноту или снимите часть фильтров. Нет нужного аромата — спросите в Direct, в наличии более 290.</p></div>`);
+}
+
+/* ---------- подбор ---------- */
+const QAX=[['Характер','Свежий','Тёплый'],['Шлейф','Близко к коже','Заметный'],['Сладость','Сухой','Сладкий'],['Когда носить','День, офис','Вечер, свидание']];
+function initQuiz(){
+  $('#qSliders').innerHTML=QAX.map((q,i)=>`<div class="qrow"><label for="qa${i}"><b>${q[0]}</b><span id="qv${i}"></span></label><input type="range" id="qa${i}" min="0" max="10" step="0.1" value="${S.quiz.a[i]}"><div class="ends"><span>${q[1]}</span><span>${q[2]}</span></div></div>`).join('');
+  QAX.forEach((q,i)=>{const r=$('#qa'+i);r.oninput=()=>{S.quiz.a[i]=+r.value;store.set('quiz',S.quiz);renderQuiz()}});
+  $('#qG').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;S.quiz.g=b.dataset.g;store.set('quiz',S.quiz);renderQuiz()};
+  $('#qReset').onclick=()=>{S.quiz={a:[5,6,5,5],g:'any'};store.set('quiz',S.quiz);QAX.forEach((q,i)=>$('#qa'+i).value=S.quiz.a[i]);renderQuiz()};
+}
+function qWord(i,v){const q=QAX[i];return v<3.5?q[1]:v>6.5?q[2]:'баланс'}
+function renderQuiz(){
+  const a=S.quiz.a,W=[1.4,1,1.1,.8],dmax=10*Math.sqrt(W.reduce((s,w)=>s+w,0));
+  $$('#qG button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===S.quiz.g));
+  QAX.forEach((q,i)=>{const r=$('#qa'+i);r.style.setProperty('--p',(a[i]*10)+'%');$('#qv'+i).textContent=qWord(i,a[i])});
+  const L=A.filter(x=>S.quiz.g==='any'||x.g===S.quiz.g||x.g==='u').map(x=>{const d=Math.sqrt(x.ax.reduce((s,v,i)=>s+W[i]*(v-a[i])**2,0));return {x,m:Math.round(100*(1-d/dmax))}}).sort((p,q)=>q.m-p.m).slice(0,8);
+  $('#qCount').textContent='Лучшие совпадения';
+  $('#qRes').innerHTML=L.map(({x,m})=>`<article class="qitem" style="--tint:${x.tint}" data-open="${x.id}" tabindex="0" role="button">
+    <div class="st">${bottleSVG(x,{ml:20})}</div>
+    <div style="min-width:0"><div class="eyebrow" style="font-size:10px">${esc(x.b)}</div><div class="nm">${esc(x.n)}</div><div class="why">${[...x.top.slice(0,2),...x.base.slice(0,2)].join(' · ')}</div></div>
+    <div class="match"><b class="num">${m}%</b><div class="bar"><i style="width:${m}%"></i></div></div></article>`).join('');
+}
+
+/* ---------- карточка товара ---------- */
+let pd=null,lastFocus=null;
+function openProduct(id){
+  const a=BY[id];if(!a)return;lastFocus=document.activeElement;
+  const sim=A.filter(x=>x.id!==a.id).map(x=>({x,d:x.ax.reduce((s,v,i)=>s+(v-a.ax[i])**2,0)+(x.tags.some(t=>a.tags.includes(t))?0:8)})).sort((p,q)=>p.d-q.d).slice(0,6).map(o=>o.x);
+  const season=a.ax[0]>=7?'осень · зима':a.ax[0]<=3?'весна · лето':'круглый год';
+  const tod=a.ax[3]>=7?'вечер':a.ax[3]<=3?'день':'день и вечер';
+  const meter=(t,v,lbl)=>`<div class="meter"><div>${t}<span>${lbl}</span></div><div class="seg10">${Array.from({length:10},(_,i)=>`<i class="${i<Math.round(v)?'on':''}"></i>`).join('')}</div></div>`;
+  const lonL=a.lon>=9?'от 24 ч':a.lon>=7?'12–24 ч':'8–12 ч';
+  const pyr=[['Верх','первые минуты',a.top,.35],['Сердце','через час',a.mid,.65],['База','шлейф',a.base,1]].filter(r=>r[2].length);
+  $('#panel').innerHTML=`<button class="close" data-close aria-label="Закрыть"><svg class="ico" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div class="pd" style="--tint:${a.tint}">
+    <div class="pd-stage" id="pdStage"><div class="tap">Нажмите на флакон</div></div>
+    <div class="pd-body">
+      <div><div class="br">${esc(a.b)}</div><h2 id="pdName">${esc(a.n)}</h2>
+        <div class="pills"><span class="pill">${GENDER[a.g]}</span><span class="pill">${esc(a.fam)}</span><span class="pill">${season}</span><span class="pill">${tod}</span></div></div>
+      <div class="block"><h4>Формат</h4><div class="seg" id="pdForm"><button data-f="spray" aria-pressed="true">Спрей</button><button data-f="oil" aria-pressed="false">Парфюмерное масло</button></div></div>
+      <div class="block"><h4>Объём <span class="mono" id="pdMl"></span></h4>
+        <div class="vol"><input type="range" id="pdRange" aria-label="Объём"><div class="ticks" id="pdTicks"></div></div></div>
+      <div class="block"><div class="pricebox"><b class="num" id="pdPrice"></b><span id="pdPer"></span></div>
+        <p class="promo-note" style="margin-top:10px"><b>2+1</b><span id="pdPromo"></span></p></div>
+      <p class="desc">${esc(a.d)}</p>
+      <div class="block" id="pdLastWrap"><h4>Сколько хватит</h4>
+        <div class="last"><div class="lbl"><span id="pdSprays"></span><br>при <b id="pdPerDayL">3</b> <span id="pdPerDayW">пшиках</span> в день</div><div class="res" id="pdLast"></div>
+          <input type="range" id="pdPerDay" min="1" max="10" step="1" value="3" aria-label="Пшиков в день"></div></div>
+      <div class="block"><h4>Пирамида аромата</h4><div class="pyr">${pyr.map(r=>`<div class="pyr-row"><div class="lv"><i style="width:${r[3]*100}%;opacity:${.45+r[3]*.55}"></i><span>${r[0]} · ${r[1]}</span></div><p>${r[2].map(esc).join(', ')}</p></div>`).join('')}</div></div>
+      <div class="block"><h4>Характер</h4><div class="meters">${meter('Стойкость',a.lon,lonL)}${meter('Шлейф',a.ax[1],a.ax[1]>=8?'заметный':a.ax[1]<=4?'у кожи':'умеренный')}${meter('Сладость',a.ax[2],a.ax[2]>=7?'сладкий':a.ax[2]<=3?'сухой':'в меру')}${meter('Теплота',a.ax[0],a.ax[0]>=7?'тёплый':a.ax[0]<=3?'свежий':'баланс')}</div></div>
+      <div class="block"><h4>Похожие ароматы</h4><div class="similar">${sim.map(x=>card(x)).join('')}</div></div>
+      <div class="buybar"><button class="btn wine" id="pdAdd">В корзину</button><button class="fav" data-fav="${a.id}" aria-pressed="${S.fav.has(a.id)}" aria-label="В избранное"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button></div>
+    </div></div>`;
+  const sh=$('#sheet');sh.hidden=false;document.body.style.overflow='hidden';$('#panel').scrollTop=0;
+  pd={a,form:'spray',i:4,ml:30,priceShown:0,perDay:3};
+  pd.fl=new Flacon($('#pdStage'),{ml:30,tint:a.tint,name:a.n,ruler:true,cx:155,W:290});
+  setupVol();
+  $('#pdForm').onclick=e=>{const b=e.target.closest('[data-f]');if(!b||b.dataset.f===pd.form)return;pd.form=b.dataset.f;$$('#pdForm button').forEach(x=>x.setAttribute('aria-pressed',x===b));setupVol()};
+  $('#pdPerDay').oninput=e=>{pd.perDay=+e.target.value;updLast()};
+  $('#pdAdd').onclick=()=>{addToCart(a.id,pd.form,pd.ml);pd.fl.puff()};
+  try{history.replaceState(null,'','#p-'+a.id)}catch(e){}
+  setTimeout(()=>$('.close',sh).focus({preventScroll:true}),50);
+}
+function setupVol(){
+  const list=pd.form==='oil'?OIL:VOL,start=pd.form==='oil'?0:4;
+  pd.fl.set({shape:pd.form,ml:list[start]});
+  $('#pdTicks').innerHTML=list.map((v,i)=>`<button data-i="${i}" aria-pressed="${i===start}"><span>${v}</span></button>`).join('');
+  $('#pdLastWrap').hidden=pd.form==='oil';
+  const r=$('#pdRange'),fresh=r.cloneNode();r.replaceWith(fresh);
+  const tk=$('#pdTicks'),tk2=tk.cloneNode(true);tk.replaceWith(tk2);
+  bindVol(fresh,tk2,(f,snap)=>{
+    const i=Math.round(f),ml=list[i];pd.ml=ml;pd.fl.set({ml:snap?ml:mlAt(f,list)});
+    $$('#pdTicks button').forEach((b,j)=>b.setAttribute('aria-pressed',j===i));
+    fresh.style.setProperty('--p',(f/(list.length-1)*100)+'%');
+    $('#pdMl').textContent=pd.form==='oil'?`${ml} мл масла`:`${ml} мл · ${VOL_TXT[ml][0]}`;
+    countTo(priceOf(pd.a,pd.form,ml));
+    $('#pdPer').textContent=pd.form==='oil'?`${RUB(pd.a.p*2)} за 1 мл · без спирта`:`${RUB(pd.a.p)} за 1 мл`;
+    $('#pdPromo').textContent=promoLine(pd.form,ml);
+    updLast();
+  },start);
+}
+function updLast(){
+  if(!pd||pd.form==='oil')return;const n=pd.ml*SPRAY_PER_ML;
+  $('#pdSprays').textContent=`≈ ${n} пшиков во флаконе`;$('#pdPerDayL').textContent=pd.perDay;$('#pdPerDayW').textContent=pl(pd.perDay,'пшике','пшиках','пшиках');
+  $('#pdLast').textContent=daysText(n/pd.perDay);$('#pdPerDay').style.setProperty('--p',((pd.perDay-1)/9*100)+'%');
+}
+let countRaf;
+function countTo(v){
+  const el=$('#pdPrice');if(!el)return;const from=pd.priceShown,t0=performance.now(),D=RM?0:380;cancelAnimationFrame(countRaf);
+  const step=t=>{const k=D?Math.min(1,(t-t0)/D):1,e=1-Math.pow(1-k,3),cur=from+(v-from)*e;el.textContent=RUB(Math.round(cur/10)*10);pd.priceShown=cur;if(k<1)countRaf=requestAnimationFrame(step);else{el.textContent=RUB(v);pd.priceShown=v}};
+  countRaf=requestAnimationFrame(step);
+}
+function closeSheet(){
+  const sh=$('#sheet');if(sh.hidden)return;sh.hidden=true;document.body.style.overflow='';$('#panel').innerHTML='';pd=null;
+  try{history.replaceState(null,'','#'+S.view)}catch(e){}
+  if(S.view==='cart')renderCart();
+  lastFocus&&lastFocus.focus&&lastFocus.focus({preventScroll:true});
+}
+$('#sheet').addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeSheet()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+
+/* ---------- корзина ---------- */
+let toastT;
+function addToCart(id,form,ml){
+  const l=S.cart.find(x=>x.id===id&&x.form===form&&x.ml===ml);l?l.qty++:S.cart.push({id,form,ml,qty:1});saveCart();
+  const a=BY[id];toast(`${a.n} · ${ml} мл${form==='oil'?' масла':''} в корзине`);
+  if(pd)$('#pdPromo').textContent=promoLine(form,ml);
+}
+function toast(t){const el=$('#toast');$('#toastT').textContent=t;el.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('on'),3200)}
+$('#toastB').onclick=()=>{$('#toast').classList.remove('on');closeSheet();goView('cart')};
+
+function renderCart(){
+  const w=$('#cartWrap');
+  if(!S.cart.length){
+    w.innerHTML=`<div class="cart" style="grid-template-columns:1fr"><div class="empty" style="padding-top:40px"><div style="height:220px;display:grid;place-items:center">${bottleSVG({tint:'#C9A6AE',n:'Ваш аромат'},{ml:10})}</div><h3>Корзина пока пуста</h3><p style="max-width:28em;margin:0 auto 22px">Выберите ароматы в каталоге. Два флакона одного объёма — третий в подарок.</p><button class="btn solid" data-go="catalog">Перейти в каталог</button></div></div>`;
+    $('.empty svg',w).style.height='100%';return;
+  }
+  const c=calc();
+  const hints=Object.entries(c.groups).filter(([,u])=>u.length%3===2).map(([k])=>{const [form,ml]=k.split('|');return `Добавьте ещё один флакон ${ml} мл${form==='oil'?' масла':''} — самый недорогой из трёх будет в подарок.`});
+  const ess=c.total>=1500;
+  w.innerHTML=`<div class="cart">
+    <div><div class="eyebrow">Ваш заказ</div><h1>Корзина</h1>
+      ${S.cart.map((l,i)=>{const a=BY[l.id];if(!a)return '';const pr=priceOf(a,l.form,l.ml),fr=c.freeBy.get(i)||0;
+        return `<div class="line" style="--tint:${a.tint}"><div class="st" data-open="${a.id}" role="button" tabindex="0" aria-label="${esc(a.n)}">${bottleSVG(a,{ml:l.form==='oil'?30:l.ml,shape:l.form})}</div>
+        <div style="min-width:0"><div class="eyebrow" style="font-size:10px">${esc(a.b)}</div><div class="nm">${esc(a.n)}</div><div class="sub">${l.ml} мл · ${l.form==='oil'?'масло':'спрей'} · ${RUB(pr)}</div>
+          ${fr?`<span class="gift">${fr>1?fr+' × ':''}подарок 2+1</span>`:''}
+          <div><div class="qty"><button data-q="${i}" data-d="-1" aria-label="Меньше">−</button><span>${l.qty}</span><button data-q="${i}" data-d="1" aria-label="Больше">+</button></div></div></div>
+        <div class="rt"><b class="num">${RUB(pr*(l.qty-fr))}</b>${fr?`<s class="num">${RUB(pr*l.qty)}</s>`:''}</div></div>`}).join('')}
+      ${hints.map(h=>`<div class="hint"><b>2+1</b><span>${h}</span></div>`).join('')}
+    </div>
+    <aside class="summary">
+      <div class="sumrow"><span>Ароматы</span><span class="num">${RUB(c.sub)}</span></div>
+      ${c.gift?`<div class="sumrow" style="color:var(--accent)"><span>Подарок по акции 2+1</span><span class="num">−${RUB(c.gift)}</span></div>`:''}
+      <div class="radio" role="radiogroup" aria-label="Доставка">
+        <label><input type="radio" name="dl" value="ess" ${S.delivery==='ess'?'checked':''}><span>Ессентуки и ст. Ессентукская<small>${ess?'Бесплатно — заказ от 1 500 ₽':'Бесплатно от 1 500 ₽, сейчас стоимость уточнит магазин'}</small></span></label>
+        <label><input type="radio" name="dl" value="ru" ${S.delivery==='ru'?'checked':''}><span>Доставка по России<small>Отправка службой доставки, стоимость рассчитает магазин</small></span></label>
+      </div>
+      <div class="sumrow total"><span>Итого за ароматы</span><b class="num">${RUB(c.total)}</b></div>
+      <form id="orderForm" style="display:grid;gap:12px" novalidate>
+        <div class="field"><label for="oName">Имя</label><input id="oName" autocomplete="name" value="${esc(store.get('oname',''))}"></div>
+        <div class="field"><label for="oPhone">Телефон или ник в Instagram</label><input id="oPhone" autocomplete="tel" value="${esc(store.get('ophone',''))}"></div>
+        <div class="field"><label for="oAddr">${S.delivery==='ess'?'Адрес в Ессентуках':'Город и адрес / пункт выдачи'}</label><input id="oAddr" autocomplete="street-address" value="${esc(store.get('oaddr',''))}"></div>
+        <div class="field"><label for="oNote">Комментарий</label><textarea id="oNote" placeholder="Например: упаковать в подарок"></textarea></div>
+        <p id="oErr" style="color:var(--accent);font-size:13px" hidden>Укажите имя и телефон, чтобы магазин мог с вами связаться.</p>
+        <button class="btn solid" type="submit">Оформить заказ</button>
+      </form>
+      <div class="order-out" id="orderOut" hidden></div>
+    </aside></div>`;
+  $$('[data-q]',w).forEach(b=>b.onclick=()=>{const l=S.cart[+b.dataset.q];l.qty+= +b.dataset.d;if(l.qty<=0)S.cart.splice(+b.dataset.q,1);saveCart();renderCart()});
+  $$('input[name=dl]',w).forEach(r=>r.onchange=()=>{S.delivery=r.value;renderCart()});
+  $('#orderForm').onsubmit=e=>{
+    e.preventDefault();const nm=$('#oName').value.trim(),ph=$('#oPhone').value.trim(),ad=$('#oAddr').value.trim(),note=$('#oNote').value.trim();
+    if(!nm||!ph){$('#oErr').hidden=false;return}$('#oErr').hidden=true;
+    store.set('oname',nm);store.set('ophone',ph);store.set('oaddr',ad);
+    const lines=[];let n=1;S.cart.forEach((l,i)=>{const a=BY[l.id];if(!a)return;const pr=priceOf(a,l.form,l.ml),fr=c.freeBy.get(i)||0;
+      lines.push(`${n++}. ${a.b} ${a.n} — ${l.ml} мл, ${l.form==='oil'?'масло':'спрей'} × ${l.qty} = ${RUB(pr*(l.qty-fr))}${fr?` (${fr} в подарок по акции 2+1)`:''}`)});
+    const txt=`Здравствуйте! Хочу оформить заказ:\n\n${lines.join('\n')}\n\nСумма: ${RUB(c.sub)}${c.gift?`\nПодарок 2+1: −${RUB(c.gift)}`:''}\nИтого: ${RUB(c.total)}\nДоставка: ${S.delivery==='ess'?'Ессентуки / ст. Ессентукская':'по России'}${ad?`, ${ad}`:''}\n\nИмя: ${nm}\nКонтакт: ${ph}${note?`\nКомментарий: ${note}`:''}`;
+    const out=$('#orderOut');out.hidden=false;
+    out.innerHTML=`<div class="eyebrow">Последний шаг</div><p style="font-size:14px">Скопируйте текст и отправьте его магазину в Direct — менеджер подтвердит наличие и доставку.</p><textarea id="oTxt" readonly aria-label="Текст заказа">${esc(txt)}</textarea>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn wine small" id="oCopy">Скопировать заказ</button><a class="btn small" href="https://ig.me/m/parfum.house26" target="_blank" rel="noopener">Открыть Direct</a></div>`;
+    $('#oCopy').onclick=async()=>{const ta=$('#oTxt');try{await navigator.clipboard.writeText(ta.value);$('#oCopy').textContent='Скопировано'}catch(err){ta.focus();ta.select();$('#oCopy').textContent='Текст выделен — скопируйте'}};
+    out.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});
+  };
+}
+
+/* ---------- старт ---------- */
+initHome();initCatalog();initQuiz();updBadge();
+(function boot(){
+  const h=(location.hash||'').slice(1);
+  if(h.startsWith('p-')&&BY[h.slice(2)]){goView('catalog',{noHash:true});openProduct(h.slice(2))}
+  else goView(['home','catalog','quiz','cart'].includes(h)?h:'home',{noHash:!h});
+})();
+</script>
+
+<div class="inst" id="inst" hidden role="dialog" aria-label="Установить приложение">
+  <img src="apple-touch-icon.png" alt="" width="44" height="44">
+  <div class="inst-t"><b>Установите приложение</b><span id="instT"></span></div>
+  <button class="btn wine small" id="instB" hidden>Установить</button>
+  <button class="inst-x" id="instX" aria-label="Закрыть">
+    <svg class="ico" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+</div>
+<style>
+.inst{position:fixed;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:calc(var(--tab-h) + 12px);z-index:70;
+  display:flex;gap:12px;align-items:center;padding:12px 8px 12px 12px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:0 14px 34px rgba(0,0,0,.2);animation:rise .4s cubic-bezier(.2,.8,.2,1)}
+.inst img{border-radius:10px;flex:none}
+.inst-t{flex:1;min-width:0;display:flex;flex-direction:column;font-size:13px;line-height:1.35;color:var(--muted)}
+.inst-t b{color:var(--ink);font-weight:600;font-size:14px}
+.inst-x{width:36px;height:36px;display:grid;place-items:center;flex:none;color:var(--muted)}
+.appver{font:400 11px var(--f-mono);color:var(--muted);opacity:.7}
+@media (min-width:860px){.inst{display:none!important}}
+</style>
+<script>
+(() => {
+  const foot = document.querySelector('.foot');
+  if (foot && window.APP_VERSION) foot.insertAdjacentHTML('beforeend', `<div class="appver">версия ${window.APP_VERSION}</div>`);
+  if ('serviceWorker' in navigator && location.protocol === 'https:')
+    addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  let seen = null; try { seen = localStorage.getItem('ph26-inst'); } catch (e) {}
+  if (standalone || seen) return;
+  const el = document.getElementById('inst'), t = document.getElementById('instT'), b = document.getElementById('instB');
+  const hide = () => { el.hidden = true; try { localStorage.setItem('ph26-inst', '1'); } catch (e) {} };
+  document.getElementById('instX').onclick = hide;
+  let ev = null;
+  addEventListener('beforeinstallprompt', e => {
+    e.preventDefault(); ev = e;
+    t.textContent = 'Каталог, корзина и акция 2+1 — с иконкой на экране телефона.';
+    b.hidden = false; el.hidden = false;
+  });
+  b.onclick = async () => { if (!ev) return; ev.prompt(); try { await ev.userChoice; } catch (e) {} hide(); };
+  const ua = navigator.userAgent;
+  if (/iphone|ipad|ipod/i.test(ua)) setTimeout(() => {
+    t.innerHTML = /instagram|fban|fbav/i.test(ua)
+      ? 'Откройте эту страницу в Safari (⋯ → «Открыть в браузере»), затем «Поделиться» → «На экран Домой».'
+      : 'Нажмите «Поделиться» внизу Safari, затем «На экран Домой».';
+    el.hidden = false;
+  }, 2500);
+})();
+</script>
+</body>
+</html>
