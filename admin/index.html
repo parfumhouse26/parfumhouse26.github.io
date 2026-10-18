@@ -218,7 +218,8 @@ input[type=range]{width:100%;accent-color:var(--accent)}
     </div>
 
     <div class="stack">
-      <label class="check"><input type="checkbox" id="fNew"><span>Новинка<small>Метка на карточке и место в подборке «Новинки» на главной</small></span></label>
+      <label class="check"><input type="checkbox" id="fPop"><span>Популярное<small>Раздел «Популярные» в каталоге и метка «Хит» на карточке</small></span></label>
+      <label class="check"><input type="checkbox" id="fNew"><span>Новинка<small>Раздел «Новые» в каталоге, метка на карточке и подборка на главной</small></span></label>
       <label class="check"><input type="checkbox" id="fHid"><span>Скрыть с сайта<small>Например, если закончился. Аромат останется здесь, его можно вернуть</small></span></label>
     </div>
 
@@ -338,7 +339,7 @@ function renderList(){
     return `<div class="item${a.hidden?' off':''}" style="--t:${esc(a.tint||'#ccc')}">
       <div class="thumb">${src?`<img src="${esc(src)}" alt="" loading="lazy">`:'<span>?</span>'}</div>
       <button class="open" data-edit="${esc(a.id)}"><div class="nm">${esc(a.n)}</div><div class="sub">${esc(a.b)} · от ${RUB((a.p||0)*6)}</div>
-        <div class="badges">${a.nw?'<span class="badge new">новинка</span>':''}${a.hidden?'<span class="badge hid">скрыт</span>':''}${S.changedIds.has(a.id)?'<span class="badge edit">не сохранено</span>':''}${a.img===false&&!S.pendingImg[a.id]?'<span class="badge">без фото</span>':''}</div></button>
+        <div class="badges">${a.nw?'<span class="badge new">новинка</span>':''}${a.pop?'<span class="badge">хит</span>':''}${a.hidden?'<span class="badge hid">скрыт</span>':''}${S.changedIds.has(a.id)?'<span class="badge edit">не сохранено</span>':''}${a.img===false&&!S.pendingImg[a.id]?'<span class="badge">без фото</span>':''}</div></button>
       <div class="moves"><button data-mv="${i}" data-d="-1" aria-label="Выше" ${i===0||q?'disabled':''}>↑</button><button data-mv="${i}" data-d="1" aria-label="Ниже" ${i===A.length-1||q?'disabled':''}>↓</button></div>
     </div>`}).join('')||'<p class="hint">Ничего не найдено.</p>';
 }
@@ -361,7 +362,7 @@ function openEdit(id){
 function fillForm(){
   $('#fN').value=F.n;$('#fB').value=F.b;$('#fFam').value=F.fam||'';$('#fP6').value=F.p?Math.round(F.p*6):'';
   $('#fTop').value=(F.top||[]).join(', ');$('#fMid').value=(F.mid||[]).join(', ');$('#fBase').value=(F.base||[]).join(', ');$('#fD').value=F.d||'';
-  $('#fTint').value=/^#[0-9a-f]{6}$/i.test(F.tint)?F.tint:'#C9A6AE';$('#fNew').checked=!!F.nw;$('#fHid').checked=!!F.hidden;
+  $('#fTint').value=/^#[0-9a-f]{6}$/i.test(F.tint)?F.tint:'#C9A6AE';$('#fNew').checked=!!F.nw;$('#fPop').checked=!!F.pop;$('#fHid').checked=!!F.hidden;
   $$('#fG button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===F.g));
   $('#fTags').innerHTML=TAGS.map(t=>`<button class="chip" data-t="${t}" aria-pressed="${(F.tags||[]).includes(t)}">${t}</button>`).join('');
   $('#axes').innerHTML=AXES.map((q,i)=>`<div class="field"><label for="ax${i}">${q[0]}</label><input type="range" id="ax${i}" min="0" max="10" step="1" value="${F.ax?.[i]??5}"><div class="ends"><span>${q[1]}</span><span>${q[2]}</span></div></div>`).join('')+
@@ -385,6 +386,7 @@ function readForm(){
   F.top=splitNotes($('#fTop').value);F.mid=splitNotes($('#fMid').value);F.base=splitNotes($('#fBase').value);F.d=$('#fD').value.trim();
   F.ax=[0,1,2,3].map(i=>+$('#ax'+i).value);F.lon=+$('#axLon').value;F.tint=$('#fTint').value;
   if($('#fNew').checked)F.nw=1;else delete F.nw;
+  if($('#fPop').checked)F.pop=1;else delete F.pop;
   if($('#fHid').checked)F.hidden=true;else delete F.hidden;
 }
 function validate(){
