@@ -15,7 +15,7 @@
 <meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
 <meta property="og:image" content="https://parfumhouse26.github.io/icon-512.png">
 <meta property="og:url" content="https://parfumhouse26.github.io/">
-<script>window.APP_VERSION = '12a3e1f32b';</script>
+<script>window.APP_VERSION = '3b9cc6a6c7';</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -274,6 +274,7 @@ main{display:block}
 .prange{display:flex;justify-content:space-between;font:500 13px var(--f-mono);margin-top:4px}
 .select{height:38px;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:0 12px;font-size:13.5px}
 .count{font:500 12px var(--f-mono);color:var(--muted);margin-bottom:12px}
+.btn.more{grid-column:1/-1;justify-self:center;margin:10px 0 6px}
 .empty{padding:60px 0;text-align:center;color:var(--muted)}
 .empty h3{color:var(--ink);font-size:24px;margin-bottom:8px}
 
@@ -982,7 +983,7 @@ function setHero(i){
   $$('#heroDots button').forEach((b,j)=>b.setAttribute('aria-pressed',j===heroI));
 }
 function initHome(){
-  NEW=A.filter(a=>a.nw);if(!NEW.length)NEW=A.slice(0,5);
+  NEW=A.filter(a=>a.nw).slice(0,8);if(!NEW.length)NEW=A.slice(0,5);
   hero=new PhotoStage($('#heroArch'),{a:NEW[0],ml:50,dark:true});
   $('#heroDots').innerHTML=NEW.map((a,i)=>`<button aria-label="${esc(a.n)}" aria-pressed="${i===0}"></button>`).join('');
   $$('#heroDots button').forEach((b,i)=>b.onclick=()=>{setHero(i);restartHero()});
@@ -1026,7 +1027,7 @@ function bindVol(input,ticks,show,start){
 
 /* ---------- каталог ---------- */
 /* поиск понимает бренды и названия русскими буквами: «Креед», «Марли», «Ксерджофф» */
-const BRAND_RU={'parfums de marly':'марли пдм парфюм де марли','amouage':'амуаж амуаже','bvlgari':'булгари','maison francis kurkdjian':'мфк куркджан баккара','escentric molecules':'молекула молекулы эксцентрик','tiziana terenzi':'тициана терензи','les liquides imaginaires':'ликид имажинер','lattafa':'латтафа','kajal':'каджал','tom ford':'том форд','creed':'крид креед','kilian':'килиан киллиан','initio':'инитио инисио','xerjoff':'ксерджофф','sospiro':'соспиро','armaf':'армаф','marc-antoine barrois':'барруа','bybozo':'бибозо байбозо'};
+const BRAND_RU={'parfums de marly':'марли пдм парфюм де марли','amouage':'амуаж амуаже','bvlgari':'булгари','maison francis kurkdjian':'мфк куркджан баккара','escentric molecules':'молекула молекулы эксцентрик','tiziana terenzi':'тициана терензи','les liquides imaginaires':'ликид имажинер','lattafa':'латтафа','kajal':'каджал','tom ford':'том форд','creed':'крид креед','kilian':'килиан киллиан','initio':'инитио инисио','xerjoff':'ксерджофф','sospiro':'соспиро','armaf':'армаф','marc-antoine barrois':'барруа','bybozo':'бибозо байбозо','chanel':'шанель','dior':'диор','louis vuitton':'луи виттон лв','versace':'версаче','givenchy':'живанши','gucci':'гуччи','hugo boss':'хуго хьюго босс','paco rabanne':'пако рабан','yves saint laurent':'ив сен лоран исл','giorgio armani':'армани','montale':'монталь','mancera':'мансера','byredo':'байредо','le labo':'ле лабо','zielinski & rozen':'зелински зелинский розен','attar collection':'аттар','victoria\'s secret':'виктория сикрет','dolce & gabbana':'дольче габбана габана','burberry':'барберри','kayali':'каяли','maison margiela':'марджела','jo malone':'джо малон','ex nihilo':'экс нихило','nishane':'нишан','clive christian':'клайв кристиан','roja parfums':'роха роджа','montblanc':'монблан','carolina herrera':'каролина эррера','lancôme':'ланком','hfc':'хфк','tiziana terenzi ':'','byredo ':'','juliette has a gun':'джульетта','escentric molecules ':'','maison crivelli':'кривелли','matière première':'матьер премьер','zarkoperfume':'зарко','hermès':'гермес эрмес','prada':'прада','jean paul gaultier':'готье','lacoste':'лакост','narciso rodriguez':'нарцисо родригес','trussardi':'труссарди','kilian ':'','ajmal':'аджмал','lattafa ':'','creed ':'','nasomatto':'насоматто','orto parisi':'орто париси','memo':'мемо','al haramain':'аль харамайн','haute fragrance company':'хфк'};
 const CYR={а:'a',б:'b',в:'v',г:'g',д:'d',е:'e',ё:'e',ж:'j',з:'z',и:'i',й:'i',к:'k',л:'l',м:'m',н:'n',о:'o',п:'p',р:'r',с:'s',т:'t',у:'u',ф:'f',х:'h',ц:'ts',ч:'ch',ш:'sh',щ:'sh',ъ:'',ы:'i',ь:'',э:'e',ю:'yu',я:'ya'};
 function pkey(t){
   return String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[а-яё]/g,c=>CYR[c]??'')
@@ -1052,6 +1053,7 @@ let pLo,pHi;
 function initCatalog(){
   const G=[['all','Все'],['m','Мужские'],['w','Женские'],['u','Унисекс'],['new','Новинки'],['fav','Избранное']];
   $('#gChips').innerHTML=G.map(([k,t])=>`<button class="chip" data-g="${k}" aria-pressed="${k==='all'}">${t}</button>`).join('');
+  $('#grid').addEventListener('click',e=>{if(e.target.closest('#moreBtn')){shown+=48;renderCatalog(true)}});
   $('#gChips').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;S.f.g=b.dataset.g;$$('#gChips .chip').forEach(c=>c.setAttribute('aria-pressed',c===b));renderCatalog()};
   $('#tagChips').innerHTML=TAGS.map(t=>`<button class="chip" data-t="${t}" aria-pressed="false">${t}</button>`).join('');
   $('#tagChips').onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=b.dataset.t;S.f.tags.has(t)?S.f.tags.delete(t):S.f.tags.add(t);b.setAttribute('aria-pressed',S.f.tags.has(t));renderCatalog()};
@@ -1067,7 +1069,9 @@ function initCatalog(){
     $('#pMinL').textContent=RUB(a);$('#pMaxL').textContent=RUB(b);renderCatalog()};
   mn.oninput=()=>upd(mn);mx.oninput=()=>upd(mx);upd();
 }
-function renderCatalog(){
+let shown=48;   // каталог большой — показываем порциями
+function renderCatalog(more){
+  if(more!==true)shown=48;
   const f=S.f;let L=A.filter(a=>{
     if(f.g==='fav'&&!S.fav.has(a.id))return false;
     if(f.g==='new'&&!a.nw)return false;
@@ -1080,7 +1084,7 @@ function renderCatalog(){
   const s=f.sort;
   if(s==='asc')L.sort((x,y)=>x.p-y.p);if(s==='desc')L.sort((x,y)=>y.p-x.p);if(s==='new')L.sort((x,y)=>(y.nw||0)-(x.nw||0));if(s==='lon')L.sort((x,y)=>y.lon-x.lon);
   $('#count').textContent=`${f.brand?f.brand+' · ':''}${L.length} ${pl(L.length,'аромат','аромата','ароматов')}`;
-  $('#grid').innerHTML=L.length?L.map(a=>card(a)).join(''):(f.g==='fav'?`<div class="empty" style="grid-column:1/-1"><h3>В избранном пока пусто</h3><p>Нажмите на сердечко на карточке, чтобы сохранить аромат.</p></div>`:`<div class="empty" style="grid-column:1/-1"><h3>Ничего не нашлось</h3><p>Попробуйте другую ноту или снимите часть фильтров. Нет нужного аромата — спросите в Direct, в наличии более 290.</p></div>`);
+  $('#grid').innerHTML=L.length?L.slice(0,shown).map(a=>card(a)).join('')+(L.length>shown?`<button class="btn more" id="moreBtn">Показать ещё ${Math.min(48,L.length-shown)} из ${L.length-shown}</button>`:''):(f.g==='fav'?`<div class="empty" style="grid-column:1/-1"><h3>В избранном пока пусто</h3><p>Нажмите на сердечко на карточке, чтобы сохранить аромат.</p></div>`:`<div class="empty" style="grid-column:1/-1"><h3>Ничего не нашлось</h3><p>Попробуйте другую ноту или снимите часть фильтров. Нет нужного аромата — спросите в Direct, в наличии более 290.</p></div>`);
 }
 
 /* ---------- подбор ---------- */
