@@ -238,7 +238,10 @@ input[type=range]{width:100%;accent-color:var(--accent)}
   <div class="toolbar" style="margin-top:14px"><button class="icon-btn" id="btnBack2">← К списку</button></div>
   <h2 style="font-size:30px;margin:6px 0 16px">Настройки магазина</h2>
   <div class="card stack">
-    <div class="field"><label for="sWa">Номер WhatsApp для заказов</label><input type="tel" id="sWa" placeholder="+7 900 000-00-00"><span class="hint">Если указать, в корзине появится кнопка WhatsApp рядом с Direct.</span></div>
+    <div class="field"><label for="sMgr">Имя менеджера</label><input type="text" id="sMgr" placeholder="Алексей"><span class="hint">Подставляется в приветствие WhatsApp и в блок «Заказать».</span></div>
+    <div class="field"><label for="sPhone">Телефон для звонков</label><input type="tel" id="sPhone" placeholder="+7 900 000-00-00"></div>
+    <div class="field"><label for="sWa">Номер WhatsApp для заказов</label><input type="tel" id="sWa" placeholder="+7 900 000-00-00"><span class="hint">В корзине кнопка WhatsApp откроет чат сразу с текстом заказа.</span></div>
+    <div class="field"><label for="sMax">Ссылка на MAX</label><input type="text" id="sMax" placeholder="https://max.ru/u/…" spellcheck="false"><span class="hint">Ссылка на ваш профиль в мессенджере MAX (начинается с https://max.ru/).</span></div>
     <div class="field"><label for="sFree">Бесплатная доставка по Ессентукам от, ₽</label><input type="number" id="sFree" inputmode="numeric" min="0" step="100"></div>
   </div>
 </main>
@@ -318,7 +321,7 @@ async function login(){
 async function loadCatalog(){
   const f=await getFile('data/catalog.json');
   if(!f)throw Object.assign(new Error('Файл каталога не найден'),{status:0});
-  S.cat=JSON.parse(textFromB64(f.content));S.sha=f.sha;S.cat.settings=Object.assign({whatsapp:'',deliveryFree:1500},S.cat.settings||{});
+  S.cat=JSON.parse(textFromB64(f.content));S.sha=f.sha;S.cat.settings=Object.assign({whatsapp:'',max:'',phone:'',manager:'',deliveryFree:1500},S.cat.settings||{});
 }
 $('#btnLogin').onclick=login;
 $('#token').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
@@ -503,8 +506,8 @@ $('#btnDelYes').onclick=()=>{
 };
 
 /* ---------- настройки ---------- */
-$('#btnSettings').onclick=()=>{const st=S.cat.settings;$('#sWa').value=st.whatsapp||'';$('#sFree').value=st.deliveryFree??1500;S.editing=null;F=null;show('vSettings')};
-$('#sWa').oninput=$('#sFree').oninput=()=>{S.cat.settings.whatsapp=$('#sWa').value.trim();S.cat.settings.deliveryFree=+$('#sFree').value||0;markDirty()};
+$('#btnSettings').onclick=()=>{const st=S.cat.settings;$('#sWa').value=st.whatsapp||'';$('#sMax').value=st.max||'';$('#sPhone').value=st.phone||'';$('#sMgr').value=st.manager||'';$('#sFree').value=st.deliveryFree??1500;S.editing=null;F=null;show('vSettings')};
+$('#sWa').oninput=$('#sMax').oninput=$('#sPhone').oninput=$('#sMgr').oninput=$('#sFree').oninput=()=>{const st=S.cat.settings;st.whatsapp=$('#sWa').value.trim();st.max=$('#sMax').value.trim();st.phone=$('#sPhone').value.trim();st.manager=$('#sMgr').value.trim();st.deliveryFree=+$('#sFree').value||0;markDirty()};
 $('#btnBack2').onclick=()=>{show('vList');renderList()};
 
 /* ---------- публикация ---------- */

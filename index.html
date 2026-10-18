@@ -15,7 +15,7 @@
 <meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
 <meta property="og:image" content="https://parfumhouse26.github.io/icon-512.png">
 <meta property="og:url" content="https://parfumhouse26.github.io/">
-<script>window.APP_VERSION = '3b9cc6a6c7';</script>
+<script>window.APP_VERSION = '446654b273';</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -246,6 +246,11 @@ main{display:block}
 @media (max-width:859px){.info3{grid-template-columns:1fr}}
 .foot{padding-block:44px 36px;margin-top:56px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:13px}
 .foot .logo b{color:var(--ink)}
+.cbtns{display:flex;flex-wrap:wrap;gap:8px}
+.cbtn{border-color:var(--line);background:var(--bg)}
+.cbtn.main{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.phone-line{margin-top:12px;font-size:14px;color:var(--ink)}
+.phone-line a{font:500 15px var(--f-mono);color:var(--ink);text-decoration:none;user-select:all}
 
 /* catalog */
 .cat-head{padding-block:28px 6px}
@@ -486,16 +491,16 @@ main{display:block}
           <li>Без перепадов температур — не в машине и не в ванной.</li>
           <li>Флакон всегда плотно закрыт.</li>
           <li>Духи любят, когда ими пользуются.</li></ul></div>
-        <div class="box"><h3>Подберём для вас</h3>
-          <p>Надоел любимый аромат или нужен подарок? Напишите запрос в Direct — подберём замену, которая звучит глубже и интереснее.</p>
-          <p style="margin-top:14px"><a class="link" href="https://ig.me/m/parfum.house26" target="_blank" rel="noopener">Написать в Direct</a></p></div>
+        <div class="box" id="contactBox"><h3>Заказать и подобрать</h3>
+          <p>Надоел любимый аромат или нужен подарок? Напишите — подберём замену, которая звучит глубже и интереснее.</p>
+          <div class="cbtns" style="margin-top:14px"><a class="btn small cbtn" href="https://ig.me/m/parfum.house26" target="_blank" rel="noopener">Direct</a></div></div>
       </div>
     </div>
 
     <div class="wrap"><footer class="foot">
       <div class="logo"><b>PARFUM.HOUSE26</b><small>премиум разлив · ессентуки</small></div>
       <div style="max-width:30em">В приложении — ароматы из каталога магазина. Всего в наличии более 290: если нужного нет, спросите в Direct.<br>
-        <a class="link" href="https://www.instagram.com/parfum.house26/" target="_blank" rel="noopener">@parfum.house26</a> · <a class="link" href="https://www.instagram.com/parfum_house26_katalog/" target="_blank" rel="noopener">@parfum_house26_katalog</a></div>
+        <span id="footPhone"></span><a class="link" href="https://www.instagram.com/parfum.house26/" target="_blank" rel="noopener">@parfum.house26</a> · <a class="link" href="https://www.instagram.com/parfum_house26_katalog/" target="_blank" rel="noopener">@parfum_house26_katalog</a></div>
     </footer></div>
   </section>
 
@@ -667,8 +672,26 @@ const hasPhoto=a=>a.img!==false;
 const imgUrl=a=>`img/${a.id}.webp${a.v?'?v='+a.v:''}`;
 function thumb(a,o={}){return hasPhoto(a)?`<img class="ph" src="${imgUrl(a)}" alt="" loading="lazy" decoding="async" draggable="false">`:bottleSVG(a,o)}
 /* настройки магазина; меняются в админке (data/catalog.json → settings) */
-const SHOP={whatsapp:'',deliveryFree:1500};
-const waLink=()=>{const d=String(SHOP.whatsapp||'').replace(/\D/g,'');return d?`https://wa.me/${d.replace(/^8(?=\d{10}$)/,'7')}`:''};
+const SHOP={whatsapp:'',max:'',phone:'',manager:'',deliveryFree:1500};
+const digits=v=>String(v||'').replace(/\D/g,'').replace(/^8(?=\d{10}$)/,'7');
+const waLink=text=>{const d=digits(SHOP.whatsapp);return d?`https://wa.me/${d}${text?'?text='+encodeURIComponent(text):''}`:''};
+const maxLink=()=>/^https:\/\/max\.ru\//.test(SHOP.max||'')?SHOP.max:'';
+const telLink=()=>{const d=digits(SHOP.phone);return d?'tel:+'+d:''};
+const fmtPhone=()=>{const d=digits(SHOP.phone);return d.length===11?`+${d[0]} ${d.slice(1,4)} ${d.slice(4,7)}-${d.slice(7,9)}-${d.slice(9)}`:String(SHOP.phone||'')};
+const hello=()=>SHOP.manager?`Здравствуйте, ${SHOP.manager}!`:'Здравствуйте!';
+/* кнопки связи; с текстом заказа WhatsApp открывается уже с заполненным сообщением, перед MAX текст копируется */
+function contactButtons(orderText){
+  return [waLink()&&`<a class="btn small cbtn main" href="${esc(waLink(orderText||hello()))}" target="_blank" rel="noopener">WhatsApp</a>`,
+    maxLink()&&`<a class="btn small cbtn" href="${esc(maxLink())}" target="_blank" rel="noopener"${orderText?' data-copyfirst':''}>MAX</a>`,
+    telLink()&&`<a class="btn small cbtn" href="${telLink()}">Позвонить</a>`,
+    `<a class="btn small cbtn" href="https://ig.me/m/parfum.house26" target="_blank" rel="noopener"${orderText?' data-copyfirst':''}>Direct</a>`].filter(Boolean).join('');
+}
+function renderContacts(){
+  const box=$('#contactBox');if(box)box.innerHTML=`<h3>Заказать и подобрать</h3><p>Пишите или звоните${SHOP.manager?` — ${esc(SHOP.manager)}`:''} подберёт аромат, подтвердит наличие и доставку.</p>`+
+    (telLink()?`<p class="phone-line">${SHOP.manager?esc(SHOP.manager)+' · ':''}<a href="${telLink()}">${esc(fmtPhone())}</a></p>`:'')+`<div class="cbtns" style="margin-top:14px">${contactButtons()}</div>`;
+  const fp=$('#footPhone');if(fp)fp.innerHTML=telLink()?`<a class="link" href="${telLink()}">${esc(fmtPhone())}</a> · `:'';
+}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-copyfirst]');const ta=$('#oTxt');if(a&&ta){try{navigator.clipboard.writeText(ta.value).catch(()=>{})}catch(err){}toast('Текст заказа скопирован — вставьте его в чат')}});
 /* каталог: data/catalog.json (его правит админка); массив выше — запасной вариант без сети */
 let booted=false;
 async function loadCatalog(){
@@ -1244,8 +1267,8 @@ function renderCart(){
       lines.push(`${n++}. ${a.b} ${a.n} — ${l.ml} мл, ${l.form==='oil'?'масло':'спрей'} × ${l.qty} = ${RUB(pr*(l.qty-fr))}${fr?` (${fr} в подарок по акции 2+1)`:''}`)});
     const txt=`Здравствуйте! Хочу оформить заказ:\n\n${lines.join('\n')}\n\nСумма: ${RUB(c.sub)}${c.gift?`\nПодарок 2+1: −${RUB(c.gift)}`:''}\nИтого: ${RUB(c.total)}\nДоставка: ${S.delivery==='ess'?'Ессентуки / ст. Ессентукская':'по России'}${ad?`, ${ad}`:''}\n\nИмя: ${nm}\nКонтакт: ${ph}${note?`\nКомментарий: ${note}`:''}`;
     const out=$('#orderOut');out.hidden=false;
-    out.innerHTML=`<div class="eyebrow">Последний шаг</div><p style="font-size:14px">Скопируйте текст и отправьте его магазину в Direct${waLink()?' или WhatsApp':''} — менеджер подтвердит наличие и доставку.</p><textarea id="oTxt" readonly aria-label="Текст заказа">${esc(txt)}</textarea>
-      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn wine small" id="oCopy">Скопировать заказ</button><a class="btn small" href="https://ig.me/m/parfum.house26" target="_blank" rel="noopener">Открыть Direct</a>${waLink()?`<a class="btn small" href="${waLink()}" target="_blank" rel="noopener">WhatsApp</a>`:''}</div>`;
+    out.innerHTML=`<div class="eyebrow">Последний шаг</div><p style="font-size:14px">${waLink()?'Нажмите WhatsApp — заказ подставится в сообщение сам, останется отправить. ':''}Или скопируйте текст и отправьте в MAX или Direct — ${SHOP.manager?esc(SHOP.manager):'менеджер'} подтвердит наличие и доставку.</p><textarea id="oTxt" readonly aria-label="Текст заказа">${esc(txt)}</textarea>
+      <div class="cbtns">${contactButtons(txt)}<button class="btn small cbtn" id="oCopy">Скопировать заказ</button></div>`;
     $('#oCopy').onclick=async()=>{const ta=$('#oTxt');try{await navigator.clipboard.writeText(ta.value);$('#oCopy').textContent='Скопировано'}catch(err){ta.focus();ta.select();$('#oCopy').textContent='Текст выделен — скопируйте'}};
     out.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});
   };
@@ -1255,6 +1278,7 @@ function renderCart(){
 (async function boot(){
   await Promise.race([loadCatalog(),new Promise(r=>setTimeout(r,2500))]);booted=true;
   const ff=$('#freeFrom');if(ff)ff.textContent=RUB(SHOP.deliveryFree);
+  renderContacts();
   initHome();initCatalog();initQuiz();updBadge();
   const h=(location.hash||'').slice(1);
   if(h.startsWith('p-')&&BY[h.slice(2)]){goView('catalog',{noHash:true});openProduct(h.slice(2))}
