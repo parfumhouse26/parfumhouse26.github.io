@@ -15,7 +15,7 @@
 <meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
 <meta property="og:image" content="https://parfumhouse26.github.io/icon-512.png">
 <meta property="og:url" content="https://parfumhouse26.github.io/">
-<script>window.APP_VERSION = '13199c43ee';</script>
+<script>window.APP_VERSION = '12a3e1f32b';</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -233,6 +233,9 @@ main{display:block}
 
 /* collections */
 .coll-tabs{margin-bottom:18px}
+.chip small{font:500 11px var(--f-mono);opacity:.6}
+.brandrow .chip{height:30px;font-size:12.5px;padding:0 12px}
+.br-link{font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;text-decoration:underline dotted;text-underline-offset:3px;cursor:pointer}
 
 /* info blocks */
 .info3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
@@ -501,10 +504,11 @@ main{display:block}
       <div class="cat-head"><div class="eyebrow">Ассортимент</div><h1>Каталог ароматов</h1></div>
       <div class="toolbar">
         <div class="searchrow">
-          <div class="search"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><input id="q" type="search" placeholder="Аромат, бренд или нота: ваниль, уд…" autocomplete="off" aria-label="Поиск"></div>
+          <div class="search"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><input id="q" type="search" placeholder="Бренд, аромат или нота: Креед, ваниль…" autocomplete="off" aria-label="Поиск"></div>
           <button class="filterbtn" id="fBtn" aria-expanded="false" aria-controls="fPanel"><svg class="ico" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span>Фильтры</span></button>
         </div>
         <div class="chips" id="gChips"></div>
+        <div class="chips brandrow" id="bChips" aria-label="Бренды"></div>
         <div class="fpanel" id="fPanel" hidden>
           <div><h4>Группа</h4><div class="chips" id="tagChips" style="flex-wrap:wrap"></div></div>
           <div><h4>Цена за 10 мл</h4>
@@ -922,7 +926,7 @@ class PhotoStage{
 /* ---------- состояние ---------- */
 const S={
   cart:store.get('cart',[]),fav:new Set(store.get('fav',[])),
-  f:{g:'all',tags:new Set(),q:'',min:0,max:99999,sort:'pop'},
+  f:{g:'all',brand:null,tags:new Set(),q:'',min:0,max:99999,sort:'pop'},
   quiz:store.get('quiz',{a:[5,6,5,5],g:'any'}),
   delivery:'ess',view:'home'
 };
@@ -1021,6 +1025,29 @@ function bindVol(input,ticks,show,start){
 }
 
 /* ---------- каталог ---------- */
+/* поиск понимает бренды и названия русскими буквами: «Креед», «Марли», «Ксерджофф» */
+const BRAND_RU={'parfums de marly':'марли пдм парфюм де марли','amouage':'амуаж амуаже','bvlgari':'булгари','maison francis kurkdjian':'мфк куркджан баккара','escentric molecules':'молекула молекулы эксцентрик','tiziana terenzi':'тициана терензи','les liquides imaginaires':'ликид имажинер','lattafa':'латтафа','kajal':'каджал','tom ford':'том форд','creed':'крид креед','kilian':'килиан киллиан','initio':'инитио инисио','xerjoff':'ксерджофф','sospiro':'соспиро','armaf':'армаф','marc-antoine barrois':'барруа','bybozo':'бибозо байбозо'};
+const CYR={а:'a',б:'b',в:'v',г:'g',д:'d',е:'e',ё:'e',ж:'j',з:'z',и:'i',й:'i',к:'k',л:'l',м:'m',н:'n',о:'o',п:'p',р:'r',с:'s',т:'t',у:'u',ф:'f',х:'h',ц:'ts',ч:'ch',ш:'sh',щ:'sh',ъ:'',ы:'i',ь:'',э:'e',ю:'yu',я:'ya'};
+function pkey(t){
+  return String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[а-яё]/g,c=>CYR[c]??'')
+    .replace(/dzh|zh|dj|ge$/g,'j').replace(/ph/g,'f').replace(/th/g,'t').replace(/ck/g,'k').replace(/qu/g,'kv').replace(/x/g,'ks').replace(/w/g,'v')
+    .replace(/c(?=[eiy])/g,'s').replace(/c/g,'k').replace(/y/g,'i').replace(/ou/g,'u').replace(/[ae]i|[ae]y/g,'ei')
+    .replace(/[^a-z0-9]/g,'').replace(/(.)\1+/g,'$1');
+}
+function searchHay(a){
+  const words=a.n+' '+a.b+' '+(BRAND_RU[a.b.toLowerCase()]||'')+' '+a.fam+' '+a.top.join(' ')+' '+a.mid.join(' ')+' '+a.base.join(' ')+' '+a.tags.join(' ');
+  return {plain:words.toLowerCase(),key:words.split(/\s+/).map(pkey).join(' ')};
+}
+function matchQuery(a,q){const h=searchHay(a);return q.split(/\s+/).filter(Boolean).every(w=>h.plain.includes(w)||(pkey(w).length>=3&&h.key.includes(pkey(w))))}
+function renderBrands(){
+  const cnt={};A.forEach(a=>cnt[a.b]=(cnt[a.b]||0)+1);
+  const list=Object.keys(cnt).sort((x,y)=>cnt[y]-cnt[x]||x.localeCompare(y));
+  $('#bChips').innerHTML=`<button class="chip" data-b="" aria-pressed="${!S.f.brand}">Все бренды</button>`+list.map(b=>`<button class="chip" data-b="${esc(b)}" aria-pressed="${S.f.brand===b}">${esc(b)} <small>${cnt[b]}</small></button>`).join('');
+}
+function filterBrand(b){
+  S.f.brand=b||null;renderBrands();renderCatalog();
+  const on=$('#bChips [aria-pressed="true"]');if(on&&b)on.scrollIntoView({inline:'center',block:'nearest'});
+}
 let pLo,pHi;
 function initCatalog(){
   const G=[['all','Все'],['m','Мужские'],['w','Женские'],['u','Унисекс'],['new','Новинки'],['fav','Избранное']];
@@ -1028,6 +1055,8 @@ function initCatalog(){
   $('#gChips').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;S.f.g=b.dataset.g;$$('#gChips .chip').forEach(c=>c.setAttribute('aria-pressed',c===b));renderCatalog()};
   $('#tagChips').innerHTML=TAGS.map(t=>`<button class="chip" data-t="${t}" aria-pressed="false">${t}</button>`).join('');
   $('#tagChips').onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=b.dataset.t;S.f.tags.has(t)?S.f.tags.delete(t):S.f.tags.add(t);b.setAttribute('aria-pressed',S.f.tags.has(t));renderCatalog()};
+  renderBrands();
+  $('#bChips').onclick=e=>{const b=e.target.closest('[data-b]');if(!b)return;filterBrand(b.dataset.b)};
   $('#q').oninput=e=>{S.f.q=e.target.value.trim().toLowerCase();renderCatalog()};
   $('#sort').onchange=e=>{S.f.sort=e.target.value;renderCatalog()};
   $('#fBtn').onclick=()=>{const p=$('#fPanel'),open=p.hidden;p.hidden=!open;$('#fBtn').setAttribute('aria-expanded',open)};
@@ -1043,13 +1072,14 @@ function renderCatalog(){
     if(f.g==='fav'&&!S.fav.has(a.id))return false;
     if(f.g==='new'&&!a.nw)return false;
     if(['m','w','u'].includes(f.g)&&a.g!==f.g)return false;
+    if(f.brand&&a.b!==f.brand)return false;
     if(f.tags.size&&!a.tags.some(t=>f.tags.has(t)))return false;
     const p=per10(a);if(p<f.min||p>f.max)return false;
-    if(f.q){const hay=(a.n+' '+a.b+' '+a.fam+' '+a.top.join(' ')+' '+a.mid.join(' ')+' '+a.base.join(' ')+' '+a.tags.join(' ')).toLowerCase();if(!f.q.split(/\s+/).every(w=>hay.includes(w)))return false}
+    if(f.q&&!matchQuery(a,f.q))return false;
     return true});
   const s=f.sort;
   if(s==='asc')L.sort((x,y)=>x.p-y.p);if(s==='desc')L.sort((x,y)=>y.p-x.p);if(s==='new')L.sort((x,y)=>(y.nw||0)-(x.nw||0));if(s==='lon')L.sort((x,y)=>y.lon-x.lon);
-  $('#count').textContent=`${L.length} ${pl(L.length,'аромат','аромата','ароматов')}`;
+  $('#count').textContent=`${f.brand?f.brand+' · ':''}${L.length} ${pl(L.length,'аромат','аромата','ароматов')}`;
   $('#grid').innerHTML=L.length?L.map(a=>card(a)).join(''):(f.g==='fav'?`<div class="empty" style="grid-column:1/-1"><h3>В избранном пока пусто</h3><p>Нажмите на сердечко на карточке, чтобы сохранить аромат.</p></div>`:`<div class="empty" style="grid-column:1/-1"><h3>Ничего не нашлось</h3><p>Попробуйте другую ноту или снимите часть фильтров. Нет нужного аромата — спросите в Direct, в наличии более 290.</p></div>`);
 }
 
@@ -1088,7 +1118,7 @@ function openProduct(id){
   <div class="pd" style="--tint:${a.tint}">
     <div class="pd-stage" id="pdStage"><div class="tap">Нажмите на флакон</div></div>
     <div class="pd-body">
-      <div><div class="br">${esc(a.b)}</div><h2 id="pdName">${esc(a.n)}</h2>
+      <div><div class="br"><button class="br-link" data-brand="${esc(a.b)}" aria-label="Все ароматы ${esc(a.b)}">${esc(a.b)}</button></div><h2 id="pdName">${esc(a.n)}</h2>
         <div class="pills"><span class="pill">${GENDER[a.g]}</span><span class="pill">${esc(a.fam)}</span><span class="pill">${season}</span><span class="pill">${tod}</span></div></div>
       <div class="block"><h4>Формат</h4><div class="seg" id="pdForm"><button data-f="spray" aria-pressed="true">Спрей</button><button data-f="oil" aria-pressed="false">Парфюмерное масло</button></div></div>
       <div class="block"><h4>Объём <span class="mono" id="pdMl"></span></h4>
@@ -1150,7 +1180,7 @@ function closeSheet(){
   if(S.view==='cart')renderCart();
   lastFocus&&lastFocus.focus&&lastFocus.focus({preventScroll:true});
 }
-$('#sheet').addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeSheet()});
+$('#sheet').addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeSheet();const br=e.target.closest('[data-brand]');if(br){const b=br.dataset.brand;closeSheet();goView('catalog');filterBrand(b)}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
 
 /* ---------- корзина ---------- */
