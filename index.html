@@ -15,7 +15,7 @@
 <meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
 <meta property="og:image" content="https://parfumhouse26.github.io/icon-512.png">
 <meta property="og:url" content="https://parfumhouse26.github.io/">
-<script>window.APP_VERSION = '589f713513';</script>
+<script>window.APP_VERSION = '9914d1ad10';</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -124,7 +124,8 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 main{display:block}
 .view{display:block}
 .sec{padding-block:56px 8px}
-.sec-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+.sec-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;margin-bottom:22px}
+.sec-head h2{margin-top:6px}
 .sec-head h2{font-size:clamp(26px,3.6vw,38px);line-height:1.08}
 .link{font-size:14px;color:var(--accent);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 
@@ -134,7 +135,11 @@ main{display:block}
 .hero .wrap.wf{display:block;padding-block:0 6px}
 .hero h1{font-size:clamp(38px,6.2vw,74px);line-height:1.02;margin:16px 0 18px}
 .hero h1 em{font-style:normal;color:#E9C9A0}
-.hero p.lead{max-width:30em;color:rgba(248,239,236,.82);font-size:16px}
+.hero p.lead{max-width:30em;color:rgba(248,239,236,.9);font-size:16.5px}
+.lead-text{display:grid;gap:12px;max-width:34em}
+.lead-text p{margin:0;color:rgba(248,239,236,.78);font-size:15px;line-height:1.55}
+.lead-text .lead-hl{display:flex;gap:10px;align-items:flex-start;color:var(--on-wine);font-size:15px;padding:10px 12px;border-radius:10px;background:rgba(248,239,236,.08);border:1px solid rgba(248,239,236,.14)}
+.lead-text .lead-hl span{font-size:18px;line-height:1.2;flex:none}
 .hero .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
 .hero .btn{border-color:var(--on-wine)}
 .hero .btn.light{background:var(--on-wine);color:var(--wine)}
@@ -163,6 +168,51 @@ main{display:block}
 /* scroller */
 .scroller{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(172px,210px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin}
 .scroller>*{scroll-snap-align:start}
+/* быстрый подбор вверху главной */
+.hero .wrap.quick{display:grid;gap:12px;padding-block:16px 0;grid-template-columns:none}
+.pick{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:12px 16px 12px 12px;border-radius:16px;background:var(--on-wine);color:var(--wine);box-shadow:0 10px 30px rgba(0,0,0,.18);transition:transform .2s}
+.pick:active{transform:scale(.99)}
+.pick-ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--wine);color:var(--on-wine);flex:none}
+.pick-ico svg circle{fill:var(--wine)}
+.pick-t{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+.pick-t b{font:400 20px/1.15 var(--f-display)}
+.pick-t small{font-size:12.5px;opacity:.72}
+.pick-go{font-size:22px;flex:none}
+.qchips .chip{background:transparent;color:var(--on-wine);border-color:rgba(248,239,236,.32)}
+.qchips .chip:active{background:rgba(248,239,236,.15)}
+@media (min-width:860px){.hero .wrap.quick{grid-template-columns:minmax(0,420px) minmax(0,1fr);align-items:center;padding-block:22px 0}}
+/* слайдеры популярного и новинок */
+.lead{position:relative;overflow:hidden;border-radius:10px;background:radial-gradient(120% 90% at 85% 80%,color-mix(in oklab,var(--wine) 60%,#E8A7B4) 0%,var(--wine) 60%);color:var(--on-wine);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);min-height:420px}
+.lead-body{position:relative;z-index:1;padding:36px clamp(20px,4vw,48px) 34px}
+.lead h2{font-size:clamp(28px,4vw,42px);line-height:1.08}
+.lead-sub{margin-top:14px;color:rgba(248,239,236,.82);max-width:30em}
+.lead-form{display:grid;gap:6px;margin-top:22px;max-width:440px}
+.lf{position:relative;display:block}
+.lf input{width:100%;height:52px;padding:18px 0 6px;background:transparent;border:0;border-bottom:1px solid rgba(248,239,236,.45);color:var(--on-wine);outline:none;font-size:16px;border-radius:0}
+.lf input:focus{border-bottom-color:var(--on-wine)}
+.lf span{position:absolute;left:0;top:16px;font-size:16px;color:rgba(248,239,236,.7);transition:all .18s;pointer-events:none}
+.lf input:focus+span,.lf input:not(:placeholder-shown)+span{top:0;font-size:11.5px;letter-spacing:.04em}
+.lead-btn{margin-top:18px;height:52px;background:var(--on-wine);color:var(--wine);font-weight:600;font-size:15.5px;border-radius:2px;max-width:320px}
+.lead-err{color:#FFD5D5;font-size:13px;margin-top:8px}
+.lead-note{font-size:12.5px;color:rgba(248,239,236,.65);margin-top:10px}
+.lead-done{margin-top:22px;display:grid;gap:12px;max-width:440px}
+.lead-done p{color:rgba(248,239,236,.85)}
+.lead-done .cbtn{background:transparent;color:var(--on-wine);border-color:rgba(248,239,236,.4)}
+.lead-done .cbtn.main{background:var(--on-wine);color:var(--wine);border-color:var(--on-wine)}
+.lead-img{align-self:end;justify-self:center;height:min(380px,92%);width:auto;margin-bottom:-6px;filter:drop-shadow(0 24px 30px rgba(0,0,0,.35))}
+@media (max-width:760px){.lead{grid-template-columns:1fr}.lead-img{position:absolute;right:-28px;bottom:-10px;height:230px;opacity:.35;z-index:0}}
+.band{background:color-mix(in oklab,var(--accent) 7%,var(--bg));border-block:1px solid var(--line);margin-top:48px}
+.band .sl-sec{padding-block:40px 36px}
+.slider{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 14px)/2.25);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;padding-bottom:2px}
+.slider::-webkit-scrollbar{display:none}
+.slider>*{scroll-snap-align:start}
+@media (min-width:640px){.slider{grid-auto-columns:calc((100% - 42px)/3.4)}}
+@media (min-width:1000px){.slider{grid-auto-columns:calc((100% - 56px)/5)}}
+.sl-foot{display:flex;align-items:center;gap:10px;margin-top:16px}
+.sl-bar{flex:1;height:3px;background:var(--line);border-radius:3px;overflow:hidden;position:relative}
+.sl-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--accent);border-radius:3px;width:30%}
+.sl-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;font-size:16px}
+.sl-btn:disabled{opacity:.35}
 
 /* product card */
 .card{position:relative;display:flex;flex-direction:column;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:border-color .2s,transform .2s}
@@ -253,7 +303,9 @@ main{display:block}
 .phone-line a{font:500 15px var(--f-mono);color:var(--ink);text-decoration:none;user-select:all}
 
 /* catalog */
-.cat-head{padding-block:28px 6px}
+.cat-head{padding-block:28px 6px;text-align:center}
+.cat-head h1{margin-top:6px}
+.cart>div:first-child>.eyebrow,.cart>div:first-child>h1{text-align:center}
 .cat-head h1{font-size:clamp(32px,4.4vw,52px);line-height:1.05}
 .toolbar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 62px);z-index:20;background:var(--bg);padding-block:12px 12px;display:grid;gap:10px;border-bottom:1px solid var(--line);margin-bottom:18px}
 @media (max-width:859px){.toolbar{top:calc(env(safe-area-inset-top,0px) + 56px)}}
@@ -428,11 +480,29 @@ main{display:block}
   <!-- HOME -->
   <section class="view" id="v-home">
     <div class="hero">
+      <div class="wrap quick">
+        <button class="pick" data-go="quiz">
+          <span class="pick-ico"><svg class="ico" viewBox="0 0 24 24"><path d="M5 6h14M5 12h14M5 18h14"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="8" cy="18" r="2"/></svg></span>
+          <span class="pick-t"><b>Подобрать аромат</b><small>4 вопроса: характер, сладость, шлейф, повод</small></span>
+          <span class="pick-go" aria-hidden="true">→</span>
+        </button>
+        <div class="chips qchips" aria-label="Быстрые фильтры">
+          <button class="chip" data-qf="pop">Популярное</button><button class="chip" data-qf="new">Новинки</button>
+          <button class="chip" data-qf="m">Для него</button><button class="chip" data-qf="w">Для неё</button>
+          <button class="chip" data-qf="tag:Свежие">Свежие</button><button class="chip" data-qf="tag:Сладкие">Сладкие</button>
+          <button class="chip" data-qf="notes">По нотам</button>
+        </div>
+      </div>
       <div class="wrap">
         <div>
           <div class="eyebrow" style="color:rgba(248,239,236,.7)">Парфюмерия в разлив · 6 лет на КМВ</div>
           <h1>Ароматы, которые говорят <em>сами за себя</em></h1>
-          <p class="lead">Нишевые и люксовые ароматы в разливе от 6 мл. Выберите объём, соберите набор, а третий флакон мы добавим в подарок.</p>
+          <div class="lead-text">
+            <p class="lead">Наш магазин специализируется на разливной парфюмерии от ведущих мировых фабрик Швейцарии, Франции, Англии, Испании и Турции.</p>
+            <p>Мы уже более 6 лет в этом деле! За это время мы отправили более 10&nbsp;000 ваших заказов, учли свои ошибки, проанализировали весь рынок парфюмерии и подобрали для вас самое лучшее качество парфюмерных масел, флаконов и упаковки.</p>
+            <p class="lead-hl"><span>🎁</span>Выберите объём, соберите набор, а третий флакон мы добавим в подарок.</p>
+            <p class="lead-hl"><span>🫶🏻</span>Также можем подобрать для вас аромат, учитывая ваш возраст, вкусы и предпочтения.</p>
+          </div>
           <div class="cta">
             <button class="btn light" data-go="catalog">Смотреть каталог</button>
             <button class="btn" data-go="quiz">Подобрать аромат</button>
@@ -444,15 +514,23 @@ main{display:block}
       </div>
       <div class="wrap wf"><div class="facts">
         <div><b>6 лет</b><span>в мире парфюмерии</span></div>
-        <div><b>7000+</b><span>довольных клиентов</span></div>
+        <div><b>10 000+</b><span>заказов отправили</span></div>
         <div><b>290+</b><span>ароматов в наличии</span></div>
         <div><b>24 ч</b><span>стойкость на коже, 72 ч на одежде</span></div>
       </div></div>
     </div>
 
-    <div class="wrap sec">
+    <div class="wrap sec sl-sec">
       <div class="sec-head"><div><div class="eyebrow">Только что приехали</div><h2>Новинки сезона</h2></div><button class="link" data-go="catalog" data-gf="new">Все новинки</button></div>
-      <div class="scroller" id="newRow"></div>
+      <div class="slider" id="newRow"></div>
+      <div class="sl-foot"><div class="sl-bar"><i data-bar="newRow"></i></div><button class="sl-btn" data-sl="newRow" data-d="-1" aria-label="Назад">←</button><button class="sl-btn" data-sl="newRow" data-d="1" aria-label="Вперёд">→</button></div>
+    </div>
+    <div class="band">
+      <div class="wrap sec sl-sec">
+        <div class="sec-head"><div><div class="eyebrow">Выбор покупателей</div><h2>Популярные ароматы</h2></div><button class="link" data-go="catalog" data-gf="pop">Все популярные</button></div>
+        <div class="slider" id="popRow"></div>
+        <div class="sl-foot"><div class="sl-bar"><i data-bar="popRow"></i></div><button class="sl-btn" data-sl="popRow" data-d="-1" aria-label="Назад">←</button><button class="sl-btn" data-sl="popRow" data-d="1" aria-label="Вперёд">→</button></div>
+      </div>
     </div>
 
     <div class="wrap sec">
@@ -510,6 +588,26 @@ main{display:block}
       </div>
     </div>
 
+    <div class="wrap sec">
+      <section class="lead" aria-labelledby="leadH">
+        <div class="lead-body">
+          <h2 id="leadH">Подберём аромат специально для вас</h2>
+          <p class="lead-sub" id="leadSub">Оставьте заявку — мы свяжемся с вами, обсудим ваши предпочтения и подберём идеальный аромат.</p>
+          <form id="leadForm" class="lead-form" novalidate>
+            <label class="lf"><input id="lName" autocomplete="name" placeholder=" " required><span>Имя</span></label>
+            <label class="lf"><input id="lPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder=" " required><span>Телефон</span></label>
+            <label class="lf"><input id="lCity" autocomplete="address-level2" placeholder=" "><span>Город</span></label>
+            <label class="lf"><input id="lWish" placeholder=" "><span>Что нравится: аромат, ноты, повод</span></label>
+            <p class="lead-err" id="lErr" hidden>Укажите имя и телефон, чтобы мы могли с вами связаться.</p>
+            <button class="lead-btn" type="submit">Отправить</button>
+            <p class="lead-note" id="lNote">Заявка откроется в WhatsApp — останется нажать «Отправить».</p>
+          </form>
+          <div class="lead-done" id="lDone" hidden></div>
+        </div>
+        <img class="lead-img" src="img/blanche-bete.webp" alt="" loading="lazy">
+      </section>
+    </div>
+
     <div class="wrap"><footer class="foot">
       <div class="logo"><b>PARFUM.HOUSE26</b><small>премиум разлив · ессентуки</small></div>
       <div style="max-width:30em">В приложении — ароматы из каталога магазина. Всего в наличии более 290: если нужного нет, спросите в Direct.<br>
@@ -556,7 +654,7 @@ main{display:block}
   <section class="view" id="v-quiz" hidden>
     <div class="wrap quiz">
       <div class="quiz-panel">
-        <div><div class="eyebrow">Подбор аромата</div><h1 style="margin-top:8px">Каким должен быть ваш аромат?</h1></div>
+        <div style="text-align:center"><div class="eyebrow">Подбор аромата</div><h1 style="margin-top:8px">Каким должен быть ваш аромат?</h1></div>
         <div><div class="seg" id="qG">
           <button data-g="m" aria-pressed="false">Для него</button><button data-g="w" aria-pressed="false">Для неё</button><button data-g="any" aria-pressed="true">Неважно</button></div></div>
         <div id="qSliders" style="display:grid;gap:18px"></div>
@@ -707,7 +805,7 @@ function renderContacts(){
     (telLink()?`<p class="phone-line">${SHOP.manager?esc(SHOP.manager)+' · ':''}<a href="${telLink()}">${esc(fmtPhone())}</a></p>`:'')+`<div class="cbtns" style="margin-top:14px">${contactButtons()}</div>`;
   const fp=$('#footPhone');if(fp)fp.innerHTML=telLink()?`<a class="link" href="${telLink()}">${esc(fmtPhone())}</a> · `:'';
 }
-document.addEventListener('click',e=>{const a=e.target.closest('[data-copyfirst]');const ta=$('#oTxt');if(a&&ta){try{navigator.clipboard.writeText(ta.value).catch(()=>{})}catch(err){}toast('Текст заказа скопирован — вставьте его в чат')}});
+document.addEventListener('click',e=>{const a=e.target.closest('[data-copyfirst]');const ta=a&&a.closest('.lead-done,.order-out')?.querySelector('textarea');if(a&&ta){try{navigator.clipboard.writeText(ta.value).catch(()=>{})}catch(err){}toast('Текст заказа скопирован — вставьте его в чат')}});
 /* каталог: data/catalog.json (его правит админка); массив выше — запасной вариант без сети */
 let booted=false;
 async function loadCatalog(){
@@ -1046,7 +1144,10 @@ function initHome(){
   $$('#heroDots button').forEach((b,i)=>b.onclick=()=>{setHero(i);restartHero()});
   $('#heroNm').onclick=()=>openProduct(NEW[heroI].id);$('#heroNm').style.cursor='pointer';
   setHero(0);restartHero();
-  $('#newRow').innerHTML=NEW.map(a=>card(a)).join('');
+  const POP=A.filter(a=>a.pop).sort((x,y)=>!!x.nw-!!y.nw),NEWS=A.filter(a=>a.nw);
+  $('#popRow').innerHTML=(POP.length?POP:A.slice(0,12)).map(a=>card(a)).join('');
+  $('#newRow').innerHTML=(NEWS.length?NEWS:A.slice(0,12)).map(a=>card(a)).join('');
+  initSliders();
   // гид по объёмам
   const guide=new PhotoStage($('#guideStage'),{a:BY['percival'],ml:10,ruler:true});
   const gr=$('#gRange');
@@ -1061,7 +1162,6 @@ function initHome(){
   bindVol(gr,$('#gTicks'),show,1);
   // подборки
   const COLL=[
-    ['Популярные',a=>a.pop],
     ['Самые шлейфовые',a=>a.ax[1]>=9],
     ['Тёплые на осень',a=>a.ax[0]>=7],
     ['Свежие на каждый день',a=>a.ax[0]<=3],
@@ -1072,6 +1172,36 @@ function initHome(){
   const showC=i=>{$$('#collTabs .chip').forEach((b,j)=>b.setAttribute('aria-pressed',j===i));$('#collRow').innerHTML=A.filter(COLL[i][1]).map(a=>card(a)).join('')};
   $$('#collTabs .chip').forEach(b=>b.onclick=()=>showC(+b.dataset.c));showC(0);
 }
+/* слайдеры: стрелки листают на ширину экрана, полоска показывает положение */
+function initSliders(){
+  $$('.slider').forEach(sl=>{
+    const bar=$(`[data-bar="${sl.id}"]`),btns=$$(`[data-sl="${sl.id}"]`);
+    const upd=()=>{const max=sl.scrollWidth-sl.clientWidth,w=sl.clientWidth/sl.scrollWidth;if(bar){bar.style.width=(w*100)+'%';bar.style.left=(max>0?sl.scrollLeft/max*(1-w)*100:0)+'%'}
+      btns.forEach(b=>b.disabled=b.dataset.d==='-1'?sl.scrollLeft<4:sl.scrollLeft>max-4)};
+    sl.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);setTimeout(upd,60);
+  });
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-sl]');if(!b)return;const sl=$('#'+b.dataset.sl);sl.scrollBy({left:(+b.dataset.d)*sl.clientWidth*.85,behavior:RM?'auto':'smooth'})});
+/* заявка на подбор: собираем текст и открываем WhatsApp менеджера */
+$('#leadForm').addEventListener('submit',e=>{
+  e.preventDefault();const nm=$('#lName').value.trim(),ph=$('#lPhone').value.trim(),city=$('#lCity').value.trim(),wish=$('#lWish').value.trim();
+  if(!nm||!ph){$('#lErr').hidden=false;return}$('#lErr').hidden=true;
+  store.set('oname',nm);store.set('ophone',ph);if(city)store.set('ocity',city);
+  const txt=`${hello()} Хочу подобрать аромат.\n\nИмя: ${nm}\nТелефон: ${ph}${city?`\nГород: ${city}`:''}${wish?`\nНравится: ${wish}`:''}`;
+  const wa=waLink(txt);
+  if(wa){try{window.open(wa,'_blank','noopener')}catch(err){}}
+  $('#leadForm').hidden=true;const d=$('#lDone');d.hidden=false;
+  d.innerHTML=`<p>${wa?'Открыли WhatsApp с вашей заявкой — нажмите «Отправить» в чате.':'Скопируйте заявку и отправьте нам в удобный мессенджер.'} Если чат не открылся, выберите способ ниже.</p><textarea id="lTxt" readonly style="min-height:110px;border-radius:8px;padding:10px;background:rgba(0,0,0,.15);color:var(--on-wine);border:1px solid rgba(248,239,236,.3);font:400 13px/1.45 var(--f-mono)">${esc(txt)}</textarea><div class="cbtns">${contactButtons(txt)}</div><button class="link" id="lAgain" style="justify-self:start;color:var(--on-wine)">Заполнить заново</button>`;
+  $('#lAgain').onclick=()=>{d.hidden=true;$('#leadForm').hidden=false};
+});
+/* быстрые фильтры с главной */
+document.addEventListener('click',e=>{const b=e.target.closest('[data-qf]');if(!b)return;const v=b.dataset.qf,f=S.f;
+  f.brand=null;f.tags.clear();f.notes.clear();f.q='';$('#q').value='';goView('catalog');renderBrands();
+  $$('#tagChips .chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+  if(v.startsWith('tag:')){const t=v.slice(4);f.tags.add(t);$$('#tagChips .chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.t===t));setG('all')}
+  else if(v==='notes'){setG('all');renderNotes();$('#nBtn').click()}
+  else setG(v);
+});
 function restartHero(){clearInterval(heroTimer);if(!RM)heroTimer=setInterval(()=>{if(S.view==='home'&&$('#sheet').hidden)setHero(heroI+1)},5200)}
 function mlAt(f,list=VOL){const i=Math.floor(f),j=Math.min(list.length-1,i+1),k=f-i;return list[i]+(list[j]-list[i])*k}
 /* слайдер объёма: тянется плавно, отпускаешь — прилипает к ближайшему объёму */
@@ -1351,6 +1481,8 @@ function renderCart(){
   await Promise.race([loadCatalog(),new Promise(r=>setTimeout(r,2500))]);booted=true;
   const ff=$('#freeFrom');if(ff)ff.textContent=RUB(SHOP.deliveryFree);
   renderContacts();
+  try{$('#lName').value=store.get('oname','');$('#lPhone').value=store.get('ophone','');$('#lCity').value=store.get('ocity','')}catch(e){}
+  if(SHOP.manager)$('#leadSub').textContent=`Оставьте заявку — ${SHOP.manager} свяжется с вами, обсудит ваши предпочтения и подберёт идеальный аромат.`;
   initHome();initCatalog();initQuiz();updBadge();
   const h=(location.hash||'').slice(1);
   if(h.startsWith('p-')&&BY[h.slice(2)]){goView('catalog',{noHash:true});openProduct(h.slice(2))}
