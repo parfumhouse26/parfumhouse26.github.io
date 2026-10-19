@@ -15,7 +15,7 @@
 <meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
 <meta property="og:image" content="https://parfumhouse26.github.io/icon-512.png">
 <meta property="og:url" content="https://parfumhouse26.github.io/">
-<script>window.APP_VERSION = 'dae6584351';</script>
+<script>window.APP_VERSION = '3b6660c121';</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -135,7 +135,7 @@ main{display:block}
 .hero .wrap.wf{display:block;padding-block:0 6px}
 .hero h1{font-size:clamp(38px,6.2vw,74px);line-height:1.02;margin:16px 0 18px}
 .hero h1 em{font-style:normal;color:#E9C9A0}
-.hero p.lead{max-width:30em;color:rgba(248,239,236,.9);font-size:16.5px}
+.hero p.intro{max-width:30em;color:rgba(248,239,236,.9);font-size:16.5px}
 .lead-text{display:grid;gap:12px;max-width:34em}
 .lead-text p{margin:0;color:rgba(248,239,236,.78);font-size:15px;line-height:1.55}
 .lead-text .lead-hl{display:flex;gap:10px;align-items:flex-start;color:var(--on-wine);font-size:15px;padding:10px 12px;border-radius:10px;background:rgba(248,239,236,.08);border:1px solid rgba(248,239,236,.14)}
@@ -182,6 +182,24 @@ main{display:block}
 .qchips .chip:active{background:rgba(248,239,236,.15)}
 @media (min-width:860px){.hero .wrap.quick{grid-template-columns:minmax(0,420px) minmax(0,1fr);align-items:center;padding-block:22px 0}}
 /* слайдеры популярного и новинок */
+.card .meta{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:859px){
+  .sec{padding-block:44px 0}
+  .band{margin-top:44px}
+  .band .sl-sec{padding-block:36px 32px}
+  .hero .cta .btn{flex:1;justify-content:center}
+  .guide>div:last-child>.eyebrow,.guide h3,.guide .txt{text-align:center;margin-inline:auto}
+  .guide .ml-big{justify-content:center}
+  .kv{text-align:center}
+  .kv div{padding-inline:4px}
+  .lead-body{text-align:center}
+  .lead-sub{margin-inline:auto}
+  .lead-form,.lead-done{margin-inline:auto;text-align:left}
+  .lead-btn{max-width:none;width:100%}
+  .lead-note{text-align:center}
+}
+@media (max-width:760px){.lead-img{display:none}.lead{min-height:0}}
+@media (max-width:520px){body .cbtns{display:grid;grid-template-columns:1fr 1fr}body .cbtns>*{justify-content:center;text-align:center}}
 .lead{position:relative;overflow:hidden;border-radius:10px;background:radial-gradient(120% 90% at 85% 80%,color-mix(in oklab,var(--wine) 60%,#E8A7B4) 0%,var(--wine) 60%);color:var(--on-wine);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);min-height:420px}
 .lead-body{position:relative;z-index:1;padding:36px clamp(20px,4vw,48px) 34px}
 .lead h2{font-size:clamp(28px,4vw,42px);line-height:1.08}
@@ -498,14 +516,13 @@ main{display:block}
           <div class="eyebrow" style="color:rgba(248,239,236,.7)">Парфюмерия в разлив · 6 лет на КМВ</div>
           <h1>Ароматы, которые говорят <em>сами за себя</em></h1>
           <div class="lead-text">
-            <p class="lead">Наш магазин специализируется на разливной парфюмерии от ведущих мировых фабрик из стран Швейцарии, Франции, Англии, Испании и Турции.</p>
+            <p class="intro">Наш магазин специализируется на разливной парфюмерии от ведущих мировых фабрик из стран Швейцарии, Франции, Англии, Испании и Турции.</p>
             <p>Мы уже более 6 лет в этом деле! За это время мы отправили более 10&nbsp;000 ваших заказов, а также учли все свои ошибки, проанализировали весь рынок парфюмерии и подобрали для вас самое лучшее качество парфюмерных масел, флаконов и упаковки!</p>
             <p class="lead-hl"><span>🎁</span>Выберите объём, соберите набор, а третий флакон мы добавим в подарок</p>
             <p class="lead-hl"><span>🫶🏻</span>Также можем подобрать для вас аромат, учитывая ваш возраст, вкусы и предпочтения.</p>
           </div>
           <div class="cta">
             <button class="btn light" data-go="catalog">Смотреть каталог</button>
-            <button class="btn" data-go="quiz">Подобрать аромат</button>
           </div>
         </div>
         <div class="hero-stage" id="heroStage"><div class="arch" id="heroArch"></div>
