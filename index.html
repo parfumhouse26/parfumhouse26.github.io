@@ -9,13 +9,13 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Parfum House">
-<meta name="description" content="Парфюмерия в разлив в Ессентуках: более 290 ароматов от 6 мл, акция 2+1, доставка по России.">
+<meta name="description" content="Парфюмерия в разлив в Ессентуках: более 400 ароматов от 6 мл, акция 2+1, доставка по России.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="PARFUM.HOUSE26 — премиум разлив">
 <meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
 <meta property="og:image" content="https://parfumhouse26.github.io/icon-512.png">
 <meta property="og:url" content="https://parfumhouse26.github.io/">
-<script>window.APP_VERSION = '3b6660c121';</script>
+<script>window.APP_VERSION = '732ab47957';</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -64,10 +64,15 @@ p{margin:0}
 
 /* header */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.2) blur(14px);-webkit-backdrop-filter:saturate(1.2) blur(14px);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:28px;height:62px}
-.logo{display:flex;flex-direction:column;line-height:1;text-decoration:none;gap:5px}
-.logo b{font:400 19px/1 var(--f-display);letter-spacing:.09em}
-.logo small{font:500 8.5px/1 var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.top .wrap{display:flex;align-items:center;gap:28px;min-height:62px;padding-block:10px;transition:padding .25s}
+.logo{display:flex;flex-direction:column;align-items:center;line-height:1;text-decoration:none;gap:7px;color:var(--ink)}
+.logo small{font:500 8px/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+/* логотип магазина: картинки-маски, цвет берём из темы */
+.lg-mono,.lg-word{display:block;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.lg-mono{--m:url(img/brand/ph-mono.png);height:32px;aspect-ratio:286/301;transition:height .25s,opacity .2s,margin .25s}
+.lg-word{--m:url(img/brand/ph-word.png);height:14px;aspect-ratio:830/72}
+.top.mini .wrap{padding-block:8px}
+.top.mini .lg-mono{height:0;opacity:0;margin-bottom:-7px}
 .nav{display:flex;gap:4px;margin-left:auto}
 .nav button{height:38px;padding:0 14px;border-radius:999px;font-size:14px;color:var(--muted)}
 .nav button[aria-current="page"]{color:var(--ink);background:var(--line)}
@@ -81,7 +86,7 @@ p{margin:0}
 @media (max-width:859px){
   :root{--tab-h:calc(62px + env(safe-area-inset-bottom,0px))}
   .nav,.top .bagbtn{display:none}
-  .top .wrap{justify-content:center;height:56px}
+  .top .wrap{justify-content:center;min-height:56px}
   .logo{align-items:center}
   .tabbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:40;
     padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));
@@ -308,7 +313,9 @@ main{display:block}
 /* info blocks */
 .info3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .box{border:1px solid var(--line);border-radius:6px;background:var(--surface);padding:22px}
-.box h3{font-size:21px;margin-bottom:10px}
+.box h3{font-size:21px;margin-bottom:12px;text-align:center}
+#contactBox>p{text-align:center}
+#contactBox .phone-line{text-align:center}
 .box p,.box li{color:var(--muted);font-size:14px}
 .box ul{margin:0;padding-left:18px;display:grid;gap:6px}
 @media (max-width:859px){.info3{grid-template-columns:1fr}}
@@ -360,6 +367,9 @@ main{display:block}
 .flnote{font-size:12.5px;color:var(--muted);margin-top:8px}
 .note-q{width:100%;height:40px;border:1px solid var(--line);border-radius:999px;padding:0 14px;background:var(--surface);outline:none}
 .note-q:focus{border-color:var(--ink)}
+.qnotes{display:grid;gap:10px}
+.qnotes .chips{flex-wrap:wrap;overflow:visible}
+.qitem .why b{color:var(--ink);font-weight:500}
 .chip.x::after{content:"×";margin-left:6px;opacity:.7}
 .pyr-row p button{font:inherit;color:inherit;text-decoration:underline dotted;text-underline-offset:3px;cursor:pointer;padding:0}
 .btn.more{grid-column:1/-1;justify-self:center;margin:10px 0 6px}
@@ -462,6 +472,26 @@ main{display:block}
 .buybar .fav{position:static;width:48px;height:48px;border:1px solid var(--line);flex:none}
 .promo-note{font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:baseline}
 .promo-note b{font:400 18px var(--f-display);color:var(--accent);flex:none}
+.trio{display:flex;align-items:flex-end;justify-content:center;width:100%;height:100%;padding:12% 4% 6%}
+.trio>.ph,.card .stage .trio>.ph,.line .st .trio>.ph,.trio>svg{position:relative;left:auto;top:auto;flex:0 1 40%;height:80%;width:40%;max-width:none;object-fit:contain;object-position:50% 100%;margin:0 -5%;filter:drop-shadow(0 8px 10px rgba(0,0,0,.2))}
+.trio>:nth-child(2),.card .stage .trio>.ph:nth-child(2),.line .st .trio>.ph:nth-child(2){height:96%;z-index:1}
+.card .stage .trio{position:absolute;inset:40px 8px 10px;width:auto;height:auto;padding:0}
+.setcard .stage{background:color-mix(in oklab,var(--accent) 10%,var(--surface))}
+.setcard .pr s{font:400 12px var(--f-body);color:var(--muted)}
+.set-pd .pd-stage{background:color-mix(in oklab,var(--accent) 9%,var(--bg))}
+.set-pd .trio{padding:14% 6% 10%}
+.line .st.set{background:color-mix(in oklab,var(--accent) 10%,var(--surface));cursor:pointer}
+.line .st.set .trio{padding:10% 2% 6%}
+.setlist{display:grid;gap:8px}
+.setrow{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;width:100%;padding:8px 10px 8px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.setrow .st{height:66px;border-radius:4px;display:grid;place-items:center;overflow:hidden;background:color-mix(in oklab,var(--tint) 15%,var(--surface))}
+.setrow .st .ph,.setrow .st svg{height:90%;width:auto;object-fit:contain}
+.setrow .tx{display:flex;flex-direction:column;min-width:0}
+.setrow .b{font:500 10px/1.3 var(--f-mono);letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.setrow .n{font:400 18px/1.2 var(--f-display)}
+.setrow .w{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.setrow .p{font-weight:500;font-size:14px}
+.pricebox span s{color:var(--muted)}
 .similar{display:grid;grid-auto-flow:column;grid-auto-columns:150px;gap:10px;overflow-x:auto;padding-bottom:8px}
 .similar .card .nm{font-size:16px}
 @media (max-width:859px){
@@ -483,7 +513,7 @@ main{display:block}
 
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="#home" data-go="home" aria-label="Parfum House 26, на главную"><b>PARFUM.HOUSE26</b><small>премиум разлив · ессентуки</small></a>
+    <a class="logo" href="#home" data-go="home" aria-label="PARFUM.HOUSE26 — на главную"><i class="lg-mono" aria-hidden="true"></i><i class="lg-word" aria-hidden="true"></i><small>разливная парфюмерия премиум качества</small></a>
     <nav class="nav" aria-label="Разделы">
       <button data-go="home">Главная</button>
       <button data-go="catalog">Каталог</button>
@@ -499,11 +529,6 @@ main{display:block}
   <section class="view" id="v-home">
     <div class="hero">
       <div class="wrap quick">
-        <button class="pick" data-go="quiz">
-          <span class="pick-ico"><svg class="ico" viewBox="0 0 24 24"><path d="M5 6h14M5 12h14M5 18h14"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="8" cy="18" r="2"/></svg></span>
-          <span class="pick-t"><b>Подобрать аромат</b><small>4 вопроса: характер, сладость, шлейф, повод</small></span>
-          <span class="pick-go" aria-hidden="true">→</span>
-        </button>
         <div class="chips qchips" aria-label="Быстрые фильтры">
           <button class="chip" data-qf="pop">Популярное</button><button class="chip" data-qf="new">Новинки</button>
           <button class="chip" data-qf="m">Для него</button><button class="chip" data-qf="w">Для неё</button>
@@ -513,7 +538,6 @@ main{display:block}
       </div>
       <div class="wrap">
         <div>
-          <div class="eyebrow" style="color:rgba(248,239,236,.7)">Парфюмерия в разлив · 6 лет на КМВ</div>
           <h1>Ароматы, которые говорят <em>сами за себя</em></h1>
           <div class="lead-text">
             <p class="intro">Наш магазин специализируется на разливной парфюмерии от ведущих мировых фабрик из стран Швейцарии, Франции, Англии, Испании и Турции.</p>
@@ -532,7 +556,7 @@ main{display:block}
       <div class="wrap wf"><div class="facts">
         <div><b>6 лет</b><span>в мире парфюмерии</span></div>
         <div><b>10 000+</b><span>заказов отправили</span></div>
-        <div><b>290+</b><span>ароматов в наличии</span></div>
+        <div><b>400+</b><span>ароматов в наличии</span></div>
         <div><b>24 ч</b><span>стойкость на коже, 72 ч на одежде</span></div>
       </div></div>
     </div>
@@ -591,7 +615,7 @@ main{display:block}
     <div class="wrap sec">
       <div class="info3">
         <div class="box"><h3>Доставка</h3><ul>
-          <li>По Ессентукам и станице Ессентукской — бесплатно при заказе от <span id="freeFrom">1 500 ₽</span>.</li>
+          <li>По Ессентукам и станице Ессентукской — доставка курьером, бесплатно при заказе от <span id="freeFrom">2 000 ₽</span>.</li>
           <li>Отправляем по всей России.</li>
           <li>К каждому заказу добавляем вкусняшку для настроения.</li></ul></div>
         <div class="box"><h3>Как хранить</h3><ul>
@@ -605,29 +629,9 @@ main{display:block}
       </div>
     </div>
 
-    <div class="wrap sec">
-      <section class="lead" aria-labelledby="leadH">
-        <div class="lead-body">
-          <h2 id="leadH">Подберём аромат специально для вас</h2>
-          <p class="lead-sub" id="leadSub">Оставьте заявку — мы свяжемся с вами, обсудим ваши предпочтения и подберём идеальный аромат.</p>
-          <form id="leadForm" class="lead-form" novalidate>
-            <label class="lf"><input id="lName" autocomplete="name" placeholder=" " required><span>Имя</span></label>
-            <label class="lf"><input id="lPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder=" " required><span>Телефон</span></label>
-            <label class="lf"><input id="lCity" autocomplete="address-level2" placeholder=" "><span>Город</span></label>
-            <label class="lf"><input id="lWish" placeholder=" "><span>Что нравится: аромат, ноты, повод</span></label>
-            <p class="lead-err" id="lErr" hidden>Укажите имя и телефон, чтобы мы могли с вами связаться.</p>
-            <button class="lead-btn" type="submit">Отправить</button>
-            <p class="lead-note" id="lNote">Заявка откроется в WhatsApp — останется нажать «Отправить».</p>
-          </form>
-          <div class="lead-done" id="lDone" hidden></div>
-        </div>
-        <img class="lead-img" src="img/blanche-bete.webp" alt="" loading="lazy">
-      </section>
-    </div>
 
     <div class="wrap"><footer class="foot">
-      <div class="logo"><b>PARFUM.HOUSE26</b><small>премиум разлив · ессентуки</small></div>
-      <div style="max-width:30em">В приложении — ароматы из каталога магазина. Всего в наличии более 290: если нужного нет, спросите в Direct.<br>
+      <div style="max-width:30em">В приложении — ароматы из каталога магазина. Всего в наличии более 400: если нужного нет, спросите в Direct.<br>
         <span id="footPhone"></span><a class="link" href="https://www.instagram.com/parfum.house26/" target="_blank" rel="noopener">@parfum.house26</a> · <a class="link" href="https://www.instagram.com/parfum_house26_katalog/" target="_blank" rel="noopener">@parfum_house26_katalog</a></div>
     </footer></div>
   </section>
@@ -675,6 +679,11 @@ main{display:block}
         <div><div class="seg" id="qG">
           <button data-g="m" aria-pressed="false">Для него</button><button data-g="w" aria-pressed="false">Для неё</button><button data-g="any" aria-pressed="true">Неважно</button></div></div>
         <div id="qSliders" style="display:grid;gap:18px"></div>
+        <div class="qnotes">
+          <div class="qrow"><label for="qNoteQ"><b>Любимые ноты</b><span id="qNoteSel"></span></label></div>
+          <input class="note-q" id="qNoteQ" type="search" placeholder="Найти ноту: ваниль, уд, роза…" aria-label="Поиск ноты" autocomplete="off">
+          <div class="chips" id="qNoteChips"></div>
+        </div>
         <button class="link" id="qReset" style="justify-self:start">Сбросить</button>
       </div>
       <div>
@@ -803,7 +812,7 @@ const hasPhoto=a=>a.img!==false;
 const imgUrl=a=>`img/${a.id}.webp${a.v?'?v='+a.v:''}`;
 function thumb(a,o={}){return hasPhoto(a)?`<img class="ph" src="${imgUrl(a)}" alt="" loading="lazy" decoding="async" draggable="false">`:bottleSVG(a,o)}
 /* настройки магазина; меняются в админке (data/catalog.json → settings) */
-const SHOP={whatsapp:'',max:'',phone:'',manager:'',deliveryFree:1500};
+const SHOP={whatsapp:'',max:'',phone:'',manager:'',deliveryFree:2000};
 const digits=v=>String(v||'').replace(/\D/g,'').replace(/^8(?=\d{10}$)/,'7');
 const waLink=text=>{const d=digits(SHOP.whatsapp);return d?`https://wa.me/${d}${text?'?text='+encodeURIComponent(text):''}`:''};
 const maxLink=()=>/^https:\/\/max\.ru\//.test(SHOP.max||'')?SHOP.max:'';
@@ -832,9 +841,19 @@ async function loadCatalog(){
     A.splice(0,A.length,...j.aromas.filter(a=>!a.hidden));
     for(const k in BY)delete BY[k];A.forEach(a=>BY[a.id]=a);
     if(j.settings)Object.assign(SHOP,j.settings);
+    if(Array.isArray(j.sets))SETS=j.sets.filter(x=>!x.hidden);
   }catch(e){}
 }
 const VOL=[6,10,15,20,30,50];
+/* наборы из 3 ароматов (пост «3 самых…» в Instagram магазина). Цена набора = три флакона одного объёма минус самый недорогой (акция 2+1);
+   pr[мл] — цена, заданная вручную в админке. Данные приходят из data/catalog.json (sets), здесь — запасной вариант */
+let SETS=[
+  {id:'shleif',t:'Самые шлейфовые',d:'Три аромата с заметным шлейфом — их почувствуют, даже когда вы уже вышли из комнаты.',items:['tilia-marc-antoine','angels-share','devil-s-intrigue-hfc']},
+  {id:'sladkie',t:'Самые сладкие',d:'Тёплые гурманские ароматы с ванилью и сладкими нотами — уютные, как десерт.',items:['white-chocola-richard','ani-nishane','vanilla-powder-matiere']},
+  {id:'idealnye',t:'Самые идеальные',d:'Универсальная тройка: на каждый день, в офис и на вечер — такие ароматы сложно не полюбить.',items:['l-v-symphony-louis','bal-d-afrique-byredo','blue-talisman-ex']},
+  {id:'seksualnye',t:'Самые сексуальные',d:'Чувственные, обволакивающие ароматы для свиданий и особенных вечеров.',items:['rolling-in-love-kilian','guidance-46-amouage','ganymede']},
+  {id:'romantichnye',t:'Самые романтичные',d:'Нежные цветочные ароматы для свиданий, прогулок и подарка любимой.',items:['crystal-love-for-her-attar','good-girl-gone-bad-kilian','delina-exclusif-parfums']}
+];
 /* флаконы для разлива — из актуального «Флаконы» в Instagram магазина; add — доплата к цене аромата */
 const FLACONS={
   6:[{img:'6-glass',t:'Цветной стеклянный спрей',d:'Янтарный, синий, фиолетовый или графитовый',add:0}],
@@ -1100,7 +1119,7 @@ class PhotoStage{
 const S={
   cart:store.get('cart',[]),fav:new Set(store.get('fav',[])),
   f:{g:'all',brand:null,notes:new Set(),tags:new Set(),q:'',min:0,max:99999,sort:'pop'},
-  quiz:store.get('quiz',{a:[5,6,5,5],g:'any'}),
+  quiz:Object.assign({a:[5,6,5,5],g:'any',notes:[]},store.get('quiz',{})),
   delivery:'ess',view:'home'
 };
 const saveCart=()=>{store.set('cart',S.cart);updBadge()};
@@ -1109,7 +1128,8 @@ function updBadge(){const n=S.cart.reduce((s,l)=>s+l.qty,0);$$('[data-badge]').f
 /* ---------- 2+1 ---------- */
 function calc(){
   const groups={},freeBy=new Map();let sub=0,gift=0;
-  S.cart.forEach((l,i)=>{const a=BY[l.id];if(!a)return;const pr=linePrice(a,l);sub+=pr*l.qty;const key=l.form+'|'+l.ml;(groups[key]=groups[key]||[]);for(let q=0;q<l.qty;q++)groups[key].push({i,pr})});
+  S.cart.forEach((l,i)=>{if(l.set){const st=SBY(l.set);if(st)sub+=setPrice(st,l.ml)*l.qty;return}   // наборы уже со скидкой 2+1
+    const a=BY[l.id];if(!a)return;const pr=linePrice(a,l);sub+=pr*l.qty;const key=l.form+'|'+l.ml;(groups[key]=groups[key]||[]);for(let q=0;q<l.qty;q++)groups[key].push({i,pr})});
   for(const key in groups){const u=groups[key].sort((x,y)=>y.pr-x.pr);u.forEach((x,j)=>{if(j%3===2){gift+=x.pr;freeBy.set(x.i,(freeBy.get(x.i)||0)+1)}})}
   return {sub,gift,total:sub-gift,freeBy,groups};
 }
@@ -1129,13 +1149,60 @@ function card(a,{ml=30}={}){
     <div class="info"><div class="br">${esc(a.b)}</div><div class="nm">${esc(a.n)}</div><div class="meta">${GENDER[a.g]} · ${esc(a.fam)}</div>
       <div class="pr"><b class="num">от ${RUB(a.p*6)}</b><span>${RUB(a.p)}/мл</span></div></div></article>`;
 }
+/* ---------- наборы ---------- */
+const setItems=st=>st.items.map(id=>BY[id]).filter(Boolean);
+const setsOn=()=>SETS.filter(st=>st.items.length&&setItems(st).length===st.items.length);   // набор виден, только если все ароматы в наличии
+const SBY=id=>SETS.find(st=>st.id===id);
+const setFull=(st,ml)=>setItems(st).reduce((t,a)=>t+a.p*ml,0);
+function setPrice(st,ml){const m=st.pr&&+st.pr[ml];if(m>0)return m;const it=setItems(st);return Math.round(setFull(st,ml)-(it.length>=3?Math.min(...it.map(a=>a.p*ml)):0))}
+const trio=st=>`<div class="trio">${setItems(st).map(a=>thumb(a,{ml:20})).join('')}</div>`;
+function setCard(st){
+  const full=setFull(st,6),pr=setPrice(st,6);
+  return `<article class="card setcard" data-set="${esc(st.id)}" tabindex="0" role="button" aria-label="Набор ${esc(st.t)}">
+    <div class="stage"><span class="tag">Набор 2+1</span>${trio(st)}</div>
+    <div class="info"><div class="br">Набор · 3 аромата</div><div class="nm">${esc(st.t)}</div><div class="meta">${setItems(st).map(a=>esc(a.n)).join(' · ')}</div>
+      <div class="pr"><b class="num">от ${RUB(pr)}</b>${full>pr?`<s class="num">${RUB(full)}</s>`:''}</div></div></article>`;
+}
+function openSet(id){
+  const st=SBY(id);if(!st||setItems(st).length!==st.items.length)return;lastFocus=document.activeElement;
+  $('#panel').innerHTML=`<button class="close" data-close aria-label="Закрыть"><svg class="ico" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div class="pd set-pd">
+    <div class="pd-stage">${trio(st)}</div>
+    <div class="pd-body">
+      <div><div class="br">Набор · 3 аромата</div><h2>${esc(st.t)}</h2>
+        <div class="pills"><span class="pill">три флакона одного объёма</span><span class="pill">третий в подарок</span></div></div>
+      ${st.d?`<p class="desc">${esc(st.d)}</p>`:''}
+      <div class="block"><h4>Объём каждого флакона, мл</h4><div class="seg" id="stVol">${VOL.map(v=>`<button data-ml="${v}" aria-pressed="${v===10}">${v}</button>`).join('')}</div></div>
+      <div class="block"><div class="pricebox"><b class="num" id="stPrice"></b><span id="stOld"></span></div>
+        <p class="promo-note" style="margin-top:10px"><b>2+1</b><span id="stNote"></span></p></div>
+      <div class="block"><h4>В наборе</h4><div class="setlist" id="stList"></div></div>
+      <div class="buybar"><button class="btn wine" id="stAdd">Набор в корзину</button></div>
+    </div></div>`;
+  const sh=$('#sheet');sh.hidden=false;document.body.style.overflow='hidden';$('#panel').scrollTop=0;
+  let ml=10;
+  const upd=()=>{const full=setFull(st,ml),pr=setPrice(st,ml);
+    $('#stPrice').textContent=RUB(pr);$('#stOld').innerHTML=full>pr?`<s>${RUB(full)}</s> · выгода ${RUB(full-pr)}`:'';
+    $('#stNote').textContent=`Три флакона по ${ml} мл. Самый недорогой из трёх уже в подарок — цена указана со скидкой.`;
+    $('#stList').innerHTML=setItems(st).map(a=>`<button class="setrow" data-open="${a.id}" style="--tint:${a.tint}"><span class="st">${thumb(a,{ml:20})}</span>
+      <span class="tx"><span class="b">${esc(a.b)}</span><span class="n">${esc(a.n)}</span><span class="w">${[...a.top.slice(0,2),...a.base.slice(0,2)].map(esc).join(' · ')}</span></span><span class="p num">${RUB(a.p*ml)}</span></button>`).join('')};
+  upd();
+  $('#stVol').onclick=e=>{const b=e.target.closest('[data-ml]');if(!b)return;ml=+b.dataset.ml;$$('#stVol button').forEach(x=>x.setAttribute('aria-pressed',x===b));upd()};
+  $('#stAdd').onclick=()=>addSetToCart(st.id,ml);
+  try{history.replaceState(null,'','#s-'+st.id)}catch(e){}
+  setTimeout(()=>$('.close',sh).focus({preventScroll:true}),50);
+}
+function addSetToCart(id,ml){
+  const l=S.cart.find(x=>x.set===id&&x.ml===ml);l?l.qty++:S.cart.push({set:id,ml,qty:1});saveCart();
+  toast(`Набор «${SBY(id).t}» · ${ml} мл в корзине`);
+}
 document.addEventListener('click',e=>{
   const f=e.target.closest('[data-fav]');
   if(f){e.stopPropagation();const id=f.dataset.fav;S.fav.has(id)?S.fav.delete(id):S.fav.add(id);store.set('fav',[...S.fav]);$$(`[data-fav="${id}"]`).forEach(b=>b.setAttribute('aria-pressed',S.fav.has(id)));if(S.view==='catalog'&&S.f.g==='fav')renderCatalog();return}
+  const st=e.target.closest('[data-set]');if(st){openSet(st.dataset.set);return}
   const o=e.target.closest('[data-open]');if(o){openProduct(o.dataset.open);return}
   const go=e.target.closest('[data-go]');if(go){e.preventDefault();if(go.dataset.sort){S.f.sort=go.dataset.sort;$('#sort').value=go.dataset.sort}goView(go.dataset.go);if(go.dataset.gf)setG(go.dataset.gf);return}
 });
-document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-open]')){e.preventDefault();openProduct(e.target.dataset.open)}});
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-set]')){e.preventDefault();openSet(e.target.dataset.set);return}if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-open]')){e.preventDefault();openProduct(e.target.dataset.open)}});
 
 /* ---------- навигация ---------- */
 function goView(v,{noHash}={}){
@@ -1199,18 +1266,8 @@ function initSliders(){
   });
 }
 document.addEventListener('click',e=>{const b=e.target.closest('[data-sl]');if(!b)return;const sl=$('#'+b.dataset.sl);sl.scrollBy({left:(+b.dataset.d)*sl.clientWidth*.85,behavior:RM?'auto':'smooth'})});
-/* заявка на подбор: собираем текст и открываем WhatsApp менеджера */
-$('#leadForm').addEventListener('submit',e=>{
-  e.preventDefault();const nm=$('#lName').value.trim(),ph=$('#lPhone').value.trim(),city=$('#lCity').value.trim(),wish=$('#lWish').value.trim();
-  if(!nm||!ph){$('#lErr').hidden=false;return}$('#lErr').hidden=true;
-  store.set('oname',nm);store.set('ophone',ph);if(city)store.set('ocity',city);
-  const txt=`${hello()} Хочу подобрать аромат.\n\nИмя: ${nm}\nТелефон: ${ph}${city?`\nГород: ${city}`:''}${wish?`\nНравится: ${wish}`:''}`;
-  const wa=waLink(txt);
-  if(wa){try{window.open(wa,'_blank','noopener')}catch(err){}}
-  $('#leadForm').hidden=true;const d=$('#lDone');d.hidden=false;
-  d.innerHTML=`<p>${wa?'Открыли WhatsApp с вашей заявкой — нажмите «Отправить» в чате.':'Скопируйте заявку и отправьте нам в удобный мессенджер.'} Если чат не открылся, выберите способ ниже.</p><textarea id="lTxt" readonly style="min-height:110px;border-radius:8px;padding:10px;background:rgba(0,0,0,.15);color:var(--on-wine);border:1px solid rgba(248,239,236,.3);font:400 13px/1.45 var(--f-mono)">${esc(txt)}</textarea><div class="cbtns">${contactButtons(txt)}</div><button class="link" id="lAgain" style="justify-self:start;color:var(--on-wine)">Заполнить заново</button>`;
-  $('#lAgain').onclick=()=>{d.hidden=true;$('#leadForm').hidden=false};
-});
+/* шапка сжимается при прокрутке */
+{const top=$('.top');let mini=false;const upd=()=>{const y=scrollY;if(!mini&&y>64){mini=true;top.classList.add('mini')}else if(mini&&y<8){mini=false;top.classList.remove('mini')}};addEventListener('scroll',upd,{passive:true});upd()}
 /* быстрые фильтры с главной */
 document.addEventListener('click',e=>{const b=e.target.closest('[data-qf]');if(!b)return;const v=b.dataset.qf,f=S.f;
   f.brand=null;f.tags.clear();f.notes.clear();f.q='';$('#q').value='';goView('catalog');renderBrands();
@@ -1273,7 +1330,7 @@ function filterBrand(b){
 }
 let pLo,pHi;
 function initCatalog(){
-  const G=[['all','Все'],['pop','Популярные'],['new','Новые'],['m','Мужские'],['w','Женские'],['u','Унисекс'],['fav','Избранное']];
+  const G=[['all','Все'],['sets','Наборы'],['pop','Популярные'],['new','Новые'],['m','Мужские'],['w','Женские'],['u','Унисекс'],['fav','Избранное']];
   $('#gChips').innerHTML=G.map(([k,t])=>`<button class="chip" data-g="${k}" aria-pressed="${k==='all'}">${t}</button>`).join('');
   $('#grid').addEventListener('click',e=>{if(e.target.closest('#moreBtn')){shown+=48;renderCatalog(true)}});
   $('#gChips').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;S.f.g=b.dataset.g;$$('#gChips .chip').forEach(c=>c.setAttribute('aria-pressed',c===b));renderCatalog()};
@@ -1298,7 +1355,9 @@ function initCatalog(){
 let shown=48;   // каталог большой — показываем порциями
 function renderCatalog(more){
   if(more!==true)shown=48;
-  const f=S.f;let L=A.filter(a=>{
+  const f=S.f;
+  if(f.g==='sets'){const L=setsOn();renderActive();$('#count').textContent=`${L.length} ${pl(L.length,'набор','набора','наборов')} · третий аромат в подарок`;
+    $('#grid').innerHTML=L.map(setCard).join('')||'<div class="empty" style="grid-column:1/-1"><h3>Наборов пока нет</h3></div>';return}let L=A.filter(a=>{
     if(f.g==='fav'&&!S.fav.has(a.id))return false;
     if(f.g==='new'&&!a.nw)return false;
     if(f.g==='pop'&&!a.pop)return false;
@@ -1312,7 +1371,7 @@ function renderCatalog(more){
   const s=f.sort;
   if(s==='asc')L.sort((x,y)=>x.p-y.p);if(s==='desc')L.sort((x,y)=>y.p-x.p);if(s==='new')L.sort((x,y)=>(y.nw||0)-(x.nw||0));if(s==='lon')L.sort((x,y)=>y.lon-x.lon);
   renderActive();$('#count').textContent=`${L.length} ${pl(L.length,'аромат','аромата','ароматов')}`;
-  $('#grid').innerHTML=L.length?L.slice(0,shown).map(a=>card(a)).join('')+(L.length>shown?`<button class="btn more" id="moreBtn">Показать ещё ${Math.min(48,L.length-shown)} из ${L.length-shown}</button>`:''):(f.g==='fav'?`<div class="empty" style="grid-column:1/-1"><h3>В избранном пока пусто</h3><p>Нажмите на сердечко на карточке, чтобы сохранить аромат.</p></div>`:`<div class="empty" style="grid-column:1/-1"><h3>Ничего не нашлось</h3><p>Попробуйте другую ноту или снимите часть фильтров. Нет нужного аромата — спросите в Direct, в наличии более 290.</p></div>`);
+  $('#grid').innerHTML=L.length?L.slice(0,shown).map(a=>card(a)).join('')+(L.length>shown?`<button class="btn more" id="moreBtn">Показать ещё ${Math.min(48,L.length-shown)} из ${L.length-shown}</button>`:''):(f.g==='fav'?`<div class="empty" style="grid-column:1/-1"><h3>В избранном пока пусто</h3><p>Нажмите на сердечко на карточке, чтобы сохранить аромат.</p></div>`:`<div class="empty" style="grid-column:1/-1"><h3>Ничего не нашлось</h3><p>Попробуйте другую ноту или снимите часть фильтров. Нет нужного аромата — спросите в Direct, в наличии более 400.</p></div>`);
 }
 
 /* ---------- подбор ---------- */
@@ -1321,18 +1380,36 @@ function initQuiz(){
   $('#qSliders').innerHTML=QAX.map((q,i)=>`<div class="qrow"><label for="qa${i}"><b>${q[0]}</b><span id="qv${i}"></span></label><input type="range" id="qa${i}" min="0" max="10" step="0.1" value="${S.quiz.a[i]}"><div class="ends"><span>${q[1]}</span><span>${q[2]}</span></div></div>`).join('');
   QAX.forEach((q,i)=>{const r=$('#qa'+i);r.oninput=()=>{S.quiz.a[i]=+r.value;store.set('quiz',S.quiz);renderQuiz()}});
   $('#qG').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;S.quiz.g=b.dataset.g;store.set('quiz',S.quiz);renderQuiz()};
-  $('#qReset').onclick=()=>{S.quiz={a:[5,6,5,5],g:'any'};store.set('quiz',S.quiz);QAX.forEach((q,i)=>$('#qa'+i).value=S.quiz.a[i]);renderQuiz()};
+  $('#qNoteQ').oninput=renderQuizNotes;
+  $('#qNoteChips').onclick=e=>{const b=e.target.closest('[data-qnote]');if(!b)return;const k=b.dataset.qnote,n=S.quiz.notes,i=n.indexOf(k);i<0?n.push(k):n.splice(i,1);store.set('quiz',S.quiz);renderQuiz()};
+  $('#qReset').onclick=()=>{S.quiz={a:[5,6,5,5],g:'any',notes:[]};$('#qNoteQ').value='';store.set('quiz',S.quiz);QAX.forEach((q,i)=>$('#qa'+i).value=S.quiz.a[i]);renderQuiz()};
+}
+/* ноты в подборе: выбранные всегда видны, остальное — самые частые или найденные поиском */
+function renderQuizNotes(){
+  const q=nkey($('#qNoteQ').value||''),idx=noteIndex(),sel=S.quiz.notes;
+  let list=[...idx.entries()].sort((x,y)=>y[1].c-x[1].c).filter(([k])=>!sel.includes(k));
+  if(q)list=list.filter(([k])=>k.includes(q));
+  list=list.slice(0,q?24:14);
+  const chip=(k,name,on)=>`<button class="chip" data-qnote="${esc(k)}" aria-pressed="${on}">${esc(name)}</button>`;
+  $('#qNoteChips').innerHTML=sel.map(k=>chip(k,(idx.get(k)||{name:k}).name,true)).join('')+list.map(([k,o])=>chip(k,o.name,false)).join('')||'<span style="font-size:13px;color:var(--muted)">Такой ноты нет в каталоге</span>';
+  $('#qNoteSel').textContent=sel.length?`выбрано: ${sel.length}`:'необязательно';
 }
 function qWord(i,v){const q=QAX[i];return v<3.5?q[1]:v>6.5?q[2]:'баланс'}
 function renderQuiz(){
   const a=S.quiz.a,W=[1.4,1,1.1,.8],dmax=10*Math.sqrt(W.reduce((s,w)=>s+w,0));
   $$('#qG button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===S.quiz.g));
   QAX.forEach((q,i)=>{const r=$('#qa'+i);r.style.setProperty('--p',(a[i]*10)+'%');$('#qv'+i).textContent=qWord(i,a[i])});
-  const L=A.filter(x=>S.quiz.g==='any'||x.g===S.quiz.g||x.g==='u').map(x=>{const d=Math.sqrt(x.ax.reduce((s,v,i)=>s+W[i]*(v-a[i])**2,0));return {x,m:Math.round(100*(1-d/dmax))}}).sort((p,q)=>q.m-p.m).slice(0,8);
-  $('#qCount').textContent='Лучшие совпадения';
-  $('#qRes').innerHTML=L.map(({x,m})=>`<article class="qitem" style="--tint:${x.tint}" data-open="${x.id}" tabindex="0" role="button">
+  const sel=S.quiz.notes;renderQuizNotes();
+  // с выбранными нотами показываем только ароматы, где есть хотя бы одна из них; чем больше совпало нот — тем выше
+  let L=A.filter(x=>S.quiz.g==='any'||x.g===S.quiz.g||x.g==='u').map(x=>{const d=Math.sqrt(x.ax.reduce((s,v,i)=>s+W[i]*(v-a[i])**2,0));let m=100*(1-d/dmax),hit=[];
+    if(sel.length){const ns=[...x.top,...x.mid,...x.base];hit=ns.filter(n=>sel.includes(nkey(n)));const h=new Set(hit.map(nkey)).size;m=.5*m+50*h/sel.length}
+    return {x,m:Math.round(m),hit}});
+  if(sel.length)L=L.filter(o=>o.hit.length);
+  const total=L.length;L=L.sort((p,q)=>q.m-p.m).slice(0,sel.length?12:8);
+  $('#qCount').textContent=sel.length?(total?`С выбранными нотами — ${total} ${pl(total,'аромат','аромата','ароматов')}, лучшие совпадения:`:'С такими нотами ароматов не нашлось — уберите одну из нот'):'Лучшие совпадения';
+  $('#qRes').innerHTML=L.map(({x,m,hit})=>`<article class="qitem" style="--tint:${x.tint}" data-open="${x.id}" tabindex="0" role="button">
     <div class="st">${thumb(x,{ml:20})}</div>
-    <div style="min-width:0"><div class="eyebrow" style="font-size:10px">${esc(x.b)}</div><div class="nm">${esc(x.n)}</div><div class="why">${[...x.top.slice(0,2),...x.base.slice(0,2)].join(' · ')}</div></div>
+    <div style="min-width:0"><div class="eyebrow" style="font-size:10px">${esc(x.b)}</div><div class="nm">${esc(x.n)}</div><div class="why">${hit.length?[...new Set(hit)].map(n=>`<b>${esc(n)}</b>`).join(' · '):[...x.top.slice(0,2),...x.base.slice(0,2)].map(esc).join(' · ')}</div></div>
     <div class="match"><b class="num">${m}%</b><div class="bar"><i style="width:${m}%"></i></div></div></article>`).join('');
 }
 
@@ -1450,7 +1527,13 @@ function renderCart(){
   const ess=c.total>=SHOP.deliveryFree;
   w.innerHTML=`<div class="cart">
     <div><div class="eyebrow">Ваш заказ</div><h1>Корзина</h1>
-      ${S.cart.map((l,i)=>{const a=BY[l.id];if(!a)return '';const pr=linePrice(a,l),fr=c.freeBy.get(i)||0,flo=flaconOf(l);
+      ${S.cart.map((l,i)=>{if(l.set){const st=SBY(l.set);if(!st)return '';const pr=setPrice(st,l.ml),full=setFull(st,l.ml);
+        return `<div class="line"><div class="st set" data-set="${esc(st.id)}" role="button" tabindex="0" aria-label="Набор ${esc(st.t)}">${trio(st)}</div>
+        <div style="min-width:0"><div class="eyebrow" style="font-size:10px">Набор · 3 аромата</div><div class="nm">${esc(st.t)}</div><div class="sub">3 × ${l.ml} мл · ${setItems(st).map(a=>esc(a.n)).join(', ')}</div>
+          <span class="gift">2+1 уже учтена</span>
+          <div><div class="qty"><button data-q="${i}" data-d="-1" aria-label="Меньше">−</button><span>${l.qty}</span><button data-q="${i}" data-d="1" aria-label="Больше">+</button></div></div></div>
+        <div class="rt"><b class="num">${RUB(pr*l.qty)}</b>${full>pr?`<s class="num">${RUB(full*l.qty)}</s>`:''}</div></div>`}
+        const a=BY[l.id];if(!a)return '';const pr=linePrice(a,l),fr=c.freeBy.get(i)||0,flo=flaconOf(l);
         return `<div class="line" style="--tint:${a.tint}"><div class="st" data-open="${a.id}" role="button" tabindex="0" aria-label="${esc(a.n)}">${thumb(a,{ml:l.form==='oil'?30:l.ml,shape:l.form})}</div>
         <div style="min-width:0"><div class="eyebrow" style="font-size:10px">${esc(a.b)}</div><div class="nm">${esc(a.n)}</div><div class="sub">${l.ml} мл · ${l.form==='oil'?'масло':'спрей'} · ${RUB(pr)}${flo?`<br>${esc(flo.t)}${flo.add?' (+'+RUB(flo.add)+')':''}`:''}</div>
           ${fr?`<span class="gift">${fr>1?fr+' × ':''}подарок 2+1</span>`:''}
@@ -1462,7 +1545,7 @@ function renderCart(){
       <div class="sumrow"><span>Ароматы</span><span class="num">${RUB(c.sub)}</span></div>
       ${c.gift?`<div class="sumrow" style="color:var(--accent)"><span>Подарок по акции 2+1</span><span class="num">−${RUB(c.gift)}</span></div>`:''}
       <div class="radio" role="radiogroup" aria-label="Доставка">
-        <label><input type="radio" name="dl" value="ess" ${S.delivery==='ess'?'checked':''}><span>Ессентуки и ст. Ессентукская<small>${ess?`Бесплатно — заказ от ${RUB(SHOP.deliveryFree)}`:`Бесплатно от ${RUB(SHOP.deliveryFree)}, сейчас стоимость уточнит магазин`}</small></span></label>
+        <label><input type="radio" name="dl" value="ess" ${S.delivery==='ess'?'checked':''}><span>Курьером по Ессентукам и ст. Ессентукской<small>${ess?`Бесплатно — заказ от ${RUB(SHOP.deliveryFree)}`:`Бесплатно от ${RUB(SHOP.deliveryFree)}, сейчас стоимость уточнит магазин`}</small></span></label>
         <label><input type="radio" name="dl" value="ru" ${S.delivery==='ru'?'checked':''}><span>Доставка по России<small>Отправка службой доставки, стоимость рассчитает магазин</small></span></label>
       </div>
       <div class="sumrow total"><span>Итого за ароматы</span><b class="num">${RUB(c.total)}</b></div>
@@ -1482,7 +1565,8 @@ function renderCart(){
     e.preventDefault();const nm=$('#oName').value.trim(),ph=$('#oPhone').value.trim(),ad=$('#oAddr').value.trim(),note=$('#oNote').value.trim();
     if(!nm||!ph){$('#oErr').hidden=false;return}$('#oErr').hidden=true;
     store.set('oname',nm);store.set('ophone',ph);store.set('oaddr',ad);
-    const lines=[];let n=1;S.cart.forEach((l,i)=>{const a=BY[l.id];if(!a)return;const pr=linePrice(a,l),fr=c.freeBy.get(i)||0,flo=flaconOf(l);
+    const lines=[];let n=1;S.cart.forEach((l,i)=>{if(l.set){const st=SBY(l.set);if(!st)return;lines.push(`${n++}. Набор «${st.t}» — по ${l.ml} мл: ${setItems(st).map(a=>a.b+' '+a.n).join(', ')} × ${l.qty} = ${RUB(setPrice(st,l.ml)*l.qty)} (2+1 уже учтена)`);return}
+      const a=BY[l.id];if(!a)return;const pr=linePrice(a,l),fr=c.freeBy.get(i)||0,flo=flaconOf(l);
       lines.push(`${n++}. ${a.b} ${a.n} — ${l.ml} мл, ${l.form==='oil'?'масло':'спрей'}${flo?`, флакон: ${flo.t}${flo.add?' (+'+RUB(flo.add)+')':''}`:''} × ${l.qty} = ${RUB(pr*(l.qty-fr))}${fr?` (${fr} в подарок по акции 2+1)`:''}`)});
     const txt=`Здравствуйте! Хочу оформить заказ:\n\n${lines.join('\n')}\n\nСумма: ${RUB(c.sub)}${c.gift?`\nПодарок 2+1: −${RUB(c.gift)}`:''}\nИтого: ${RUB(c.total)}\nДоставка: ${S.delivery==='ess'?'Ессентуки / ст. Ессентукская':'по России'}${ad?`, ${ad}`:''}\n\nИмя: ${nm}\nКонтакт: ${ph}${note?`\nКомментарий: ${note}`:''}`;
     const out=$('#orderOut');out.hidden=false;
@@ -1498,11 +1582,10 @@ function renderCart(){
   await Promise.race([loadCatalog(),new Promise(r=>setTimeout(r,2500))]);booted=true;
   const ff=$('#freeFrom');if(ff)ff.textContent=RUB(SHOP.deliveryFree);
   renderContacts();
-  try{$('#lName').value=store.get('oname','');$('#lPhone').value=store.get('ophone','');$('#lCity').value=store.get('ocity','')}catch(e){}
-  if(SHOP.manager)$('#leadSub').textContent=`Оставьте заявку — ${SHOP.manager} свяжется с вами, обсудит ваши предпочтения и подберёт идеальный аромат.`;
   initHome();initCatalog();initQuiz();updBadge();
   const h=(location.hash||'').slice(1);
   if(h.startsWith('p-')&&BY[h.slice(2)]){goView('catalog',{noHash:true});openProduct(h.slice(2))}
+  else if(h.startsWith('s-')&&SBY(h.slice(2))){goView('catalog',{noHash:true});setG('sets');openSet(h.slice(2))}
   else goView(['home','catalog','quiz','cart'].includes(h)?h:'home',{noHash:!h});
 })();
 </script>

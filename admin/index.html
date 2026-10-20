@@ -113,6 +113,20 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .bar .wrap{display:flex;gap:10px;align-items:center;padding:0}
 .bar .btn{flex:1}
 .bar .note{font-size:13px;color:var(--muted);flex:1}
+.trio{display:flex;align-items:flex-end;justify-content:center;width:84px;height:70px;border-radius:6px;background:color-mix(in oklab,var(--accent) 10%,var(--surface));overflow:hidden;padding:6px 2px 4px}
+.trio img{height:80%;width:34%;object-fit:contain;object-position:50% 100%;margin:0 -3%}
+.trio img:nth-child(2){height:96%;position:relative;z-index:1}
+.item.set{grid-template-columns:84px minmax(0,1fr) auto}
+.slot{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.slot .thumb{width:48px;height:60px}
+.slot .nm{font:400 16px/1.2 var(--f-display)}
+.picker{display:grid;gap:6px;padding:10px;border:1px dashed var(--accent);border-radius:10px}
+.picker button{display:block;width:100%;text-align:left;padding:9px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--line);font-size:14px}
+.picker button small{color:var(--muted)}
+.ptab{display:grid;grid-template-columns:64px minmax(0,1fr) 120px;gap:8px 10px;align-items:center;font-size:14px}
+.ptab .auto{font-size:12.5px;color:var(--muted)}
+.ptab input{width:100%;height:42px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);outline:none;font:inherit}
+.ptab input:focus{border-color:var(--ink)}
 .confirm{display:grid;gap:10px;padding:14px;border:1px solid var(--err);border-radius:10px;background:color-mix(in oklab,var(--err) 7%,var(--surface))}
 
 .toast{position:fixed;left:0;right:0;margin:0 auto;width:max-content;max-width:calc(100% - 32px);bottom:calc(env(safe-area-inset-bottom,0px) + 86px);z-index:50;
@@ -135,7 +149,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 <main id="vLogin" class="wrap login" hidden>
   <div class="eyebrow">Вход</div>
   <h1>Управление каталогом</h1>
-  <p class="hint" style="font-size:14.5px;max-width:34em">Здесь можно добавлять и удалять ароматы, менять цены, описания и фото. Изменения появятся на сайте через 1–2 минуты после сохранения.</p>
+  <p class="hint" style="font-size:14.5px;max-width:34em">Здесь можно добавлять и удалять ароматы и наборы, менять цены, описания и фото. Изменения появятся на сайте через 1–2 минуты после сохранения.</p>
   <div class="card stack" style="margin-top:22px">
     <div class="field"><label for="token">Ключ доступа</label>
       <input type="password" id="token" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></div>
@@ -151,6 +165,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
   <div class="toolbar">
     <input class="search" id="q" type="search" placeholder="Найти аромат или бренд" aria-label="Поиск">
     <button class="btn small solid" id="btnAdd">+ Аромат</button>
+    <button class="btn small ghost" id="btnSets">Наборы</button>
     <button class="btn small ghost" id="btnSettings">Настройки</button>
   </div>
   <div class="list" id="list"></div>
@@ -234,6 +249,44 @@ input[type=range]{width:100%;accent-color:var(--accent)}
   </div>
 </main>
 
+<!-- НАБОРЫ -->
+<main id="vSets" class="wrap" hidden>
+  <div class="toolbar" style="margin-top:14px"><button class="icon-btn" id="btnBack3">← К ароматам</button></div>
+  <div class="sec-title" style="margin-top:6px"><h2>Наборы</h2><span class="eyebrow" id="setsLbl"></span></div>
+  <p class="hint" style="margin:0 0 12px">Набор — три аромата одного объёма. Цена по умолчанию считается сама по акции 2+1: самый недорогой из трёх в подарок. Её можно задать вручную в карточке набора.</p>
+  <div class="toolbar" style="margin-top:0"><button class="btn small solid" id="btnAddSet">+ Набор</button></div>
+  <div class="list" id="setList"></div>
+</main>
+
+<!-- КАРТОЧКА НАБОРА -->
+<main id="vSet" class="wrap" hidden>
+  <div class="toolbar" style="margin-top:14px"><button class="icon-btn" id="btnBack4">← К наборам</button></div>
+  <h2 id="setTitle" style="font-size:30px;margin:6px 0 16px"></h2>
+  <div class="stack">
+    <div class="card stack">
+      <div class="field"><label for="stT">Название набора</label><input type="text" id="stT" placeholder="Самые шлейфовые"></div>
+      <div class="field"><label for="stD">Описание</label><textarea id="stD" rows="3" placeholder="Пара предложений о наборе"></textarea></div>
+    </div>
+    <div class="card stack">
+      <div class="eyebrow">Ароматы в наборе</div>
+      <div class="stack" id="stSlots"></div>
+    </div>
+    <div class="card stack">
+      <div class="eyebrow">Цена набора</div>
+      <div class="ptab" id="stPrices"></div>
+      <p class="hint">Пустое поле — цена считается сама: три флакона выбранного объёма минус самый недорогой (2+1). Впишите сумму, если хотите свою цену для этого объёма.</p>
+    </div>
+    <label class="check"><input type="checkbox" id="stHid"><span>Скрыть с сайта<small>Набор останется здесь, его можно вернуть. Набор скрывается сам, если один из его ароматов скрыт или удалён</small></span></label>
+    <div class="stack" style="margin-top:8px">
+      <button class="btn danger small" id="btnDelSet" style="justify-self:start">Удалить набор</button>
+      <div class="confirm" id="delSetConfirm" hidden>
+        <b>Удалить набор «<span id="delSetName"></span>»?</b>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn small danger" id="btnDelSetYes">Да, удалить</button><button class="btn small ghost" id="btnDelSetNo">Отмена</button></div>
+      </div>
+    </div>
+  </div>
+</main>
+
 <!-- НАСТРОЙКИ -->
 <main id="vSettings" class="wrap" hidden>
   <div class="toolbar" style="margin-top:14px"><button class="icon-btn" id="btnBack2">← К списку</button></div>
@@ -296,7 +349,7 @@ function errText(e){
 }
 
 /* ---------- состояние ---------- */
-const S={cat:null,sha:null,dirty:false,editDirty:false,editing:null,pendingImg:{},preview:{},pendingDel:new Set(),changedIds:new Set(),saving:false};
+const S={changedSets:new Set(),cat:null,sha:null,dirty:false,editDirty:false,editing:null,pendingImg:{},preview:{},pendingDel:new Set(),changedIds:new Set(),saving:false};
 function markDirty(id){S.dirty=true;if(id)S.changedIds.add(id);updateBar()}
 function updateBar(){
   const any=S.dirty||S.editDirty;
@@ -306,7 +359,7 @@ function updateBar(){
 addEventListener('beforeunload',e=>{if(S.dirty||S.editDirty){e.preventDefault();e.returnValue=''}});
 
 /* ---------- экраны ---------- */
-function show(v){['vLogin','vList','vEdit','vSettings'].forEach(id=>$('#'+id).hidden=id!==v);$('#btnLogout').hidden=v==='vLogin';updateBar();window.scrollTo(0,0)}
+function show(v){['vLogin','vList','vEdit','vSettings','vSets','vSet'].forEach(id=>$('#'+id).hidden=id!==v);$('#btnLogout').hidden=v==='vLogin';updateBar();window.scrollTo(0,0)}
 
 async function login(){
   const t=$('#token').value.trim()||TOKEN;$('#loginErr').hidden=true;
@@ -322,7 +375,7 @@ async function login(){
 async function loadCatalog(){
   const f=await getFile('data/catalog.json');
   if(!f)throw Object.assign(new Error('Файл каталога не найден'),{status:0});
-  S.cat=JSON.parse(textFromB64(f.content));S.sha=f.sha;S.cat.settings=Object.assign({whatsapp:'',max:'',phone:'',manager:'',deliveryFree:1500},S.cat.settings||{});
+  S.cat=JSON.parse(textFromB64(f.content));S.sha=f.sha;S.cat.settings=Object.assign({whatsapp:'',max:'',phone:'',manager:'',deliveryFree:2000},S.cat.settings||{});
 }
 $('#btnLogin').onclick=login;
 $('#token').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
@@ -508,9 +561,71 @@ $('#btnDelYes').onclick=()=>{
 };
 
 /* ---------- настройки ---------- */
-$('#btnSettings').onclick=()=>{const st=S.cat.settings;$('#sWa').value=st.whatsapp||'';$('#sMax').value=st.max||'';$('#sPhone').value=st.phone||'';$('#sMgr').value=st.manager||'';$('#sFree').value=st.deliveryFree??1500;S.editing=null;F=null;show('vSettings')};
+$('#btnSettings').onclick=()=>{const st=S.cat.settings;$('#sWa').value=st.whatsapp||'';$('#sMax').value=st.max||'';$('#sPhone').value=st.phone||'';$('#sMgr').value=st.manager||'';$('#sFree').value=st.deliveryFree??2000;S.editing=null;F=null;show('vSettings')};
 $('#sWa').oninput=$('#sMax').oninput=$('#sPhone').oninput=$('#sMgr').oninput=$('#sFree').oninput=()=>{const st=S.cat.settings;st.whatsapp=$('#sWa').value.trim();st.max=$('#sMax').value.trim();st.phone=$('#sPhone').value.trim();st.manager=$('#sMgr').value.trim();st.deliveryFree=+$('#sFree').value||0;markDirty()};
 $('#btnBack2').onclick=()=>{show('vList');renderList()};
+
+/* ---------- наборы ---------- */
+const VOL=[6,10,15,20,30,50];
+const AR=id=>S.cat.aromas.find(a=>a.id===id);
+const setsArr=()=>(S.cat.sets=S.cat.sets||[]);
+function setAuto(st,ml){const it=st.items.map(AR).filter(a=>a&&!a.hidden);if(it.length<st.items.length||!it.length)return {full:0,auto:0};const ps=it.map(a=>(a.p||0)*ml),full=ps.reduce((x,y)=>x+y,0);return {full,auto:Math.round(full-(ps.length>=3?Math.min(...ps):0))}}
+const thumbImg=a=>a?`<img src="${esc(imgSrc(a))}" alt="" loading="lazy">`:'';
+function renderSets(){
+  const L=setsArr();$('#setsLbl').textContent=`${L.length} ${L.length===1?'набор':L.length<5&&L.length>1?'набора':'наборов'}`;
+  $('#setList').innerHTML=L.map((st,i)=>{const it=st.items.map(AR),ok=it.every(a=>a&&!a.hidden),{auto}=setAuto(st,10),p10=(st.pr&&+st.pr[10])||auto;
+    return `<div class="item set${st.hidden||!ok?' off':''}"><div class="trio">${it.map(thumbImg).join('')}</div>
+      <button class="open" data-eset="${esc(st.id)}"><div class="nm">${esc(st.t||'Без названия')}</div><div class="sub">${it.map(a=>a?esc(a.n):'<b style="color:var(--err)">нет аромата</b>').join(' · ')}</div>
+        <div class="badges">${ok?`<span class="badge">10 мл: ${RUB(p10)}</span>`:'<span class="badge hid">не на сайте: аромат скрыт или удалён</span>'}${st.hidden?'<span class="badge hid">скрыт</span>':''}${st.pr&&Object.keys(st.pr).length?'<span class="badge">своя цена</span>':''}${S.changedSets.has(st.id)?'<span class="badge edit">не сохранено</span>':''}</div></button>
+      <div class="moves"><button data-smv="${i}" data-d="-1" aria-label="Выше" ${i===0?'disabled':''}>↑</button><button data-smv="${i}" data-d="1" aria-label="Ниже" ${i===L.length-1?'disabled':''}>↓</button></div></div>`}).join('')||'<p class="hint">Наборов пока нет.</p>';
+}
+let ST=null;   // редактируемый набор (правки сразу идут в каталог)
+function touchSet(){S.changedSets.add(ST.id);markDirty()}
+$('#btnSets').onclick=()=>{S.editing=null;F=null;show('vSets');renderSets()};
+$('#btnBack3').onclick=()=>{show('vList');renderList()};
+$('#btnBack4').onclick=()=>{ST=null;show('vSets');renderSets()};
+$('#setList').onclick=e=>{
+  const ed=e.target.closest('[data-eset]');if(ed){openSet(ed.dataset.eset);return}
+  const mv=e.target.closest('[data-smv]');if(mv){const L=setsArr(),i=+mv.dataset.smv,j=i+(+mv.dataset.d);if(j<0||j>=L.length)return;[L[i],L[j]]=[L[j],L[i]];markDirty();renderSets()}
+};
+$('#btnAddSet').onclick=()=>{
+  const L=setsArr();let id='nabor-'+(L.length+1),k=2;while(L.some(x=>x.id===id))id='nabor-'+(L.length+(k++));
+  const vis=S.cat.aromas.filter(a=>!a.hidden);
+  L.unshift({id,t:'Новый набор',d:'',items:vis.slice(0,3).map(a=>a.id)});S.changedSets.add(id);markDirty();openSet(id);
+};
+function openSet(id){
+  ST=setsArr().find(x=>x.id===id);if(!ST)return;
+  $('#setTitle').textContent=ST.t||'Набор';$('#stT').value=ST.t||'';$('#stD').value=ST.d||'';$('#stHid').checked=!!ST.hidden;$('#delSetConfirm').hidden=true;
+  renderSlots();renderSetPrices();show('vSet');
+}
+function renderSlots(){
+  $('#stSlots').innerHTML=ST.items.map((id,i)=>{const a=AR(id);
+    return `<div class="slot"><div class="thumb" style="--t:${esc(a?.tint||'#ccc')}">${a?thumbImg(a):'<span>?</span>'}</div>
+      <div style="min-width:0"><div class="nm">${a?esc(a.n):'Аромат не найден'}</div><div class="hint">${a?esc(a.b)+' · '+RUB((a.p||0)*6)+' за 6 мл'+(a.hidden?' · <b style="color:var(--err)">скрыт</b>':''):'Выберите другой'}</div></div>
+      <button class="btn small ghost" data-pick="${i}">Заменить</button></div>
+      <div class="picker" id="pk${i}" hidden><input class="search" type="search" placeholder="Найти аромат или бренд" data-pq="${i}" aria-label="Поиск аромата"><div class="stack" style="gap:6px" id="pr${i}"></div></div>`}).join('');
+}
+function pickList(i){
+  const q=($(`[data-pq="${i}"]`).value||'').trim().toLowerCase();
+  const L=S.cat.aromas.filter(a=>!a.hidden&&(!q||(a.n+' '+a.b).toLowerCase().includes(q))).slice(0,8);
+  $('#pr'+i).innerHTML=L.map(a=>`<button data-choose="${i}" data-id="${esc(a.id)}">${esc(a.n)} <small>· ${esc(a.b)} · ${RUB((a.p||0)*6)} за 6 мл</small></button>`).join('')||'<p class="hint" style="margin:0">Не найдено</p>';
+}
+$('#stSlots').onclick=e=>{
+  const pb=e.target.closest('[data-pick]');if(pb){const i=pb.dataset.pick,pk=$('#pk'+i);pk.hidden=!pk.hidden;if(!pk.hidden){pickList(i);pk.querySelector('input').focus()}return}
+  const ch=e.target.closest('[data-choose]');if(ch){ST.items[+ch.dataset.choose]=ch.dataset.id;touchSet();renderSlots();renderSetPrices()}
+};
+$('#stSlots').oninput=e=>{const q=e.target.closest('[data-pq]');if(q)pickList(q.dataset.pq)};
+function renderSetPrices(){
+  $('#stPrices').innerHTML=VOL.map(v=>{const {full,auto}=setAuto(ST,v),own=ST.pr&&ST.pr[v];
+    return `<b>${v} мл</b><span class="auto">${auto?`по 2+1: ${RUB(auto)}<br><s>${RUB(full)}</s>`:'нет цены: аромат скрыт'}</span><input type="number" inputmode="numeric" min="0" step="10" data-spr="${v}" value="${own||''}" placeholder="${auto||''}" aria-label="Своя цена за набор ${v} мл">`}).join('');
+}
+$('#stPrices').oninput=e=>{const i=e.target.closest('[data-spr]');if(!i)return;const v=+i.value;ST.pr=ST.pr||{};if(v>0)ST.pr[i.dataset.spr]=v;else delete ST.pr[i.dataset.spr];if(!Object.keys(ST.pr).length)delete ST.pr;touchSet()};
+$('#stT').oninput=()=>{ST.t=$('#stT').value.trim();$('#setTitle').textContent=ST.t||'Набор';touchSet()};
+$('#stD').oninput=()=>{ST.d=$('#stD').value.trim();touchSet()};
+$('#stHid').onchange=()=>{if($('#stHid').checked)ST.hidden=true;else delete ST.hidden;touchSet()};
+$('#btnDelSet').onclick=()=>{$('#delSetName').textContent=ST.t||'набор';$('#delSetConfirm').hidden=false};
+$('#btnDelSetNo').onclick=()=>{$('#delSetConfirm').hidden=true};
+$('#btnDelSetYes').onclick=()=>{const L=setsArr(),i=L.indexOf(ST);if(i>=0)L.splice(i,1);S.changedSets.delete(ST.id);ST=null;markDirty();show('vSets');renderSets();toast('Набор удалён. Нажмите «Сохранить на сайте», чтобы применить')};
 
 /* ---------- публикация ---------- */
 $('#btnSave').onclick=publish;
@@ -530,12 +645,12 @@ async function publish(){
     for(const id of [...S.pendingDel]){const cur=await getFile(`img/${id}.webp`);if(cur)await delFile(`img/${id}.webp`,`Удалено фото: ${id}`,cur.sha);S.pendingDel.delete(id)}
     // 3) каталог
     S.cat.updated=new Date().toISOString();
-    const names=[...S.changedIds].map(id=>(S.cat.aromas.find(a=>a.id===id)||{}).n).filter(Boolean);
+    const names=[...[...S.changedIds].map(id=>(S.cat.aromas.find(a=>a.id===id)||{}).n),...[...S.changedSets].map(id=>{const st=(S.cat.sets||[]).find(x=>x.id===id);return st&&'набор «'+st.t+'»'})].filter(Boolean);
     const msg=names.length?`Каталог: ${names.slice(0,4).join(', ')}${names.length>4?' и ещё '+(names.length-4):''}`:'Каталог: изменения';
     const res=await putFile('data/catalog.json',b64FromText(JSON.stringify(S.cat,null,1)),msg,S.sha);
-    S.sha=res.content.sha;S.dirty=false;S.editDirty=false;S.changedIds.clear();
+    S.sha=res.content.sha;S.dirty=false;S.editDirty=false;S.changedIds.clear();S.changedSets.clear();
     toast('Сохранено. На сайте обновится через 1–2 минуты');
-    if(!$('#vEdit').hidden&&S.editing){const cur=S.cat.aromas.find(a=>a.id===S.editing);if(cur){F=JSON.parse(JSON.stringify(cur));$('#editTitle').textContent=F.n;$('#delZone').hidden=false;fillForm()}}else renderList();
+    if(!$('#vEdit').hidden&&S.editing){const cur=S.cat.aromas.find(a=>a.id===S.editing);if(cur){F=JSON.parse(JSON.stringify(cur));$('#editTitle').textContent=F.n;$('#delZone').hidden=false;fillForm()}}else if(!$('#vSets').hidden)renderSets();else if(!$('#vSet').hidden){if(ST)renderSlots()}else renderList();
   }catch(e){toast(errText(e),true)}
   finally{S.saving=false;btn.disabled=false;btn.textContent='Сохранить на сайте';updateBar()}
 }
