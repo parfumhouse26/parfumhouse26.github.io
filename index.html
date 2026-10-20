@@ -15,7 +15,7 @@
 <meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
 <meta property="og:image" content="https://parfumhouse26.github.io/icon-512.png">
 <meta property="og:url" content="https://parfumhouse26.github.io/">
-<script>window.APP_VERSION = '732ab47957';</script>
+<script>window.APP_VERSION = 'd5968ed80c';</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -848,6 +848,10 @@ const VOL=[6,10,15,20,30,50];
 /* наборы из 3 ароматов (пост «3 самых…» в Instagram магазина). Цена набора = три флакона одного объёма минус самый недорогой (акция 2+1);
    pr[мл] — цена, заданная вручную в админке. Данные приходят из data/catalog.json (sets), здесь — запасной вариант */
 let SETS=[
+  {id:'osen-initio',t:'На осень: Initio',d:'Три лучших аромата Initio для осени — тёплые, глубокие и со шлейфом.',items:['side-effect','wild-rush','oud-for-greatness']},
+  {id:'osen-clive-christian',t:'На осень: Clive Christian',d:'Три лучших аромата Clive Christian для осени.',items:['strange-heavens-out-of-the-blue-clive','jump-up-and-kiss-me-hedonistic-clive','blonde-amber-clive']},
+  {id:'osen-amouage',t:'На осень: Amouage',d:'Три лучших аромата Amouage для осени.',items:['guidance-46-amouage','decision-amouage','sequence']},
+  {id:'osen-pdm',t:'На осень: Parfums de Marly',d:'Три лучших аромата Parfums de Marly для осени.',items:['layton','althair','carios']},
   {id:'shleif',t:'Самые шлейфовые',d:'Три аромата с заметным шлейфом — их почувствуют, даже когда вы уже вышли из комнаты.',items:['tilia-marc-antoine','angels-share','devil-s-intrigue-hfc']},
   {id:'sladkie',t:'Самые сладкие',d:'Тёплые гурманские ароматы с ванилью и сладкими нотами — уютные, как десерт.',items:['white-chocola-richard','ani-nishane','vanilla-powder-matiere']},
   {id:'idealnye',t:'Самые идеальные',d:'Универсальная тройка: на каждый день, в офис и на вечер — такие ароматы сложно не полюбить.',items:['l-v-symphony-louis','bal-d-afrique-byredo','blue-talisman-ex']},
