@@ -15,7 +15,7 @@
 <meta property="og:description" content="Каталог ароматов, выбор объёма от 6 до 50 мл, подбор аромата и заказ в Direct. Третий флакон в подарок.">
 <meta property="og:image" content="https://parfumhouse26.github.io/icon-512.png">
 <meta property="og:url" content="https://parfumhouse26.github.io/">
-<script>window.APP_VERSION = 'd5968ed80c';</script>
+<script>window.APP_VERSION = 'ab90c95c3b';</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -821,8 +821,10 @@ const fmtPhone=()=>{const d=digits(SHOP.phone);return d.length===11?`+${d[0]} ${
 const hello=()=>SHOP.manager?`Здравствуйте, ${SHOP.manager}!`:'Здравствуйте!';
 /* кнопки связи; с текстом заказа WhatsApp открывается уже с заполненным сообщением, перед MAX текст копируется */
 function contactButtons(orderText){
-  return [waLink()&&`<a class="btn small cbtn main" href="${esc(waLink(orderText||hello()))}" target="_blank" rel="noopener">WhatsApp</a>`,
-    maxLink()&&`<a class="btn small cbtn" href="${esc(maxLink())}" target="_blank" rel="noopener"${orderText?' data-copyfirst':''}>MAX</a>`,
+  // MAX — основной канал заказов; ссылки с готовым текстом у MAX нет, поэтому текст заказа копируется перед открытием чата
+  const m=!!maxLink();
+  return [m&&`<a class="btn small cbtn main" href="${esc(maxLink())}" target="_blank" rel="noopener"${orderText?' data-copyfirst':''}>MAX</a>`,
+    waLink()&&`<a class="btn small cbtn${m?'':' main'}" href="${esc(waLink(orderText||hello()))}" target="_blank" rel="noopener">WhatsApp</a>`,
     telLink()&&`<a class="btn small cbtn" href="${telLink()}">Позвонить</a>`,
     `<a class="btn small cbtn" href="https://ig.me/m/parfum.house26" target="_blank" rel="noopener"${orderText?' data-copyfirst':''}>Direct</a>`].filter(Boolean).join('');
 }
@@ -831,7 +833,8 @@ function renderContacts(){
     (telLink()?`<p class="phone-line">${SHOP.manager?esc(SHOP.manager)+' · ':''}<a href="${telLink()}">${esc(fmtPhone())}</a></p>`:'')+`<div class="cbtns" style="margin-top:14px">${contactButtons()}</div>`;
   const fp=$('#footPhone');if(fp)fp.innerHTML=telLink()?`<a class="link" href="${telLink()}">${esc(fmtPhone())}</a> · `:'';
 }
-document.addEventListener('click',e=>{const a=e.target.closest('[data-copyfirst]');const ta=a&&a.closest('.lead-done,.order-out')?.querySelector('textarea');if(a&&ta){try{navigator.clipboard.writeText(ta.value).catch(()=>{})}catch(err){}toast('Текст заказа скопирован — вставьте его в чат')}});
+document.addEventListener('click',e=>{const a=e.target.closest('[data-copyfirst]');const ta=a&&a.closest('.lead-done,.order-out')?.querySelector('textarea');if(a&&ta){const old=()=>{try{ta.removeAttribute('readonly');ta.select();document.execCommand('copy');ta.setAttribute('readonly','')}catch(err){}};   // запасной способ для браузера внутри Instagram
+    try{navigator.clipboard.writeText(ta.value).catch(old)}catch(err){old()}toast('Текст заказа скопирован — вставьте его в чат и отправьте')}});
 /* каталог: data/catalog.json (его правит админка); массив выше — запасной вариант без сети */
 let booted=false;
 async function loadCatalog(){
@@ -849,6 +852,7 @@ const VOL=[6,10,15,20,30,50];
    pr[мл] — цена, заданная вручную в админке. Данные приходят из data/catalog.json (sets), здесь — запасной вариант */
 let SETS=[
   {id:'osen-initio',t:'На осень: Initio',d:'Три лучших аромата Initio для осени — тёплые, глубокие и со шлейфом.',items:['side-effect','wild-rush','oud-for-greatness']},
+  {id:'osen-lv',t:'На осень: Louis Vuitton',d:'Три лучших аромата Louis Vuitton для осени.',items:['l-v-ambee-levant-louis','l-v-orage-louis','l-immensite-louis']},
   {id:'osen-clive-christian',t:'На осень: Clive Christian',d:'Три лучших аромата Clive Christian для осени.',items:['strange-heavens-out-of-the-blue-clive','jump-up-and-kiss-me-hedonistic-clive','blonde-amber-clive']},
   {id:'osen-amouage',t:'На осень: Amouage',d:'Три лучших аромата Amouage для осени.',items:['guidance-46-amouage','decision-amouage','sequence']},
   {id:'osen-pdm',t:'На осень: Parfums de Marly',d:'Три лучших аромата Parfums de Marly для осени.',items:['layton','althair','carios']},
@@ -1574,7 +1578,7 @@ function renderCart(){
       lines.push(`${n++}. ${a.b} ${a.n} — ${l.ml} мл, ${l.form==='oil'?'масло':'спрей'}${flo?`, флакон: ${flo.t}${flo.add?' (+'+RUB(flo.add)+')':''}`:''} × ${l.qty} = ${RUB(pr*(l.qty-fr))}${fr?` (${fr} в подарок по акции 2+1)`:''}`)});
     const txt=`Здравствуйте! Хочу оформить заказ:\n\n${lines.join('\n')}\n\nСумма: ${RUB(c.sub)}${c.gift?`\nПодарок 2+1: −${RUB(c.gift)}`:''}\nИтого: ${RUB(c.total)}\nДоставка: ${S.delivery==='ess'?'Ессентуки / ст. Ессентукская':'по России'}${ad?`, ${ad}`:''}\n\nИмя: ${nm}\nКонтакт: ${ph}${note?`\nКомментарий: ${note}`:''}`;
     const out=$('#orderOut');out.hidden=false;
-    out.innerHTML=`<div class="eyebrow">Последний шаг</div><p style="font-size:14px">${waLink()?'Нажмите WhatsApp — заказ подставится в сообщение сам, останется отправить. ':''}Или скопируйте текст и отправьте в MAX или Direct — ${SHOP.manager?esc(SHOP.manager):'менеджер'} подтвердит наличие и доставку.</p><textarea id="oTxt" readonly aria-label="Текст заказа">${esc(txt)}</textarea>
+    out.innerHTML=`<div class="eyebrow">Последний шаг</div><p style="font-size:14px">${maxLink()?'Нажмите MAX — текст заказа скопируется сам, откроется чат магазина: вставьте текст и отправьте. ':''}${waLink()?(maxLink()?'Если удобнее WhatsApp — там заказ подставится в сообщение сам. ':'Нажмите WhatsApp — заказ подставится в сообщение сам, останется отправить. '):''}Можно и в Direct. ${SHOP.manager?esc(SHOP.manager):'Менеджер'} подтвердит наличие и доставку.</p><textarea id="oTxt" readonly aria-label="Текст заказа">${esc(txt)}</textarea>
       <div class="cbtns">${contactButtons(txt)}<button class="btn small cbtn" id="oCopy">Скопировать заказ</button></div>`;
     $('#oCopy').onclick=async()=>{const ta=$('#oTxt');try{await navigator.clipboard.writeText(ta.value);$('#oCopy').textContent='Скопировано'}catch(err){ta.focus();ta.select();$('#oCopy').textContent='Текст выделен — скопируйте'}};
     out.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});
