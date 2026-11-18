@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-20T13:41:46.100Z",
+ "updated": "2026-11-18T06:34:35.068Z",
  "settings": {
   "whatsapp": "+79283782160",
   "max": "https://max.ru/u/f9LHodD0cOIicqdvRk8f58LJA4lAWeKrQ2QqNJFfTnJRQqQKWWZJik2jRGs",
@@ -9,6 +9,41 @@
   "deliveryFree": 2000
  },
  "aromas": [
+  {
+   "id": "bibliotheque-byredo",
+   "n": "Bibliothèque",
+   "b": "Byredo",
+   "g": "u",
+   "p": 130,
+   "fam": "Цветочные древесно-мускусные",
+   "tags": [],
+   "tint": "#c9a6ae",
+   "ax": [
+    5,
+    5,
+    5,
+    5
+   ],
+   "lon": 7,
+   "top": [
+    "Слива",
+    "Персик"
+   ],
+   "mid": [
+    "Фиалка",
+    "пион"
+   ],
+   "base": [
+    "Кожа",
+    "Пачули",
+    "Ваниль",
+    "Мускус"
+   ],
+   "d": "",
+   "img": false,
+   "v": 0,
+   "nw": 1
+  },
   {
    "id": "ambre-latte-essential",
    "n": "Ambre Latte",
